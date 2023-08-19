@@ -51,7 +51,7 @@
     width: 100%;
     position: fixed;
     top: 0;
-    left:0 ;
+    left: 0;
     opacity: 0.5;
     background-color: black;
     z-index: 101;
