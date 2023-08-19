@@ -1,47 +1,171 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
+  import { onMount } from "svelte";
+  import Editor from "./lib/components/Editor.svelte";
+  import Table from "./lib/components/Table.svelte";
+  // import data from './dummy-data.json';
+  import AnalysisMode from "./lib/components/sentence-analysis/AnalysisMode.svelte";
+  import {
+    source,
+    selected,
+    sentences,
+    detailShowingData,
+    activeTableTab,
+    textToInsert,
+    ngrok_endpoint,
+  } from "./lib/components/data.js";
+  import Appbar from "./lib/components/Appbar.svelte";
+  import Instructions from "./lib/components/Instructions.svelte";
+
+  let ngrok_success = false;
+
+  async function connectToNgrok() {
+    ngrok_success = true;
+    const response = await fetch($ngrok_endpoint, {
+      method: "get",
+      headers: new Headers({
+        "ngrok-skip-browser-warning": "69420",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((err) => (ngrok_success = false));
+  }
+
+  let content = {
+    text: "",
+    html: "",
+  };
+  let analysisMode = false;
+  let openInstructions = false;
+
+  function splitSentences() {
+    let url = new URL("tokenize/" + content.text, $ngrok_endpoint);
+    console.log(url);
+    fetch(url, {
+      method: "get",
+      headers: new Headers({
+        "ngrok-skip-browser-warning": "69420",
+      }),
+    })
+      .then((response) => response.json())
+      .then((d) => {
+        console.log(d);
+        $sentences = d.sentences;
+      });
+  }
 </script>
 
+<Appbar bind:openInstructions />
+<Instructions bind:openInstructions />
 <main>
-  <div>
-    <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
+  <div class="body-container">
+    <div class="column">
+      <input
+        type="url"
+        placeholder="ngrok tunnel"
+        bind:value={$ngrok_endpoint}
+      />
+      <button on:click={connectToNgrok}
+        >{ngrok_success ? "connected" : "connect"}</button
+      >
+      <div class="editor-area">
+        {#if analysisMode}
+          <AnalysisMode />
+        {:else}
+          <Editor bind:content />
+        {/if}
+        <div
+          id="scores-label"
+          on:click={(e) => {
+            splitSentences();
+            analysisMode = !analysisMode;
+          }}
+        >
+          {analysisMode ? "edit mode" : "analysis mode"}
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="table-area">
+        <Table />
+      </div>
+    </div>
   </div>
-  <h1>Vite + Svelte</h1>
-
-  <div class="card">
-    <Counter />
-  </div>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
 </main>
 
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
+  .body-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 2rem;
+    width: 100vw;
+    height: 80vh;
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+
+  .editor-area {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 75%;
+    margin: 1rem;
   }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    height: 100%;
+    justify-content: center;
   }
-  .read-the-docs {
-    color: #888;
+
+  #controls {
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    width: 40vw;
+  }
+
+  .button-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    column-gap: 1rem;
+  }
+
+  p {
+    text-align: left;
+  }
+
+  .table-area {
+    /* width: 100%; */
+    height: 90%;
+    /* background-color: rgba(0,0,0,0.1); */
+    margin: 1rem;
+  }
+
+  #scores-label {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 10px;
+    gap: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 2px hsla(0, 0%, 0%, 0.2), 0 0 5px hsla(0, 0%, 0%, 0.1);
+    line-height: 1;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.97);
+    width: fit-content;
+  }
+
+  #scores-label p {
+    margin: 0;
+    text-align: right;
   }
 </style>
