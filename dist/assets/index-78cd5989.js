@@ -34444,7 +34444,7 @@ function Qn(p) {
   let k, h, t, r, w;
   return {
     c() {
-      (k = $("div")), J(k, "id", "overlay"), J(k, "class", "svelte-1qmnxsr");
+      (k = $("div")), J(k, "id", "overlay"), J(k, "class", "svelte-v6dmu3");
     },
     m(m, y) {
       he(m, k, y), (t = !0), r || ((w = le(k, "click", p[2])), (r = !0));
@@ -34484,14 +34484,14 @@ function zr(p) {
         (t = ae()),
         (r = $("div")),
         (r.innerHTML =
-          '<h4 class="svelte-1qmnxsr">Instructions</h4> <p class="svelte-1qmnxsr">Do the task.</p>'),
+          '<h4 class="svelte-v6dmu3">Instructions</h4> <p class="svelte-v6dmu3">Do the task.</p>'),
         (w = ae()),
         d && d.c(),
         (m = ot()),
         J(h, "id", "exit-button"),
-        J(h, "class", "svelte-1qmnxsr"),
+        J(h, "class", "svelte-v6dmu3"),
         J(r, "id", "instructions-text"),
-        J(k, "class", "svelte-1qmnxsr"),
+        J(k, "class", "svelte-v6dmu3"),
         De(k, "openInstructions", p[0]);
     },
     m(f, i) {

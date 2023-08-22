@@ -20,7 +20,7 @@ export const sentences = writable([]);
 export const tableSentences = derived(
   [query, ngrok_endpoint],
   ([$query, $ngrok_endpoint], set) => {
-    if ($query.length === 0) set(tm_sentences);
+    if ($query.length === 0 || $ngrok_endpoint.length === 0) set(tm_sentences);
     else {
       console.log("hi");
       let url = new URL("search/" + $query, $ngrok_endpoint);

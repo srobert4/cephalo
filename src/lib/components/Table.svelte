@@ -51,7 +51,7 @@
 
   $: textShowing = filterText(
     $activeTableTab === "sentences"
-      ? $tableSentences
+      ? allSentences
       : $activeTableTab === "terms"
       ? allTerms
       : suggestions,
