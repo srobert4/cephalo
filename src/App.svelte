@@ -12,69 +12,46 @@
   let analysisMode = false;
   let openInstructions = false;
   let mode = "control";
-
-  // function splitSentences() {
-  //   if ($ngrok_endpoint.length === 0) {
-  //     $sentences = content.text.replace(/([.?!])\s*(?=[A-Z])/g, "$1|").split("|");
-  //     console.log($sentences)
-  //   } else {
-  //     let url = new URL("tokenize/" + content.text, $ngrok_endpoint);
-  //     console.log(url);
-  //     fetch(url, {
-  //       method: "get",
-  //       headers: new Headers({
-  //         "ngrok-skip-browser-warning": "69420",
-  //       }),
-  //     })
-  //       .then((response) => response.json())
-  //       .then((d) => {
-  //         console.log(d);
-  //         $sentences = d.sentences;
-  //       });
-  //   }
-  // }
 </script>
 
 <Appbar bind:openInstructions bind:mode />
 <Sidebar bind:openInstructions />
 <main>
-  <div class="body-container">
-    <div class="column">
-      <div class="editor-area">
-        {#if analysisMode}
-          <AnalysisMode />
-        {:else}
-          <Editor bind:content />
-        {/if}
-        {#if mode === "interactive"}
-          <div
-            id="scores-label"
-            on:click={(e) => {
-              analysisMode = !analysisMode;
-            }}
-          >
-            {analysisMode ? "edit mode" : "analysis mode"}
-          </div>
-        {/if}
-      </div>
-    </div>
-    {#if mode !== "control"}
-      <div class="column">
-        <div class="table-area">
-          <Table />
-        </div>
-      </div>
+  <!-- <div class="column"> -->
+  <div class="editor-area">
+    {#if analysisMode}
+      <AnalysisMode />
+    {:else}
+      <Editor bind:content />
+    {/if}
+    {#if mode === "interactive"}
+      <button
+        id="scores-label"
+        on:click={(e) => {
+          analysisMode = !analysisMode;
+        }}
+      >
+        {analysisMode ? "edit mode" : "analysis mode"}
+      </button>
     {/if}
   </div>
+  <!-- </div> -->
+  {#if mode !== "control"}
+    <!-- <div class="column"> -->
+    <!-- <div class="table-area"> -->
+    <Table />
+    <!-- </div> -->
+    <!-- </div> -->
+  {/if}
 </main>
 
 <style>
-  .body-container {
+  main {
     display: flex;
     flex-direction: row;
     justify-content: center;
     column-gap: 2rem;
-    width: 100vw;
+    margin: 2rem;
     height: 80vh;
   }
 
@@ -84,40 +61,7 @@
     flex-direction: column;
     justify-content: flex-start;
     min-height: 75%;
-    margin: 1rem;
-  }
-
-  .column {
-    display: flex;
-    flex-direction: column;
-    width: 40vw;
-    height: 100%;
-    justify-content: center;
-  }
-
-  #controls {
-    display: flex;
-    flex-direction: column;
-    height: 30%;
-    width: 40vw;
-  }
-
-  .button-row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    column-gap: 1rem;
-  }
-
-  p {
-    text-align: left;
-  }
-
-  .table-area {
-    /* width: 100%; */
-    height: 90%;
-    /* background-color: rgba(0,0,0,0.1); */
+    max-width: 50%;
     margin: 1rem;
   }
 
@@ -137,10 +81,5 @@
     font-weight: 500;
     background-color: rgba(255, 255, 255, 0.97);
     width: fit-content;
-  }
-
-  #scores-label p {
-    margin: 0;
-    text-align: right;
   }
 </style>

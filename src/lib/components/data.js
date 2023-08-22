@@ -82,6 +82,27 @@ export const sentences = derived(source, ($source) => {
   });
 });
 
+// function splitSentences() {
+//   if ($ngrok_endpoint.length === 0) {
+//     $sentences = content.text.replace(/([.?!])\s*(?=[A-Z])/g, "$1|").split("|");
+//     console.log($sentences)
+//   } else {
+//     let url = new URL("tokenize/" + content.text, $ngrok_endpoint);
+//     console.log(url);
+//     fetch(url, {
+//       method: "get",
+//       headers: new Headers({
+//         "ngrok-skip-browser-warning": "69420",
+//       }),
+//     })
+//       .then((response) => response.json())
+//       .then((d) => {
+//         console.log(d);
+//         $sentences = d.sentences;
+//       });
+//   }
+// }
+
 export const detailShowingData = writable({
   source: "",
   alternatives: [],
