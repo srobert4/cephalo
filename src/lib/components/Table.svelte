@@ -26,13 +26,13 @@
     if ($query.length === 0 && $selected.length > 0) $query = $selected;
   }
 
-  $: filterText = function (allText, $query) {
+  $: filterText = function (allText) {
     if (searchBar && searchBar.value != $query) {
       searchBar.value = $query;
     }
     return allText.reduce((acc, text) => {
       let match_start = text.src.toLowerCase().search($query.toLowerCase());
-      if ($activeTableTab === "sentences" || match_start >= 0) {
+      if (match_start >= 0) {
         acc.push({
           ...text,
           display_src:
@@ -54,8 +54,7 @@
       ? allSentences
       : $activeTableTab === "terms"
       ? allTerms
-      : suggestions,
-    $query
+      : suggestions
   );
 
   $: toggleShowTranslation = function (text) {
