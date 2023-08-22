@@ -2,20 +2,19 @@
   import { fade } from "svelte/transition";
   import Ngrok from "./Ngrok.svelte";
   import Instructions from "./Instructions.svelte";
-  export let openInstructions;
+  export let sidebarOpen;
 </script>
 
-<nav class:openInstructions>
-  <button id="exit-button" on:click={() => (openInstructions = false)}>x</button
-  >
+<nav class:sidebarOpen>
+  <button id="exit-button" on:click={() => (sidebarOpen = false)}>x</button>
   <Instructions />
   <Ngrok />
 </nav>
 
-{#if openInstructions}
+{#if sidebarOpen}
   <div
     id="overlay"
-    on:click={() => (openInstructions = false)}
+    on:click={() => (sidebarOpen = false)}
     transition:fade={{ duration: 300 }}
   />
 {/if}

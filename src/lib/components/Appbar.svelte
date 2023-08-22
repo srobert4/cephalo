@@ -1,7 +1,7 @@
 <script>
   import { ngrok_endpoint, ngrok_connected } from "./data.js";
 
-  export let openInstructions;
+  export let sidebarOpen;
   export let mode;
 </script>
 
@@ -17,9 +17,8 @@
         <option>interactive</option>
       </select>
       <button id="export-button">export</button>
-      <button
-        id="menu-button"
-        on:click={() => (openInstructions = !openInstructions)}>menu</button
+      <button id="menu-button" on:click={() => (sidebarOpen = !sidebarOpen)}
+        >menu</button
       >
     </div>
   </div>

@@ -1,23 +1,28 @@
 <script>
-  import { onMount } from "svelte";
   import Editor from "./lib/components/Editor.svelte";
   import Table from "./lib/components/Table.svelte";
   import AnalysisMode from "./lib/components/sentence-analysis/AnalysisMode.svelte";
   import Appbar from "./lib/components/Appbar.svelte";
   import Sidebar from "./lib/components/Sidebar.svelte";
+
+  // Holds content of text editor component
   let content = {
     text: "",
     html: "",
   };
-  let analysisMode = false;
-  let openInstructions = false;
+  let analysisMode = false; // whether to show editor or analysis mode
+  let sidebarOpen = false; // menu sidebar flag
+
+  // treatment condition
+  // control = editor only
+  // table = editor + table
+  // interactive = editor + table + analysis mode
   let mode = "control";
 </script>
 
-<Appbar bind:openInstructions bind:mode />
-<Sidebar bind:openInstructions />
+<Appbar bind:sidebarOpen bind:mode />
+<Sidebar bind:sidebarOpen />
 <main>
-  <!-- <div class="column"> -->
   <div class="editor-area">
     {#if analysisMode}
       <AnalysisMode />
@@ -25,8 +30,9 @@
       <Editor bind:content />
     {/if}
     {#if mode === "interactive"}
+      <!-- only allow switching back and forth between editor and analysis mode in interactive condiiton -->
       <button
-        id="scores-label"
+        id="edit-analysis-mode-button"
         on:click={(e) => {
           analysisMode = !analysisMode;
         }}
@@ -35,13 +41,9 @@
       </button>
     {/if}
   </div>
-  <!-- </div> -->
   {#if mode !== "control"}
-    <!-- <div class="column"> -->
-    <!-- <div class="table-area"> -->
+    <!-- Show table in any condition except control -->
     <Table />
-    <!-- </div> -->
-    <!-- </div> -->
   {/if}
 </main>
 
@@ -65,7 +67,7 @@
     margin: 1rem;
   }
 
-  #scores-label {
+  #edit-analysis-mode-button {
     position: absolute;
     bottom: 10px;
     right: 10px;
