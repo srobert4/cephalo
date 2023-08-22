@@ -19,7 +19,7 @@
   let allSentences = $tableSentences;
   let allTerms = terms;
 
-  let suggestions = [...$detailShowingData.alternatives];
+  $: suggestions = [...$detailShowingData.alternatives];
   let searchBar;
 
   $: {

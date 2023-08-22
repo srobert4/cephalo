@@ -26,21 +26,26 @@
   let openInstructions = false;
   let mode = "control";
 
-  function splitSentences() {
-    let url = new URL("tokenize/" + content.text, $ngrok_endpoint);
-    console.log(url);
-    fetch(url, {
-      method: "get",
-      headers: new Headers({
-        "ngrok-skip-browser-warning": "69420",
-      }),
-    })
-      .then((response) => response.json())
-      .then((d) => {
-        console.log(d);
-        $sentences = d.sentences;
-      });
-  }
+  // function splitSentences() {
+  //   if ($ngrok_endpoint.length === 0) {
+  //     $sentences = content.text.replace(/([.?!])\s*(?=[A-Z])/g, "$1|").split("|");
+  //     console.log($sentences)
+  //   } else {
+  //     let url = new URL("tokenize/" + content.text, $ngrok_endpoint);
+  //     console.log(url);
+  //     fetch(url, {
+  //       method: "get",
+  //       headers: new Headers({
+  //         "ngrok-skip-browser-warning": "69420",
+  //       }),
+  //     })
+  //       .then((response) => response.json())
+  //       .then((d) => {
+  //         console.log(d);
+  //         $sentences = d.sentences;
+  //       });
+  //   }
+  // }
 </script>
 
 <Appbar bind:openInstructions bind:mode />
@@ -58,7 +63,6 @@
           <div
             id="scores-label"
             on:click={(e) => {
-              splitSentences();
               analysisMode = !analysisMode;
             }}
           >

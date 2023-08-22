@@ -16,7 +16,7 @@ export const activeTableTab = writable("sentences");
 
 export const textToInsert = writable("");
 
-export const sentences = writable([]);
+// export const sentences = writable([]);
 
 export const tableSentences = derived(
   [query, ngrok_endpoint],
@@ -41,35 +41,35 @@ export const tableSentences = derived(
   tm_sentences
 );
 
-// export const sentences = derived(source, ($source) => {
-// 	return $source.split(/\. /).map((s) => {
-// 		return {
-// 			source: s,
-// 			start_index: 0,
-// 			pred_sentence_type: 'treatment',
-// 			translation_type: 'baseline',
-// 			translation_hyp: 'translation',
-// 			suggestion: 'suggestion',
-// 			alternatives: [
-// 				{
-// 					src: 'alternative one.',
-// 					ref: 'alternative one translation.',
-// 					show_ref: false
-// 				},
-// 				{
-// 					src: 'alternative two.',
-// 					ref: 'alternative two translation.',
-// 					show_ref: false
-// 				},
-// 				{
-// 					src: 'alternative three.',
-// 					ref: 'alternative three translation.',
-// 					show_ref: false
-// 				}
-// 			]
-// 		};
-// 	});
-// });
+export const sentences = derived(source, ($source) => {
+  return $source.split(/\. /).map((s) => {
+    return {
+      source: s,
+      start_index: 0,
+      pred_sentence_type: "treatment",
+      translation_type: "baseline",
+      translation_hyp: "translation",
+      suggestion: "suggestion",
+      alternatives: [
+        {
+          src: "alternative one.",
+          ref: "alternative one translation.",
+          show_ref: false,
+        },
+        {
+          src: "alternative two.",
+          ref: "alternative two translation.",
+          show_ref: false,
+        },
+        {
+          src: "alternative three.",
+          ref: "alternative three translation.",
+          show_ref: false,
+        },
+      ],
+    };
+  });
+});
 
 export const detailShowingData = writable({
   source: "",

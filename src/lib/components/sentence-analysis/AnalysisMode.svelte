@@ -30,6 +30,8 @@
           (cur.source.length > 0 && i !== analysisData.length - 1 ? ". " : "")
         );
       }, "");
+    activeTableTab.set("sentences");
+    detailShowingData.set({ source: "", alternatives: [] });
   });
 </script>
 
