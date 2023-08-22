@@ -37,6 +37,7 @@
   };
   let analysisMode = false;
   let openInstructions = false;
+  let mode = 'control';
 
   function splitSentences() {
     let url = new URL("tokenize/" + content.text, $ngrok_endpoint);
@@ -55,11 +56,12 @@
   }
 </script>
 
-<Appbar bind:openInstructions />
+<Appbar bind:openInstructions bind:mode/>
 <Instructions bind:openInstructions />
 <main>
   <div class="body-container">
     <div class="column">
+      {#if mode === 'interactive'}
       <input
         type="url"
         placeholder="ngrok tunnel"
@@ -68,12 +70,14 @@
       <button on:click={connectToNgrok}
         >{ngrok_success ? "connected" : "connect"}</button
       >
+      {/if}
       <div class="editor-area">
         {#if analysisMode}
           <AnalysisMode />
         {:else}
           <Editor bind:content />
         {/if}
+        {#if mode === 'interactive'}
         <div
           id="scores-label"
           on:click={(e) => {
@@ -83,13 +87,16 @@
         >
           {analysisMode ? "edit mode" : "analysis mode"}
         </div>
+        {/if}
       </div>
     </div>
+    {#if mode !== 'control'}
     <div class="column">
       <div class="table-area">
         <Table />
       </div>
     </div>
+    {/if}
   </div>
 </main>
 

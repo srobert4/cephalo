@@ -1,5 +1,6 @@
 <script>
   export let openInstructions;
+  export let mode;
 </script>
 
 <header id="appbar">
@@ -8,6 +9,11 @@
       <h2>Cephalo</h2>
     </div>
     <div id="appbar-menu-buttons">
+      <select bind:value={mode}>
+        <option>control</option>
+        <option>table</option>
+        <option>interactive</option>
+      </select>
       <button id="export-button">export</button>
       <button
         id="menu-button"
