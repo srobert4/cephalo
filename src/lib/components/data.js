@@ -2,7 +2,7 @@ import { writable, derived } from "svelte/store";
 import tm_sentences from "./synthetic_tm_data_formatted.json";
 
 export const ngrok_endpoint = writable("");
-export const ngrok_connected = writable(false);
+export const ngrok_connected = writable(null);
 
 export const source = writable(
   "Dear Mr. Doe,\n\nYou were seen in the emergency department for trouble breathing. While you were in the hospital we gave you breathing treatments and your symptoms improved."
@@ -21,9 +21,20 @@ export const textToInsert = writable("");
 export const tableSentences = derived(
   [query, ngrok_endpoint],
   ([$query, $ngrok_endpoint], set) => {
-    if ($query.length === 0 || $ngrok_endpoint.length === 0) set(tm_sentences);
-    else {
+    if ($query.length === 0) {
+      // if no query, return tm sentences
+      set(tm_sentences);
+    } else if ($ngrok_endpoint.length === 0) {
       console.log("hi");
+      // if no backend, filter to exact matches
+      set(
+        tm_sentences.filter((text) => {
+          let match_start = text.src.toLowerCase().search($query.toLowerCase());
+          return match_start >= 0;
+        })
+      );
+    } else {
+      // else, we have query and backend: use embedding search
       let url = new URL("search/" + $query, $ngrok_endpoint);
       const response = fetch(url, {
         method: "get",

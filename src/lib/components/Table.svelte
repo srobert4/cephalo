@@ -1,38 +1,25 @@
 <script>
-  import { createEventDispatcher } from "svelte";
-  import { text } from "svelte/internal";
   import iconPlusSquare from "../../assets/icon-plus-square.svg?raw";
-  import iconClose from "../../assets/icon-close-circle.svg?raw";
   import terms from "./terms.json";
-  import sentences from "./synthetic_tm_data_formatted.json";
   import {
     activeTableTab,
     textToInsert,
-    selected,
     detailShowingData,
     query,
     tableSentences,
   } from "./data.js";
 
-  const dispatch = createEventDispatcher();
-
-  let allSentences = $tableSentences;
+  // make copies from stores so that we can edit the formatting dynamically based on the query
+  $: allSentences = $tableSentences;
   let allTerms = terms;
-
   $: suggestions = [...$detailShowingData.alternatives];
-  let searchBar;
-
-  $: {
-    if ($query.length === 0 && $selected.length > 0) $query = $selected;
-  }
 
   $: filterText = function (allText) {
-    if (searchBar && searchBar.value != $query) {
-      searchBar.value = $query;
-    }
+    // For suggestions and terms, do full text filtering and formatting
+    // for sentences, just do formatting. Filtering is handled by the $tableSentences store
     return allText.reduce((acc, text) => {
       let match_start = text.src.toLowerCase().search($query.toLowerCase());
-      if (match_start >= 0) {
+      if ($activeTableTab === "sentences" || match_start >= 0) {
         acc.push({
           ...text,
           display_src:
@@ -120,7 +107,6 @@
         type="search"
         id="input-search"
         on:input={(e) => ($query = e.target.value)}
-        bind:this={searchBar}
         placeholder="Type to search..."
       />
     </form>

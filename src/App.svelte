@@ -2,22 +2,9 @@
   import { onMount } from "svelte";
   import Editor from "./lib/components/Editor.svelte";
   import Table from "./lib/components/Table.svelte";
-  // import data from './dummy-data.json';
   import AnalysisMode from "./lib/components/sentence-analysis/AnalysisMode.svelte";
-  import {
-    source,
-    selected,
-    sentences,
-    detailShowingData,
-    activeTableTab,
-    textToInsert,
-    ngrok_endpoint,
-  } from "./lib/components/data.js";
   import Appbar from "./lib/components/Appbar.svelte";
-  import Instructions from "./lib/components/Instructions.svelte";
-
-  let ngrok_success = false;
-
+  import Sidebar from "./lib/components/Sidebar.svelte";
   let content = {
     text: "",
     html: "",
@@ -49,7 +36,7 @@
 </script>
 
 <Appbar bind:openInstructions bind:mode />
-<Instructions bind:openInstructions />
+<Sidebar bind:openInstructions />
 <main>
   <div class="body-container">
     <div class="column">
