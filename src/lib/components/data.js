@@ -2,6 +2,7 @@ import { writable, derived } from "svelte/store";
 import tm_sentences from "./synthetic_tm_data_formatted.json";
 
 export const ngrok_endpoint = writable("");
+export const ngrok_connected = writable(false);
 
 export const source = writable(
   "Dear Mr. Doe,\n\nYou were seen in the emergency department for trouble breathing. While you were in the hospital we gave you breathing treatments and your symptoms improved."

@@ -18,26 +18,13 @@
 
   let ngrok_success = false;
 
-  async function connectToNgrok() {
-    ngrok_success = true;
-    const response = await fetch($ngrok_endpoint, {
-      method: "get",
-      headers: new Headers({
-        "ngrok-skip-browser-warning": "69420",
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((err) => (ngrok_success = false));
-  }
-
   let content = {
     text: "",
     html: "",
   };
   let analysisMode = false;
   let openInstructions = false;
-  let mode = 'control';
+  let mode = "control";
 
   function splitSentences() {
     let url = new URL("tokenize/" + content.text, $ngrok_endpoint);
@@ -56,46 +43,36 @@
   }
 </script>
 
-<Appbar bind:openInstructions bind:mode/>
+<Appbar bind:openInstructions bind:mode />
 <Instructions bind:openInstructions />
 <main>
   <div class="body-container">
     <div class="column">
-      {#if mode === 'interactive'}
-      <input
-        type="url"
-        placeholder="ngrok tunnel"
-        bind:value={$ngrok_endpoint}
-      />
-      <button on:click={connectToNgrok}
-        >{ngrok_success ? "connected" : "connect"}</button
-      >
-      {/if}
       <div class="editor-area">
         {#if analysisMode}
           <AnalysisMode />
         {:else}
           <Editor bind:content />
         {/if}
-        {#if mode === 'interactive'}
-        <div
-          id="scores-label"
-          on:click={(e) => {
-            splitSentences();
-            analysisMode = !analysisMode;
-          }}
-        >
-          {analysisMode ? "edit mode" : "analysis mode"}
-        </div>
+        {#if mode === "interactive"}
+          <div
+            id="scores-label"
+            on:click={(e) => {
+              splitSentences();
+              analysisMode = !analysisMode;
+            }}
+          >
+            {analysisMode ? "edit mode" : "analysis mode"}
+          </div>
         {/if}
       </div>
     </div>
-    {#if mode !== 'control'}
-    <div class="column">
-      <div class="table-area">
-        <Table />
+    {#if mode !== "control"}
+      <div class="column">
+        <div class="table-area">
+          <Table />
+        </div>
       </div>
-    </div>
     {/if}
   </div>
 </main>

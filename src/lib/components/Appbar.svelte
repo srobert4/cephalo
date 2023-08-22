@@ -1,4 +1,7 @@
 <script>
+  import { ngrok_endpoint, ngrok_connected } from "./data.js";
+  import { connectToNgrok } from "./ngrok_helpers.svelte";
+
   export let openInstructions;
   export let mode;
 </script>
@@ -9,6 +12,20 @@
       <h2>Cephalo</h2>
     </div>
     <div id="appbar-menu-buttons">
+      {#if mode === "interactive"}
+        <input
+          type="url"
+          placeholder="ngrok tunnel"
+          bind:value={$ngrok_endpoint}
+        />
+        <button
+          on:click={() => {
+            connectToNgrok();
+          }}
+        >
+          {$ngrok_connected ? "connected" : "connect"}
+        </button>
+      {/if}
       <select bind:value={mode}>
         <option>control</option>
         <option>table</option>
