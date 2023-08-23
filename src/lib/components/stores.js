@@ -1,5 +1,5 @@
 import { writable, derived } from "svelte/store";
-import tm_sentences from "./synthetic_tm_data_formatted.json";
+import tm_sentences from "../../data/synthetic_tm_data_formatted.json";
 
 export const ngrok_endpoint = writable("");
 export const ngrok_connected = writable(null);

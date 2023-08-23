@@ -1,7 +1,7 @@
 <script>
   import Editor from "./lib/components/Editor.svelte";
-  import Table from "./lib/components/Table.svelte";
-  import AnalysisMode from "./lib/components/sentence-analysis/AnalysisMode.svelte";
+  import Table from "./lib/components/table-view/Table.svelte";
+  import AnalysisMode from "./lib/components/analysis-mode/AnalysisMode.svelte";
   import Appbar from "./lib/components/Appbar.svelte";
   import Sidebar from "./lib/components/Sidebar.svelte";
 
@@ -14,9 +14,9 @@
   let sidebarOpen = false; // menu sidebar flag
 
   // treatment condition
-  // control = editor only
-  // table = editor + table
-  // interactive = editor + table + analysis mode
+  //    control = editor only
+  //    table = editor + table
+  //    interactive = editor + table + analysis mode
   let mode = "control";
 </script>
 
@@ -63,7 +63,8 @@
     flex-direction: column;
     justify-content: flex-start;
     min-height: 75%;
-    max-width: 50%;
+    max-width: 40vw;
+    min-width: 40vw;
     margin: 1rem;
   }
 

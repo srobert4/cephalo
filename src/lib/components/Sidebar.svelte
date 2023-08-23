@@ -35,7 +35,7 @@
     border-left: 1px solid grey;
   }
 
-  nav.openInstructions {
+  nav.sidebarOpen {
     right: 0;
   }
 

@@ -1,9 +1,10 @@
 <script>
-  import { ngrok_endpoint, ngrok_connected } from "./data.js";
+  import { ngrok_endpoint, ngrok_connected } from "./stores.js";
 
-  let cur_tunnel = "";
+  let cur_tunnel = ""; // user input
 
   async function connectToNgrok() {
+    // test connection to ngrok tunnel
     let success = true;
     console.log("hi");
     const response = await fetch(cur_tunnel, {
@@ -42,6 +43,7 @@
   {:else}
     <p>Not connected to ngrok tunnel</p>
   {/if}
+  <!-- preventDefault on form to avoid page reload -->
   <form
     on:submit|preventDefault={() => {
       connectToNgrok();

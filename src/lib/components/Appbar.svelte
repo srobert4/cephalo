@@ -1,6 +1,4 @@
 <script>
-  import { ngrok_endpoint, ngrok_connected } from "./data.js";
-
   export let sidebarOpen;
   export let mode;
 </script>

@@ -8,7 +8,7 @@
     sentences,
     detailShowingData,
     activeTableTab,
-  } from "./../data.js";
+  } from "../stores.js";
 
   const dispatch = createEventDispatcher();
 
