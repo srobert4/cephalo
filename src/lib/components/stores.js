@@ -1,22 +1,20 @@
 import { writable, derived } from "svelte/store";
 import tm_sentences from "../../data/synthetic_tm_data_formatted.json";
 
+// Connection to backend
 export const ngrok_endpoint = writable("");
 export const ngrok_connected = writable(null);
 
+// Editor view
 export const source = writable(
   "Dear Mr. Doe,\n\nYou were seen in the emergency department for trouble breathing. While you were in the hospital we gave you breathing treatments and your symptoms improved."
 );
+export const selected = writable(""); // currently not used, could be used to implement "search by selection"
 
-export const selected = writable("");
-
+// Table view
 export const query = writable("");
-
 export const activeTableTab = writable("sentences");
-
-export const textToInsert = writable("");
-
-// export const sentences = writable([]);
+export const textToInsert = writable(""); // connects table to editor
 
 export const tableSentences = derived(
   [query, ngrok_endpoint],
@@ -52,6 +50,7 @@ export const tableSentences = derived(
   tm_sentences
 );
 
+// Analysis view
 export const sentences = derived(source, ($source) => {
   return $source.split(/\. /).map((s) => {
     return {
@@ -103,7 +102,7 @@ export const sentences = derived(source, ($source) => {
 //   }
 // }
 
-export const detailShowingData = writable({
+export const detailShowingData = writable({ // connects analysis view to table view to show suggestions
   source: "",
   alternatives: [],
 });
