@@ -6,7 +6,7 @@
 <header id="appbar">
   <div id="appbar-inner-wrapper">
     <div id="appbar-title">
-      <h2>Cephalo - sam's branch</h2>
+      <h2>Cephalo</h2>
     </div>
     <div id="appbar-menu-buttons">
       <select bind:value={mode}>
