@@ -102,7 +102,8 @@ export const sentences = derived(source, ($source) => {
 //   }
 // }
 
-export const detailShowingData = writable({ // connects analysis view to table view to show suggestions
+export const detailShowingData = writable({
+  // connects analysis view to table view to show suggestions
   source: "",
   alternatives: [],
 });
