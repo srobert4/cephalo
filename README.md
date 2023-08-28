@@ -2,6 +2,8 @@
 
 ## Development setup
 
+[Install Node.js](https://nodejs.org/en/download)
+
 Install dependencies
 
 ```
