@@ -19,6 +19,8 @@
     analysisData = $sentences;
   });
 
+  let selected = -1;
+
   onDestroy(() => {
     console.log(analysisData);
     if (analysisData.length > 0)
@@ -30,6 +32,7 @@
           (cur.source.length > 0 && i !== analysisData.length - 1 ? ". " : "")
         );
       }, "");
+    // change this so that it's just a filter tag, not a new tab window
     activeTableTab.set("sentences");
     detailShowingData.set({ source: "", alternatives: [] });
   });
@@ -37,43 +40,12 @@
 
 <div id="analysis-area">
   {#each analysisData as sentence, i}
-    <div
-      class="analysis-mode-sentence-wrapper"
-      style:--height={$detailShowingData.source === sentence.source
-        ? "60%"
-        : "10%"}
-      on:click={(e) => {
-        if (detailView) {
-          if ($detailShowingData.source === sentence.source) {
-            // close detail view
-            detailView = false;
-            detailShowingData.set({ source: "", alternatives: [] });
-            activeTableTab.set("sentences");
-          } else {
-            // keep detail view open but switch to this sentence
-            detailShowingData.set(sentence);
-          }
-        } else {
-          // open detail view
-          detailView = true;
-          detailShowingData.set(sentence);
-          activeTableTab.set("suggestions");
-        }
-      }}
-    >
-      {#if $detailShowingData.source === sentence.source}
-        <DetailedAnalysisMode
-          sentenceData={sentence}
-          on:accept-suggestion={() => {
-            analysisData[i].source = sentence.suggestion;
-            detailShowingData.set(analysisData[i]);
-            analysisData = analysisData;
-          }}
-        />
-      {:else}
-        <AnalysisModeSentence sentenceData={sentence} />
-      {/if}
-    </div>
+      <div
+        class="analysis-mode-sentence-wrapper"
+        on:click={(e) => {selected = selected === i ? -1 : i}}
+      >
+        <AnalysisModeSentence selected={selected === i} sentenceData={sentence} />
+      </div>
   {/each}
 </div>
 
@@ -83,9 +55,5 @@
     display: flex;
     flex-direction: column;
     overflow: scroll;
-  }
-
-  .analysis-mode-sentence-wrapper {
-    /* min-height: var(--height); */
   }
 </style>

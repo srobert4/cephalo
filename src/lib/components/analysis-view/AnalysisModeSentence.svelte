@@ -3,21 +3,38 @@
   import { cubicOut } from "svelte/easing";
   export let sentenceData;
 
-  let hovering = false;
+  export let selected = false;
   const barHeight = tweened(80, {
     duration: 400,
     easing: cubicOut,
   });
+  $: {
+    if (selected) {
+      barHeight.set(100);
+    } else {
+      barHeight.set(80);
+    }
+  }
+
 </script>
 
 <div
   class={"sentence-analysis-view " + sentenceData.translation_type}
-  on:mouseenter={(e) => barHeight.set(100)}
-  on:mouseleave={(e) => barHeight.set(80)}
+  class:selected
+  on:mouseenter={(e) => {
+    if (!selected) {
+      barHeight.set(100)
+    }
+  }}
+  on:mouseleave={(e) => 
+    {
+      if (!selected) {
+        barHeight.set(80)
+      }
+  }}
 >
   <div
     class={"color-bar " + sentenceData.translation_type}
-    class:hovering
     style:--height={$barHeight + "%"}
   />
   <div class={"sentence-wrapper"}>
@@ -39,17 +56,21 @@
     max-width: 90%;
   }
 
-  .sentence-analysis-view.template:hover {
+  /* .sentence-analysis-view.template:hover,  */
+  .sentence-analysis-view.template.selected {
     background-color: rgba(0, 128, 0, 0.1);
   }
 
-  .sentence-analysis-view.nn-mt:hover {
+  /* .sentence-analysis-view.nn-mt:hover,  */
+  .sentence-analysis-view.nn-mt.selected {
     background-color: rgba(255, 166, 0, 0.1);
   }
 
-  .sentence-analysis-view.baseline:hover {
+  /* .sentence-analysis-view.baseline:hover,  */
+  .sentence-analysis-view.baseline.selected {
     background-color: rgba(255, 0, 0, 0.1);
   }
+  
 
   .color-bar {
     width: 5px;
