@@ -203,8 +203,6 @@
 
   button {
     border-color: transparent;
-  }
-  button {
     outline: none;
   }
 </style>

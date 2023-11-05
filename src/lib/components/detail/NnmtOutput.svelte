@@ -45,6 +45,10 @@
   .word-button:hover {
     font-weight: bold;
   }
+  button {
+    border-color: transparent;
+    outline: none;
+  }
   .selected {
     border: 1px solid grey;
     border-radius: 0.2rem;
