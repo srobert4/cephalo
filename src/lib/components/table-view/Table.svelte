@@ -70,6 +70,7 @@
     position: relative;
     flex: 2;
     border: 1px solid red;
+    width: 100%;
   }
 
   .top-bar {
