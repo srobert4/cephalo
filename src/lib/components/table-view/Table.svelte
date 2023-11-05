@@ -64,12 +64,12 @@
 
 <style>
   .table-div {
-    height: 70%;
-    width: 40vw;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     position: relative;
-    flex-grow: 1;
+    flex: 2;
+    border: 1px solid red;
   }
 
   .top-bar {
