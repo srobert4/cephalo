@@ -14,24 +14,17 @@
 
 <style>
   .search-bar {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    column-gap: 0.5rem;
-    position: relative;
-    margin-bottom: 0.5rem;
+    flex: 2;
   }
 
   .search-bar-input {
     border-radius: 0.3rem;
     height: 100%;
     width: 100%;
-    padding: 2px 0;
+    padding: 0.3rem 0;
     margin: 0;
     min-width: 0px;
     text-indent: 10px;
     border-color: grey;
-    position: relative;
-    flex-grow: 1;
   }
 </style>

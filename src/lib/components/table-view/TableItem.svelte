@@ -21,8 +21,9 @@
   <button
     class="add-sentence-button icon-button"
     on:click={() => {
-      $textToInsert = " " + data.src;
-    }}>{@html iconPlusSquare}</button
+      // $textToInsert = " " + data.src;
+      navigator.clipboard.writeText(data.src);
+    }}>copy</button
   >
 </div>
 
@@ -31,7 +32,7 @@
     display: flex;
     flex-direction: row;
     column-gap: 0.5rem;
-    justify-content: flex-start;
+    justify-content: space-between;
     border-bottom: 0.5px solid grey;
     width: 100%;
     line-height: 1.1;

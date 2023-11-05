@@ -130,13 +130,14 @@
     flex: 2;
     border: 1px solid red;
     width: 100%;
-    row-gap: 0.2rem;
+    row-gap: 0.6rem;
   }
 
   .top-bar {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     width: 100%;
     gap: 8px;
   }
