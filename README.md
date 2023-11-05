@@ -4,6 +4,12 @@
 
 [Install Node.js](https://nodejs.org/en/download)
 
+Install yarn
+
+```
+npm install --global yarn
+```
+
 Install dependencies
 
 ```
