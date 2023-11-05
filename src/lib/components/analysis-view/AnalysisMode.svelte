@@ -40,12 +40,14 @@
 
 <div id="analysis-area">
   {#each analysisData as sentence, i}
-      <div
-        class="analysis-mode-sentence-wrapper"
-        on:click={(e) => {selected = selected === i ? -1 : i}}
-      >
-        <AnalysisModeSentence selected={selected === i} sentenceData={sentence} />
-      </div>
+    <div
+      class="analysis-mode-sentence-wrapper"
+      on:click={(e) => {
+        selected = selected === i ? -1 : i;
+      }}
+    >
+      <AnalysisModeSentence selected={selected === i} sentenceData={sentence} />
+    </div>
   {/each}
 </div>
 

@@ -15,7 +15,6 @@
       barHeight.set(80);
     }
   }
-
 </script>
 
 <div
@@ -23,14 +22,13 @@
   class:selected
   on:mouseenter={(e) => {
     if (!selected) {
-      barHeight.set(100)
+      barHeight.set(100);
     }
   }}
-  on:mouseleave={(e) => 
-    {
-      if (!selected) {
-        barHeight.set(80)
-      }
+  on:mouseleave={(e) => {
+    if (!selected) {
+      barHeight.set(80);
+    }
   }}
 >
   <div
@@ -70,7 +68,6 @@
   .sentence-analysis-view.baseline.selected {
     background-color: rgba(255, 0, 0, 0.1);
   }
-  
 
   .color-bar {
     width: 5px;

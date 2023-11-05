@@ -4,6 +4,7 @@
   import AnalysisMode from "./lib/components/analysis-view/AnalysisMode.svelte";
   import Appbar from "./lib/components/Appbar.svelte";
   import Sidebar from "./lib/components/Sidebar.svelte";
+  import Detail from "./lib/components/detail/Detail.svelte";
 
   // Holds content of text editor component
   let content = {
@@ -29,22 +30,25 @@
     {:else}
       <Editor bind:content />
     {/if}
-    {#if mode === "interactive"}
-      <!-- only allow switching back and forth between editor and analysis mode in interactive condiiton -->
-      <button
-        id="edit-analysis-mode-button"
-        on:click={(e) => {
-          analysisMode = !analysisMode;
-        }}
-      >
-        {analysisMode ? "edit mode" : "analysis mode"}
-      </button>
-    {/if}
+    <!-- {#if mode === "interactive"} -->
+    <!-- only allow switching back and forth between editor and analysis mode in interactive condiiton -->
+    <button
+      id="edit-analysis-mode-button"
+      on:click={(e) => {
+        analysisMode = !analysisMode;
+      }}
+    >
+      {analysisMode ? "edit mode" : "analysis mode"}
+    </button>
+    <!-- {/if} -->
   </div>
-  {#if mode !== "control"}
-    <!-- Show table in any condition except control -->
+  <!-- {#if mode !== "control"} -->
+  <!-- Show table in any condition except control -->
+  <div id="right-column">
     <Table />
-  {/if}
+    <Detail />
+  </div>
+  <!-- {/if} -->
 </main>
 
 <style>
@@ -84,5 +88,11 @@
     font-weight: 500;
     background-color: rgba(255, 255, 255, 0.97);
     width: fit-content;
+  }
+
+  #right-column {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
   }
 </style>
