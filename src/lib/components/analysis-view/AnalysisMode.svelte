@@ -3,7 +3,7 @@
   import DetailedAnalysisMode from "./detailed-views/DetailedAnalysisMode.svelte";
   import { createEventDispatcher } from "svelte";
   import { onMount, onDestroy } from "svelte";
-  import { selectedSource, sentences } from "../stores.js";
+  import { activeFilters, selectedSource, sentences } from "../stores.js";
 
   // const dispatch = createEventDispatcher();
 
@@ -38,7 +38,16 @@
     <div
       class="analysis-mode-sentence-wrapper"
       on:click={(e) => {
-        $selectedSource = $selectedSource === i ? -1 : i;
+        // $selectedSource = $selectedSource === i ? -1 : i;
+        if ($selectedSource === i) {
+          $activeFilters = [...$activeFilters].filter((x) => {
+            return x != $sentences[$selectedSource].tableFilter;
+          });
+          $selectedSource = -1;
+        } else {
+          $selectedSource = i;
+          $activeFilters = [$sentences[$selectedSource].tableFilter];
+        }
       }}
     >
       <AnalysisModeSentence

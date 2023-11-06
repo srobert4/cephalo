@@ -4,10 +4,6 @@
   import TemplateOutput from "./TemplateOutput.svelte";
 
   import { source, selectedSource, detailShowingData } from "../stores.js";
-  $: console.log($source);
-  $: console.log($selectedSource);
-  $: console.log($detailShowingData);
-  let inputSource;
 </script>
 
 <div id="detail-view-wrapper">
@@ -15,9 +11,8 @@
     <div
       class="input-area"
       contenteditable="true"
-      bind:textContent={inputSource}
       on:blur={(e) => {
-        $source[$selectedSource] = inputSource;
+        $source[$selectedSource] = e.target.innerText;
       }}
     >
       {$detailShowingData.source}
@@ -28,9 +23,9 @@
       {/each}
     </div>
     {#if $detailShowingData.translation_type === "nn-mt"}
-      <NnmtOutput />
+      <NnmtOutput output={$detailShowingData.nnmt_output} />
     {:else if $detailShowingData.translation_type === "template"}
-      <TemplateOutput />
+      <TemplateOutput {...$detailShowingData.template_output} />
     {/if}
   {:else}
     <p>Select a sentence to view translation analysis.</p>

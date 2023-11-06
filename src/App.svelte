@@ -1,5 +1,5 @@
 <script>
-  import Editor from "./lib/components/Editor.svelte";
+  // import Editor from "./lib/components/Editor.svelte";
   import Table from "./lib/components/table-view/Table.svelte";
   import AnalysisMode from "./lib/components/analysis-view/AnalysisMode.svelte";
   import Appbar from "./lib/components/Appbar.svelte";

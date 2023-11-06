@@ -1,25 +1,7 @@
 <script>
-  export let templates = [
-    {
-      template: "Avoid strenuous activities for at least <TIME>.",
-      translation:
-        "Vermeiden Sie anstrengende Aktivitäten für mindestens <TIME>.",
-    },
-    {
-      template: "Do not lift anything over <N1> pounds for <N2> weeks.",
-      translation: "Heben Sie <N2> Wochen lang nichts über <N1> Pfund.",
-    },
-  ];
-  export let terms = [
-    {
-      type: "<TIME>",
-      term: "2 weeks",
-      translation: "2 Wochen",
-    },
-  ];
-  export let filled =
-    "Vermeiden Sie anstrengende Aktivitäten für mindestens 2 Wochen.";
-
+  export let templates = [];
+  export let terms = [];
+  export let filled = "";
   let selectedTemplate = 0;
 </script>
 

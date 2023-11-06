@@ -1,11 +1,9 @@
 <script>
-  import TabBar from "./TabBar.svelte";
   import SearchBar from "./SearchBar.svelte";
   import TableList from "./TableList.svelte";
 
-  import terms from "./../../../data/terms.json";
-  import { sentenceFilter, termFilter } from "./../stores.js";
-
+  import { activeFilters, neighborFilterEnabled } from "./../stores.js";
+  let allFilters = ["sentences", "terms", "templates", "nearest neighbors"];
   let filtersPopupOpen = false;
 </script>
 
@@ -29,32 +27,55 @@
       </button>
       {#if filtersPopupOpen}
         <div id="filters-popup">
-          <label
-            ><input
-              type="checkbox"
-              bind:checked={$sentenceFilter}
-            />sentences</label
-          >
-          <label
+          {#each allFilters as filterName}
+            <label
+              class={filterName === "nearest neighbors"
+                ? $neighborFilterEnabled
+                  ? ""
+                  : "inactive-label"
+                : ""}
+              ><input
+                type="checkbox"
+                on:change={(e) => {
+                  if (e.target.checked) {
+                    $activeFilters = [...$activeFilters, filterName];
+                  } else {
+                    $activeFilters = [...$activeFilters].filter((x) => {
+                      return x !== filterName;
+                    });
+                  }
+                }}
+              />{filterName}</label
+            >
+          {/each}
+          <!-- <label
             ><input type="checkbox" bind:checked={$termFilter} />terms</label
           >
+          <label
+            ><input type="checkbox" bind:checked={$templateFilter} />templates</label
+          >
+          <label class={$neighborFilterActive ? '' : 'inactive-label'}
+            ><input type="checkbox" bind:checked={$neighborFilter} disabled={!$neighborFilterActive} />nearest neighbors</label
+          > -->
         </div>
       {/if}
     </div>
   </div>
   <div id="tag-row">
-    {#if $sentenceFilter}
+    {#each $activeFilters as active}
       <div class="tag">
-        sentences
+        {active}
         <button
           class="remove-tag"
           on:click={(e) => {
-            $sentenceFilter = false;
+            $activeFilters = [...$activeFilters].filter((x) => {
+              return x != active;
+            });
           }}>x</button
         >
       </div>
-    {/if}
-    {#if $termFilter}
+    {/each}
+    <!-- {#if $termFilter}
       <div class="tag">
         terms
         <button
@@ -64,13 +85,12 @@
           }}>x</button
         >
       </div>
-    {/if}
-    {#if $sentenceFilter || $termFilter}
+    {/if} -->
+    {#if $activeFilters.length > 0}
       <button
         id="clear-filters"
         on:click={(e) => {
-          $sentenceFilter = false;
-          $termFilter = false;
+          $activeFilters = [];
         }}>clear all</button
       >
     {/if}
@@ -106,7 +126,10 @@
   #open-filters-button {
     padding: 0.6rem;
   }
-
+  .inactive-label {
+    font-weight: normal;
+    color: #a8a8a8;
+  }
   input {
     margin-right: 0.5rem;
   }
@@ -115,7 +138,7 @@
     position: absolute;
     top: 2.5rem;
     right: 0;
-    min-width: 150px;
+    min-width: 200px;
 
     display: flex;
     flex-direction: column;

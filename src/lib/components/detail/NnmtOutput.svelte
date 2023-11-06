@@ -1,10 +1,5 @@
 <script>
-  export let output = [
-    { word: "Dies", utilized: true, backtranslation: "This" },
-    { word: "ist", utilized: true, backtranslation: "is" },
-    { word: "eine", utilized: false, backtranslation: "an" },
-    { word: "Ausgabe", utilized: false, backtranslation: "output" },
-  ];
+  export let output = [];
 
   let clicked = -1;
 </script>
