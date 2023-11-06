@@ -3,18 +3,29 @@
   import NnmtOutput from "./NnmtOutput.svelte";
   import TemplateOutput from "./TemplateOutput.svelte";
 
-  import { source, selectedSource, sentences } from "../stores.js";
+  import { source, selectedSource, detailShowingData } from "../stores.js";
+  $: console.log($source);
+  $: console.log($selectedSource);
+  $: console.log($detailShowingData);
+  let inputSource;
 </script>
 
 <div id="detail-view-wrapper">
-  {#if $selectedSource >= 0}
-    <div class="input-area" contenteditable="true">
-      {$sentences[$selectedSource].source}
+  {#if Object.keys($detailShowingData).length !== 0}
+    <div
+      class="input-area"
+      contenteditable="true"
+      bind:textContent={inputSource}
+      on:blur={(e) => {
+        $source[$selectedSource] = inputSource;
+      }}
+    >
+      {$detailShowingData.source}
     </div>
     <Score />
-    {#if $sentences[$selectedSource].translation_type === "nn-mt"}
+    {#if $detailShowingData.translation_type === "nn-mt"}
       <NnmtOutput />
-    {:else if $sentences[$selectedSource].translation_type === "template"}
+    {:else if $detailShowingData.translation_type === "template"}
       <TemplateOutput />
     {/if}
   {:else}

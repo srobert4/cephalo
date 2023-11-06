@@ -3,44 +3,38 @@
   import DetailedAnalysisMode from "./detailed-views/DetailedAnalysisMode.svelte";
   import { createEventDispatcher } from "svelte";
   import { onMount, onDestroy } from "svelte";
-  import {
-    source,
-    selectedSource,
-    sentences,
-    detailShowingData,
-    activeTableTab,
-  } from "../stores.js";
+  import { selectedSource, sentences } from "../stores.js";
 
-  const dispatch = createEventDispatcher();
+  // const dispatch = createEventDispatcher();
 
-  let detailView = false;
+  // let detailView = false;
 
-  let analysisData = [];
-  onMount(() => {
-    analysisData = $sentences;
-  });
+  // let analysisData = [];
+  // onMount(() => {
+  //   analysisData = $sentences;
+  // });
 
   // let selected = -1;
 
-  onDestroy(() => {
-    console.log(analysisData);
-    if (analysisData.length > 0)
-      $source = analysisData.reduce((acc, cur, i) => {
-        // console.log(cur.source, cur.source.length, cur.source.trim().length)
-        return (
-          acc +
-          cur.source +
-          (cur.source.length > 0 && i !== analysisData.length - 1 ? ". " : "")
-        );
-      }, "");
-    // change this so that it's just a filter tag, not a new tab window
-    activeTableTab.set("sentences");
-    detailShowingData.set({ source: "", alternatives: [] });
-  });
+  // onDestroy(() => {
+  //   console.log(analysisData);
+  //   if (analysisData.length > 0)
+  //     $source = analysisData.reduce((acc, cur, i) => {
+  //       // console.log(cur.source, cur.source.length, cur.source.trim().length)
+  //       return (
+  //         acc +
+  //         cur.source +
+  //         (cur.source.length > 0 && i !== analysisData.length - 1 ? ". " : "")
+  //       );
+  //     }, "");
+  //   // change this so that it's just a filter tag, not a new tab window
+  //   activeTableTab.set("sentences");
+  //   detailShowingData.set({ source: "", alternatives: [] });
+  // });
 </script>
 
 <div id="analysis-area">
-  {#each analysisData as sentence, i}
+  {#each $sentences as sentence, i}
     <div
       class="analysis-mode-sentence-wrapper"
       on:click={(e) => {

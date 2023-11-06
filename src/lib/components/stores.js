@@ -22,6 +22,9 @@ export const textToInsert = writable(""); // connects table to editor, currently
 
 export const sentenceFilter = writable(true);
 export const termFilter = writable(false);
+// TODO: ultimately tableData should also be derived from source and selectedSource
+// because when the selected sentence is changed we change the filters/order of sentences
+// to reflect the analysis for the selected sentence.
 export const tableData = derived(
   [query, ngrok_endpoint, sentenceFilter, termFilter],
   ([$query, $ngrok_endpoint, $sentenceFilter, $termFilter], set) => {
@@ -107,6 +110,7 @@ export const tableData = derived(
 
 // Analysis view
 export const sentences = derived(source, ($source) => {
+  console.log($source);
   return $source.map((s, i) => {
     return {
       source: s,
@@ -157,8 +161,14 @@ export const sentences = derived(source, ($source) => {
 //   }
 // }
 
-export const detailShowingData = writable({
-  // connects analysis view to table view to show suggestions
-  source: "",
-  alternatives: [],
-});
+export const detailShowingData = derived(
+  [sentences, selectedSource],
+  ([$sentences, $seletedSource], set) => {
+    if ($seletedSource < 0) {
+      set({});
+    } else {
+      set($sentences[$seletedSource]);
+    }
+  },
+  {}
+);
