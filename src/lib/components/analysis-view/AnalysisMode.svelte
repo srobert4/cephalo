@@ -47,7 +47,10 @@
         $selectedSource = $selectedSource === i ? -1 : i;
       }}
     >
-      <AnalysisModeSentence selected={$selectedSource === i} sentenceData={sentence} />
+      <AnalysisModeSentence
+        selected={$selectedSource === i}
+        sentenceData={sentence}
+      />
     </div>
   {/each}
 </div>

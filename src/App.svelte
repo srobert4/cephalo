@@ -26,9 +26,9 @@
 <main>
   <div class="editor-area">
     <!-- {#if analysisMode} -->
-      <AnalysisMode />
+    <AnalysisMode />
     <!-- {:else} -->
-      <!-- <Editor bind:content /> -->
+    <!-- <Editor bind:content /> -->
     <!-- {/if} -->
     <!-- {#if mode === "interactive"} -->
     <!-- only allow switching back and forth between editor and analysis mode in interactive condiiton -->

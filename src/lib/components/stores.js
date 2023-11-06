@@ -1,18 +1,17 @@
 import { writable, derived } from "svelte/store";
 import tm_sentences from "../../data/synthetic_tm_data_formatted.json";
+import terms from "../../data/terms.json";
 
 // Connection to backend
 export const ngrok_endpoint = writable("");
 export const ngrok_connected = writable(null);
 
 // Editor view
-export const source = writable(
-  [
-    'Dear Mr. Doe,',
-    'You were seen in the emergency department for trouble breathing.',
-    'While you were in the hospital we gave you breathing treatments and your symptoms improved.'
-  ]
-);
+export const source = writable([
+  "Dear Mr. Doe,",
+  "You were seen in the emergency department for trouble breathing.",
+  "While you were in the hospital we gave you breathing treatments and your symptoms improved.",
+]);
 export const selectedSource = writable(-1);
 export const selected = writable(""); // currently not used, could be used to implement "search by selection"
 
@@ -21,20 +20,48 @@ export const query = writable("");
 export const activeTableTab = writable("sentences");
 export const textToInsert = writable(""); // connects table to editor, currently not used, was used for + buttons on table rows
 
-export const tableSentences = derived(
-  [query, ngrok_endpoint],
-  ([$query, $ngrok_endpoint], set) => {
+export const sentenceFilter = writable(true);
+export const termFilter = writable(false);
+export const tableData = derived(
+  [query, ngrok_endpoint, sentenceFilter, termFilter],
+  ([$query, $ngrok_endpoint, $sentenceFilter, $termFilter], set) => {
+    let data = [];
+    if ($sentenceFilter) {
+      data = [...data, ...tm_sentences];
+    }
+    if ($termFilter) {
+      data = [...data, ...terms];
+    }
+    if (data.length === 0) {
+      data = [...tm_sentences, ...terms];
+    }
     if ($query.length === 0) {
-      // if no query, return tm sentences
-      set(tm_sentences);
+      // if no query, return all data
+      set(data);
     } else if ($ngrok_endpoint.length === 0) {
-      console.log("hi");
+      // console.log("hi");
       // if no backend, filter to exact matches
       set(
-        tm_sentences.filter((text) => {
+        data.reduce((acc, text) => {
           let match_start = text.src.toLowerCase().search($query.toLowerCase());
-          return match_start >= 0;
-        })
+          if (match_start >= 0) {
+            acc.push({
+              ...text,
+              display_src:
+                match_start >= 0
+                  ? text.src.substring(0, match_start) +
+                    '<span style="font-weight: 800">' +
+                    text.src.substring(
+                      match_start,
+                      match_start + $query.length
+                    ) +
+                    "</span>" +
+                    text.src.substring(match_start + $query.length)
+                  : text.src,
+            });
+          }
+          return acc;
+        }, [])
       );
     } else {
       // else, we have query and backend: use embedding search
@@ -47,8 +74,31 @@ export const tableSentences = derived(
       })
         .then((response) => response.json())
         .then((d) => {
-          console.log(d);
-          set(d.results);
+          // console.log(d);
+          set(
+            d.results.map((text) => {
+              let match_start = text.src
+                .toLowerCase()
+                .search($query.toLowerCase());
+              if (match_start >= 0) {
+                return {
+                  ...text,
+                  display_src:
+                    match_start >= 0
+                      ? text.src.substring(0, match_start) +
+                        '<span style="font-weight: 800">' +
+                        text.src.substring(
+                          match_start,
+                          match_start + $query.length
+                        ) +
+                        "</span>" +
+                        text.src.substring(match_start + $query.length)
+                      : text.src,
+                };
+              }
+              return text;
+            })
+          );
         });
     }
   },

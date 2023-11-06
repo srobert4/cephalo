@@ -1,15 +1,13 @@
 <script>
-  import { activeTableTab } from "./../stores.js";
+  import { tableData } from "./../stores.js";
   import TableItem from "./TableItem.svelte";
-
-  export let items = [];
 </script>
 
 <div class="sentence-list">
   <div id="sentence-list-count-label">
-    <span>{items.length} {$activeTableTab}</span>
+    <span>{$tableData.length} items</span>
   </div>
-  {#each items as text}
+  {#each $tableData as text}
     <TableItem data={text} />
   {/each}
 </div>

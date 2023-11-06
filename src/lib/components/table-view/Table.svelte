@@ -4,52 +4,7 @@
   import TableList from "./TableList.svelte";
 
   import terms from "./../../../data/terms.json";
-  import {
-    activeTableTab,
-    detailShowingData,
-    query,
-    tableSentences,
-  } from "./../stores.js";
-
-  // make copies from stores so that we can edit the formatting dynamically based on the query
-  $: allSentences = $tableSentences;
-  let allTerms = terms;
-  $: suggestions = [...$detailShowingData.alternatives];
-
-  let showSentences = true;
-  let showTerms = false;
-
-  $: filterText = function (allText) {
-    // For suggestions and terms, do full text filtering and formatting
-    // for sentences, just do formatting. Filtering is handled by the $tableSentences store
-    return allText.reduce((acc, text) => {
-      let match_start = text.src.toLowerCase().search($query.toLowerCase());
-      if ($activeTableTab === "sentences" || match_start >= 0) {
-        acc.push({
-          ...text,
-          display_src:
-            match_start >= 0
-              ? text.src.substring(0, match_start) +
-                '<span style="font-weight: 800">' +
-                text.src.substring(match_start, match_start + $query.length) +
-                "</span>" +
-                text.src.substring(match_start + $query.length)
-              : text.src,
-        });
-      }
-      return acc;
-    }, []);
-  };
-
-  // Select which list of strings to show in the table
-  // based on the active tab, and filter
-  $: textShowing = filterText(
-    $activeTableTab === "sentences"
-      ? allSentences
-      : $activeTableTab === "terms"
-      ? allTerms
-      : suggestions
-  );
+  import { sentenceFilter, termFilter } from "./../stores.js";
 
   let filtersPopupOpen = false;
 </script>
@@ -77,48 +32,50 @@
           <label
             ><input
               type="checkbox"
-              bind:checked={showSentences}
+              bind:checked={$sentenceFilter}
             />sentences</label
           >
-          <label><input type="checkbox" bind:checked={showTerms} />terms</label>
+          <label
+            ><input type="checkbox" bind:checked={$termFilter} />terms</label
+          >
         </div>
       {/if}
     </div>
   </div>
   <div id="tag-row">
-    {#if showSentences}
+    {#if $sentenceFilter}
       <div class="tag">
         sentences
         <button
           class="remove-tag"
           on:click={(e) => {
-            showSentences = false;
+            $sentenceFilter = false;
           }}>x</button
         >
       </div>
     {/if}
-    {#if showTerms}
+    {#if $termFilter}
       <div class="tag">
         terms
         <button
           class="remove-tag"
           on:click={(e) => {
-            showTerms = false;
+            $termFilter = false;
           }}>x</button
         >
       </div>
     {/if}
-    {#if showSentences || showTerms}
+    {#if $sentenceFilter || $termFilter}
       <button
         id="clear-filters"
         on:click={(e) => {
-          showSentences = false;
-          showTerms = false;
+          $sentenceFilter = false;
+          $termFilter = false;
         }}>clear all</button
       >
     {/if}
   </div>
-  <TableList items={textShowing} />
+  <TableList />
 </div>
 
 <style>
