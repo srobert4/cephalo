@@ -1,12 +1,15 @@
 <script>
-  import { ngrok_endpoint, ngrok_connected } from "./stores.js";
+  import {
+    ngrok_endpoint,
+    ngrok_last_tested,
+    ngrok_connected,
+  } from "./stores.js";
 
   let cur_tunnel = ""; // user input
 
   async function connectToNgrok() {
     // test connection to ngrok tunnel
     let success = true;
-    console.log("hi");
     const response = await fetch(cur_tunnel, {
       method: "get",
       headers: new Headers({
@@ -21,11 +24,12 @@
       });
     if (success) {
       $ngrok_endpoint = cur_tunnel;
-      $ngrok_connected = new Date();
+      $ngrok_connected = true;
     } else {
       $ngrok_endpoint = "";
-      $ngrok_connected = null;
+      $ngrok_connected = false;
     }
+    $ngrok_last_tested = new Date();
   }
 </script>
 
@@ -39,7 +43,7 @@
         href={$ngrok_endpoint}>{$ngrok_endpoint}</a
       >
     </p>
-    <p>Last tested: {$ngrok_connected.toLocaleString()}</p>
+    <p>Last tested: {$ngrok_last_tested.toLocaleString()}</p>
   {:else}
     <p>Not connected to ngrok tunnel</p>
   {/if}

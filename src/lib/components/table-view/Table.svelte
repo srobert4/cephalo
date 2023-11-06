@@ -36,6 +36,7 @@
                 : ""}
               ><input
                 type="checkbox"
+                checked={$activeFilters.includes(filterName)}
                 on:change={(e) => {
                   if (e.target.checked) {
                     $activeFilters = [...$activeFilters, filterName];

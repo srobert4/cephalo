@@ -1,7 +1,10 @@
 <script>
   import { tweened } from "svelte/motion";
   import { cubicOut } from "svelte/easing";
-  export let sentenceData;
+  export let sentenceData = {
+    source: "",
+    translation_type: "baseline",
+  };
 
   export let selected = false;
   const barHeight = tweened(80, {
@@ -15,6 +18,8 @@
       barHeight.set(80);
     }
   }
+
+  $: console.log(sentenceData);
 </script>
 
 <div

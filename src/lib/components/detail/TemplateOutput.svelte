@@ -1,4 +1,6 @@
 <script>
+  import { templateOverride } from "../stores.js";
+
   export let templates = [];
   export let terms = [];
   export let filled = "";
@@ -6,7 +8,10 @@
 </script>
 
 <div class="output-wrapper">
-  <select bind:value={selectedTemplate}>
+  <select
+    bind:value={selectedTemplate}
+    on:change={(e) => ($templateOverride = templates[selectedTemplate])}
+  >
     {#each templates as template, i}
       <option value={i}>
         {template.template}
