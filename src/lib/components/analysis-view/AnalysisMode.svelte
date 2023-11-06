@@ -5,6 +5,7 @@
   import { onMount, onDestroy } from "svelte";
   import {
     source,
+    selectedSource,
     sentences,
     detailShowingData,
     activeTableTab,
@@ -19,7 +20,7 @@
     analysisData = $sentences;
   });
 
-  let selected = -1;
+  // let selected = -1;
 
   onDestroy(() => {
     console.log(analysisData);
@@ -43,10 +44,10 @@
     <div
       class="analysis-mode-sentence-wrapper"
       on:click={(e) => {
-        selected = selected === i ? -1 : i;
+        $selectedSource = $selectedSource === i ? -1 : i;
       }}
     >
-      <AnalysisModeSentence selected={selected === i} sentenceData={sentence} />
+      <AnalysisModeSentence selected={$selectedSource === i} sentenceData={sentence} />
     </div>
   {/each}
 </div>
@@ -56,6 +57,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    /* overflow: scroll; */
   }
 </style>

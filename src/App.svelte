@@ -25,21 +25,21 @@
 <Sidebar bind:sidebarOpen />
 <main>
   <div class="editor-area">
-    {#if analysisMode}
+    <!-- {#if analysisMode} -->
       <AnalysisMode />
-    {:else}
-      <Editor bind:content />
-    {/if}
+    <!-- {:else} -->
+      <!-- <Editor bind:content /> -->
+    <!-- {/if} -->
     <!-- {#if mode === "interactive"} -->
     <!-- only allow switching back and forth between editor and analysis mode in interactive condiiton -->
-    <button
+    <!-- <button
       id="edit-analysis-mode-button"
       on:click={(e) => {
         analysisMode = !analysisMode;
       }}
     >
       {analysisMode ? "edit mode" : "analysis mode"}
-    </button>
+    </button> -->
     <!-- {/if} -->
   </div>
   <!-- {#if mode !== "control"} -->

@@ -7,14 +7,19 @@ export const ngrok_connected = writable(null);
 
 // Editor view
 export const source = writable(
-  "Dear Mr. Doe,\n\nYou were seen in the emergency department for trouble breathing. While you were in the hospital we gave you breathing treatments and your symptoms improved."
+  [
+    'Dear Mr. Doe,',
+    'You were seen in the emergency department for trouble breathing.',
+    'While you were in the hospital we gave you breathing treatments and your symptoms improved.'
+  ]
 );
+export const selectedSource = writable(-1);
 export const selected = writable(""); // currently not used, could be used to implement "search by selection"
 
 // Table view
 export const query = writable("");
 export const activeTableTab = writable("sentences");
-export const textToInsert = writable(""); // connects table to editor
+export const textToInsert = writable(""); // connects table to editor, currently not used, was used for + buttons on table rows
 
 export const tableSentences = derived(
   [query, ngrok_endpoint],
@@ -52,12 +57,12 @@ export const tableSentences = derived(
 
 // Analysis view
 export const sentences = derived(source, ($source) => {
-  return $source.split(/\. /).map((s) => {
+  return $source.map((s, i) => {
     return {
       source: s,
       start_index: 0,
       pred_sentence_type: "treatment",
-      translation_type: "baseline",
+      translation_type: i < 1 ? "nn-mt" : "template",
       translation_hyp: "translation",
       suggestion: "suggestion",
       alternatives: [

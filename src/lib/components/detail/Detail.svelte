@@ -2,15 +2,28 @@
   import Score from "./Score.svelte";
   import NnmtOutput from "./NnmtOutput.svelte";
   import TemplateOutput from "./TemplateOutput.svelte";
+
+  import {
+    source,
+    selectedSource,
+    sentences
+  } from "../stores.js";
 </script>
 
 <div id="detail-view-wrapper">
+    {#if $selectedSource >= 0}
   <div class="input-area" contenteditable="true">
-    This is where the input sentence will go
+    {$sentences[$selectedSource].source}
   </div>
   <Score />
+  {#if $sentences[$selectedSource].translation_type === 'nn-mt'}
   <NnmtOutput />
+  {:else if $sentences[$selectedSource].translation_type === 'template'}
   <TemplateOutput />
+  {/if}
+  {:else}
+  <p>Select a sentence to view translation analysis.</p>
+  {/if}
 </div>
 
 <style>
