@@ -115,25 +115,18 @@ export const sentences = derived(source, ($source) => {
     return {
       source: s,
       start_index: 0,
-      pred_sentence_type: "treatment",
       translation_type: i < 1 ? "nn-mt" : "template",
       translation_hyp: "translation",
-      suggestion: "suggestion",
-      alternatives: [
+      scores: [
         {
-          src: "alternative one.",
-          ref: "alternative one translation.",
-          show_ref: false,
+          name: "score name",
+          info: "score description",
+          score: i === 0 ? 1 : i === 1 ? 3 : 5,
         },
         {
-          src: "alternative two.",
-          ref: "alternative two translation.",
-          show_ref: false,
-        },
-        {
-          src: "alternative three.",
-          ref: "alternative three translation.",
-          show_ref: false,
+          name: "score 2 name",
+          info: "score 2 description",
+          score: i === 0 ? 1 : i === 1 ? 3 : 5,
         },
       ],
     };

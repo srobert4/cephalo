@@ -1,7 +1,7 @@
 <script>
-  export let score = 3;
   export let name = "Score";
   export let info = "This is a score"; // todo: add tooltip
+  export let score = 3;
 
   let maxScore = 5;
   let grey = "#A8A8A8";
@@ -19,7 +19,7 @@
 
 <div class="score-wrapper">
   <div class="score-name-wrapper">
-    <div>{name}</div>
+    <div class="score-name">{name}</div>
     <div class="info"><span>i</span></div>
   </div>
   <div class="score-circles">
@@ -36,7 +36,7 @@
   .score-wrapper {
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: fit-content;
     row-gap: 1rem;
   }
   .score-name-wrapper {
@@ -44,6 +44,9 @@
     flex-direction: row;
     column-gap: 0.5rem;
     align-items: center;
+  }
+  .score-name {
+    font-weight: 500;
   }
   .score-circles {
     display: flex;

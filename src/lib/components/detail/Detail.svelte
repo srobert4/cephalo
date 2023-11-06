@@ -22,7 +22,11 @@
     >
       {$detailShowingData.source}
     </div>
-    <Score />
+    <div id="scores-row">
+      {#each $detailShowingData.scores as scoreData}
+        <Score {...scoreData} />
+      {/each}
+    </div>
     {#if $detailShowingData.translation_type === "nn-mt"}
       <NnmtOutput />
     {:else if $detailShowingData.translation_type === "template"}
@@ -45,5 +49,10 @@
   .input-area {
     text-align: left;
     min-height: 2rem;
+  }
+  #scores-row {
+    display: flex;
+    flex-direction: row;
+    column-gap: 2rem;
   }
 </style>
