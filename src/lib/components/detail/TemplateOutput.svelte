@@ -26,6 +26,9 @@
         <span>{term.term}</span>
         <span class="de">{term.translation}</span>
       </div>
+      {#if !term.translation_in_filled}
+        <span style="color:red">!!</span>
+      {/if}
     </div>
   {/each}
   <p>{filled}</p>

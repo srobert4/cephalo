@@ -77,22 +77,23 @@ export const sentences = derived(
             template_output: {
               templates: [
                 {
-                  template: "Avoid strenuous activities for at least <TIME>.",
+                  template: "Avoid strenuous activities for at least [TIME].",
                   translation:
-                    "Vermeiden Sie anstrengende Aktivitäten für mindestens <TIME>.",
+                    "Vermeiden Sie anstrengende Aktivitäten für mindestens [TIME].",
                 },
                 {
                   template:
-                    "Do not lift anything over <N1> pounds for <N2> weeks.",
+                    "Do not lift anything over [N1] pounds for [N2] weeks.",
                   translation:
-                    "Heben Sie <N2> Wochen lang nichts über <N1> Pfund.",
+                    "Heben Sie [N2] Wochen lang nichts über [N1] Pfund.",
                 },
               ],
               terms: [
                 {
-                  type: "<TIME>",
+                  type: "[TIME]",
                   term: "2 weeks",
                   translation: "2 Wochen",
+                  translation_in_filled: false
                 },
               ],
               filled:
