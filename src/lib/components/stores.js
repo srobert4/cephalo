@@ -192,8 +192,12 @@ export const tableData = derived(
         data = [...data, ...terms];
       }
       if ($activeFilters.includes("templates")) {
-        // TODO: have all templates stored for manual exploration
-        data = [...templates, ...data];
+        if (Object.keys($detailShowingData).length > 0) {
+          data = [...$detailShowingData.tableResults, ...data];
+        } else {
+          // TODO: have all templates stored for manual exploration
+          data = [...templates, ...data];
+        }
       }
       if (
         $activeFilters.includes("nearest neighbors") &&

@@ -14,14 +14,14 @@
   >
     {#each templates as template, i}
       <option value={i}>
-        {template.template}
+        {@html template.template}
       </option>
     {/each}
   </select>
-  <p class="de">{templates[selectedTemplate].translation}</p>
+  <p class="de">{@html templates[selectedTemplate].translation}</p>
   {#each terms as term}
     <div class="term-wrapper">
-      <span>{term.type} = </span>
+      <span>{@html term.type} = </span>
       <div class="term-translation-wrapper">
         <span>{term.term}</span>
         <span class="de">{term.translation}</span>
