@@ -38,7 +38,7 @@
     flex-direction: column;
     row-gap: 1rem;
     flex: 1;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 100%;
   }
   .input-area {

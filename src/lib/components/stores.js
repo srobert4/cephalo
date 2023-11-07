@@ -37,7 +37,7 @@ async function analyzeSentence(url) {
 
 export const sentences = derived(
   [ngrok_endpoint, source],
-  ([$ngrok_endpoint, $source], set) => {
+  ([$ngrok_endpoint, $source], set, update) => {
     if ($ngrok_endpoint.length === 0) {
       set(
         $source.map((s, i) => {

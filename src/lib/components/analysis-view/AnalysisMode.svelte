@@ -5,6 +5,7 @@
   import { onMount, onDestroy } from "svelte";
   import { activeFilters, selectedSource, sentences } from "../stores.js";
 
+  $: console.log($sentences);
   // const dispatch = createEventDispatcher();
 
   // let detailView = false;

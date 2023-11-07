@@ -106,7 +106,7 @@
     flex-direction: column;
     position: relative;
     flex: 2;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
     row-gap: 0.6rem;
   }

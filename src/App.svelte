@@ -94,6 +94,6 @@
     flex-direction: column;
     row-gap: 1rem;
     width: 50vw;
-    border: 1px solid green;
+    /* border: 1px solid green; */
   }
 </style>
