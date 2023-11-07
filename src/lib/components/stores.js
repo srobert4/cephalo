@@ -1,6 +1,7 @@
 import { writable, derived } from "svelte/store";
 import tm_sentences from "../../data/synthetic_tm_data_formatted.json";
 import terms from "../../data/terms.json";
+import templates from "../../data/templates.json";
 
 // Connection to backend
 export const ngrok_endpoint = writable("");
@@ -191,15 +192,7 @@ export const tableData = derived(
       }
       if ($activeFilters.includes("templates")) {
         // TODO: have all templates stored for manual exploration
-        data = [
-          {
-            src: "Template hole",
-            display_src: "Template hole",
-            ref: "Template reference",
-            show_ref: false,
-          },
-          ...data,
-        ];
+        data = [...templates, ...data];
       }
       if (
         $activeFilters.includes("nearest neighbors") &&
