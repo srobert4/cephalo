@@ -3,11 +3,38 @@
   import NnmtOutput from "./NnmtOutput.svelte";
   import TemplateOutput from "./TemplateOutput.svelte";
 
-  import { source, selectedSource, detailShowingData } from "../stores.js";
+  import {
+    source,
+    selectedSource,
+    detailShowingData,
+    selected,
+    methodOverride,
+  } from "../stores.js";
+
+  let selectedMethod;
+  let methods = ["nn-mt", "template"];
 </script>
 
 <div id="detail-view-wrapper">
   {#if Object.keys($detailShowingData).length !== 0}
+    <div id="method-selector">
+      <label
+        >Using:
+        <select
+          bind:value={selectedMethod}
+          on:change={(e) => ($methodOverride = methods[selectedMethod])}
+        >
+          {#each methods as method, i}
+            <option
+              value={i}
+              selected={$detailShowingData.translation_type === method}
+            >
+              {method}
+            </option>
+          {/each}
+        </select>
+      </label>
+    </div>
     <div
       class="input-area"
       contenteditable="true"
@@ -38,8 +65,15 @@
     flex-direction: column;
     row-gap: 1rem;
     flex: 1;
+    padding: 1rem;
     /* border: 1px solid blue; */
-    width: 100%;
+    /* width: 100%; */
+    border-radius: 5px;
+    box-shadow: 0 0 2px hsla(0, 0%, 0%, 0.2), 0 0 5px hsla(0, 0%, 0%, 0.1);
+  }
+  #method-selector {
+    display: flex;
+    flex-direction: row;
   }
   .input-area {
     text-align: left;

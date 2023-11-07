@@ -19,6 +19,7 @@ export const selected = writable(""); // currently not used, could be used to im
 
 // Template detail
 export const templateOverride = writable("");
+export const methodOverride = writable("");
 
 // Analysis view
 async function analyzeSentence(url) {
