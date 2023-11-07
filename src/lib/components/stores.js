@@ -36,8 +36,8 @@ async function analyzeSentence(url) {
 }
 
 export const sentences = derived(
-  [ngrok_endpoint, source, selectedSource, templateOverride],
-  ([$ngrok_endpoint, $source, $seletedSource, $templateOverride], set) => {
+  [ngrok_endpoint, source],
+  ([$ngrok_endpoint, $source], set) => {
     if ($ngrok_endpoint.length === 0) {
       set(
         $source.map((s, i) => {
@@ -61,8 +61,16 @@ export const sentences = derived(
             nnmt_output: [
               { word: "Dies", utilized: true, backtranslation: "This" },
               { word: "ist", utilized: true, backtranslation: "is" },
-              { word: "eine", utilized: false, backtranslation: "an" },
-              { word: "Ausgabe", utilized: false, backtranslation: "output" },
+              {
+                word: '<span style="color: #A8A8A8">eine<span>',
+                utilized: false,
+                backtranslation: "an",
+              },
+              {
+                word: '<span style="color: #A8A8A8">Ausgabe<span>',
+                utilized: false,
+                backtranslation: "output",
+              },
             ],
             template_output: {
               templates: [

@@ -12,11 +12,7 @@
         clicked == i ? (clicked = -1) : (clicked = i);
       }}
     >
-      <span
-        class="translated-word"
-        style={word.utilized ? "color: black" : "color: #A8A8A8"}
-        >{word.word}</span
-      >
+      <span class="translated-word">{@html word.word}</span>
       {#if clicked == i}
         <span class="backtranslation">{word.backtranslation}</span>
       {/if}
@@ -28,6 +24,7 @@
   .output-wrapper {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
   }
   .word-button {
     display: flex;
