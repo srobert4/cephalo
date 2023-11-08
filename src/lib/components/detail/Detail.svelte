@@ -3,20 +3,17 @@
   import Score from "./Score.svelte";
   import NnmtOutput from "./NnmtOutput.svelte";
   import TemplateOutput from "./TemplateOutput.svelte";
+  import { analyzeSentence } from "../analyzeSentence.svelte";
 
   import {
     source,
     selectedSource,
     detailShowingData,
     methodOverride,
+    ngrok_endpoint,
+    sentences,
+    activeFilters,
   } from "../stores.js";
-
-  onMount(() => {
-    $methodOverride = "";
-  });
-  onDestroy(() => {
-    $methodOverride = "";
-  });
 
   let selectedMethod;
   let methods = ["nnmt", "template"];
@@ -29,7 +26,20 @@
         >Using:
         <select
           bind:value={selectedMethod}
-          on:change={(e) => ($methodOverride = methods[selectedMethod])}
+          on:change={(e) => {
+            analyzeSentence(
+              $ngrok_endpoint,
+              $detailShowingData.source,
+              methods[selectedMethod]
+            ).then((d) => {
+              sentences.update((x) =>
+                x.map((xi, i) => {
+                  return i === $selectedSource ? d : xi;
+                })
+              );
+              $activeFilters = [d.tableFilter];
+            });
+          }}
         >
           {#each methods as method, i}
             <option
@@ -46,7 +56,16 @@
       class="input-area"
       contenteditable="true"
       on:blur={(e) => {
+        if ($detailShowingData.source === e.target.innerText) return;
         $source[$selectedSource] = e.target.innerText;
+        analyzeSentence($ngrok_endpoint, e.target.innerText).then((d) => {
+          sentences.update((x) =>
+            x.map((xi, i) => {
+              return i === $selectedSource ? d : xi;
+            })
+          );
+          $activeFilters = [d.tableFilter];
+        });
       }}
     >
       {$detailShowingData.source}

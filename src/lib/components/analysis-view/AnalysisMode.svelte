@@ -41,9 +41,9 @@
       on:click={(e) => {
         // $selectedSource = $selectedSource === i ? -1 : i;
         if ($selectedSource === i) {
-          $activeFilters = [...$activeFilters].filter((x) => {
-            return x != $sentences[$selectedSource].tableFilter;
-          });
+          // $activeFilters = [...$activeFilters].filter((x) => {
+          //   return x != $sentences[$selectedSource].tableFilter;
+          // });
           $selectedSource = -1;
         } else {
           $selectedSource = i;

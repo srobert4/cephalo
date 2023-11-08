@@ -3,7 +3,11 @@
     ngrok_endpoint,
     ngrok_last_tested,
     ngrok_connected,
+    source,
+    sentences,
   } from "./stores.js";
+
+  import { analyzeSentence } from "./analyzeSentence.svelte";
 
   let cur_tunnel = ""; // user input
 
@@ -25,6 +29,10 @@
     if (success) {
       $ngrok_endpoint = cur_tunnel;
       $ngrok_connected = true;
+      let res = $source.map((s) => analyzeSentence($ngrok_endpoint, s));
+      Promise.all(res).then((d) => {
+        $sentences = d;
+      });
     } else {
       $ngrok_endpoint = "";
       $ngrok_connected = false;

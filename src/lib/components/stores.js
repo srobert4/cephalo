@@ -22,118 +22,175 @@ export const templateOverride = writable("");
 export const methodOverride = writable("");
 
 // Analysis view
-async function analyzeSentence(url) {
-  const response = await fetch(url, {
-    method: "get",
-    headers: new Headers({
-      "ngrok-skip-browser-warning": "69420",
-    }),
+export const sentences = writable(
+  [
+    "Dear Mr. Doe,",
+    "You were seen in the emergency department for trouble breathing.",
+    "While you were in the hospital we gave you breathing treatments and your symptoms improved.",
+  ].map((s, i) => {
+    return {
+      source: s,
+      start_index: 0,
+      translation_type: i < 1 ? "nn-mt" : "template",
+      translation_hyp: "translation",
+      scores: [
+        {
+          name: "score name",
+          info: "score description",
+          score: i === 0 ? 1 : i === 1 ? 3 : 5,
+        },
+        {
+          name: "score 2 name",
+          info: "score 2 description",
+          score: i === 0 ? 1 : i === 1 ? 3 : 5,
+        },
+      ],
+      nnmt_output: [
+        { word: "Dies", utilized: true, backtranslation: "This" },
+        { word: "ist", utilized: true, backtranslation: "is" },
+        {
+          word: '<span style="color: #A8A8A8">eine<span>',
+          utilized: false,
+          backtranslation: "an",
+        },
+        {
+          word: '<span style="color: #A8A8A8">Ausgabe<span>',
+          utilized: false,
+          backtranslation: "output",
+        },
+      ],
+      template_output: {
+        templates: [
+          {
+            template: "Avoid strenuous activities for at least [TIME].",
+            translation:
+              "Vermeiden Sie anstrengende Aktivitäten für mindestens [TIME].",
+          },
+          {
+            template: "Do not lift anything over [N1] pounds for [N2] weeks.",
+            translation: "Heben Sie [N2] Wochen lang nichts über [N1] Pfund.",
+          },
+        ],
+        terms: [
+          {
+            type: "[TIME]",
+            term: "2 weeks",
+            translation: "2 Wochen",
+            translation_in_filled: false,
+          },
+        ],
+        filled:
+          "Vermeiden Sie anstrengende Aktivitäten für mindestens 2 Wochen.",
+      },
+      tableFilter: i < 1 ? "nearest neighbors" : "templates",
+      tableResults: [
+        {
+          src: "Source",
+          display_src: "Source",
+          ref: "Reference",
+          show_ref: false,
+        },
+      ],
+    };
   })
-    .then((response) => response.json())
-    .then((d) => {
-      console.log(d);
-      return d.results;
-    });
-  return response;
-}
-
-export const sentences = derived(
-  [ngrok_endpoint, source, methodOverride, selectedSource],
-  (
-    [$ngrok_endpoint, $source, $methodOverride, $seletedSource],
-    set,
-    update
-  ) => {
-    if ($ngrok_endpoint.length === 0) {
-      set(
-        $source.map((s, i) => {
-          return {
-            source: s,
-            start_index: 0,
-            translation_type: i < 1 ? "nn-mt" : "template",
-            translation_hyp: "translation",
-            scores: [
-              {
-                name: "score name",
-                info: "score description",
-                score: i === 0 ? 1 : i === 1 ? 3 : 5,
-              },
-              {
-                name: "score 2 name",
-                info: "score 2 description",
-                score: i === 0 ? 1 : i === 1 ? 3 : 5,
-              },
-            ],
-            nnmt_output: [
-              { word: "Dies", utilized: true, backtranslation: "This" },
-              { word: "ist", utilized: true, backtranslation: "is" },
-              {
-                word: '<span style="color: #A8A8A8">eine<span>',
-                utilized: false,
-                backtranslation: "an",
-              },
-              {
-                word: '<span style="color: #A8A8A8">Ausgabe<span>',
-                utilized: false,
-                backtranslation: "output",
-              },
-            ],
-            template_output: {
-              templates: [
-                {
-                  template: "Avoid strenuous activities for at least [TIME].",
-                  translation:
-                    "Vermeiden Sie anstrengende Aktivitäten für mindestens [TIME].",
-                },
-                {
-                  template:
-                    "Do not lift anything over [N1] pounds for [N2] weeks.",
-                  translation:
-                    "Heben Sie [N2] Wochen lang nichts über [N1] Pfund.",
-                },
-              ],
-              terms: [
-                {
-                  type: "[TIME]",
-                  term: "2 weeks",
-                  translation: "2 Wochen",
-                  translation_in_filled: false,
-                },
-              ],
-              filled:
-                "Vermeiden Sie anstrengende Aktivitäten für mindestens 2 Wochen.",
-            },
-            tableFilter: i < 1 ? "nearest neighbors" : "templates",
-            tableResults: [
-              {
-                src: "Source",
-                display_src: "Source",
-                ref: "Reference",
-                show_ref: false,
-              },
-            ],
-          };
-        })
-      );
-    } else {
-      let res = $source.map((s, i) => {
-        // if (i === $seletedSource && $templateOverride !== '') {
-        // TODO: handle overrides, also add force nnmt/templates
-        // }
-        let url = new URL("analyze", $ngrok_endpoint);
-        url.searchParams.append("sentence", s);
-        console.log($seletedSource, $methodOverride);
-        url.searchParams.append(
-          "method",
-          i === $seletedSource ? $methodOverride : ""
-        );
-        // let url = new URL("analyze/" + s, $ngrok_endpoint);
-        return analyzeSentence(url);
-      });
-      Promise.all(res).then((d) => set(d));
-    }
-  }
 );
+// export const sentences = derived(
+//   [ngrok_endpoint, source, methodOverride, selectedSource],
+//   (
+//     [$ngrok_endpoint, $source, $methodOverride, $seletedSource],
+//     set,
+//     update
+//   ) => {
+//     if ($ngrok_endpoint.length === 0) {
+//       set(
+//         $source.map((s, i) => {
+//           return {
+//             source: s,
+//             start_index: 0,
+//             translation_type: i < 1 ? "nn-mt" : "template",
+//             translation_hyp: "translation",
+//             scores: [
+//               {
+//                 name: "score name",
+//                 info: "score description",
+//                 score: i === 0 ? 1 : i === 1 ? 3 : 5,
+//               },
+//               {
+//                 name: "score 2 name",
+//                 info: "score 2 description",
+//                 score: i === 0 ? 1 : i === 1 ? 3 : 5,
+//               },
+//             ],
+//             nnmt_output: [
+//               { word: "Dies", utilized: true, backtranslation: "This" },
+//               { word: "ist", utilized: true, backtranslation: "is" },
+//               {
+//                 word: '<span style="color: #A8A8A8">eine<span>',
+//                 utilized: false,
+//                 backtranslation: "an",
+//               },
+//               {
+//                 word: '<span style="color: #A8A8A8">Ausgabe<span>',
+//                 utilized: false,
+//                 backtranslation: "output",
+//               },
+//             ],
+//             template_output: {
+//               templates: [
+//                 {
+//                   template: "Avoid strenuous activities for at least [TIME].",
+//                   translation:
+//                     "Vermeiden Sie anstrengende Aktivitäten für mindestens [TIME].",
+//                 },
+//                 {
+//                   template:
+//                     "Do not lift anything over [N1] pounds for [N2] weeks.",
+//                   translation:
+//                     "Heben Sie [N2] Wochen lang nichts über [N1] Pfund.",
+//                 },
+//               ],
+//               terms: [
+//                 {
+//                   type: "[TIME]",
+//                   term: "2 weeks",
+//                   translation: "2 Wochen",
+//                   translation_in_filled: false,
+//                 },
+//               ],
+//               filled:
+//                 "Vermeiden Sie anstrengende Aktivitäten für mindestens 2 Wochen.",
+//             },
+//             tableFilter: i < 1 ? "nearest neighbors" : "templates",
+//             tableResults: [
+//               {
+//                 src: "Source",
+//                 display_src: "Source",
+//                 ref: "Reference",
+//                 show_ref: false,
+//               },
+//             ],
+//           };
+//         })
+//       );
+//     } else {
+//       let res = $source.map((s, i) => {
+//         // if (i === $seletedSource && $templateOverride !== '') {
+//         // TODO: handle overrides, also add force nnmt/templates
+//         // }
+//         let url = new URL("analyze", $ngrok_endpoint);
+//         url.searchParams.append("sentence", s);
+//         console.log($seletedSource, $methodOverride);
+//         url.searchParams.append(
+//           "method",
+//           i === $seletedSource ? $methodOverride : ""
+//         );
+//         // let url = new URL("analyze/" + s, $ngrok_endpoint);
+//         return analyzeSentence(url);
+//       });
+//       Promise.all(res).then((d) => set(d));
+//     }
+//   }
+// );
 
 // function splitSentences() {
 //   if ($ngrok_endpoint.length === 0) {
