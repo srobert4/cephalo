@@ -38,8 +38,12 @@ async function analyzeSentence(url) {
 }
 
 export const sentences = derived(
-  [ngrok_endpoint, source],
-  ([$ngrok_endpoint, $source], set, update) => {
+  [ngrok_endpoint, source, methodOverride, selectedSource],
+  (
+    [$ngrok_endpoint, $source, $methodOverride, $seletedSource],
+    set,
+    update
+  ) => {
     if ($ngrok_endpoint.length === 0) {
       set(
         $source.map((s, i) => {
@@ -93,7 +97,7 @@ export const sentences = derived(
                   type: "[TIME]",
                   term: "2 weeks",
                   translation: "2 Wochen",
-                  translation_in_filled: false
+                  translation_in_filled: false,
                 },
               ],
               filled:
@@ -116,7 +120,14 @@ export const sentences = derived(
         // if (i === $seletedSource && $templateOverride !== '') {
         // TODO: handle overrides, also add force nnmt/templates
         // }
-        let url = new URL("analyze/" + s, $ngrok_endpoint);
+        let url = new URL("analyze", $ngrok_endpoint);
+        url.searchParams.append("sentence", s);
+        console.log($seletedSource, $methodOverride);
+        url.searchParams.append(
+          "method",
+          i === $seletedSource ? $methodOverride : ""
+        );
+        // let url = new URL("analyze/" + s, $ngrok_endpoint);
         return analyzeSentence(url);
       });
       Promise.all(res).then((d) => set(d));

@@ -1,4 +1,5 @@
 <script>
+  import { onMount, onDestroy } from "svelte";
   import Score from "./Score.svelte";
   import NnmtOutput from "./NnmtOutput.svelte";
   import TemplateOutput from "./TemplateOutput.svelte";
@@ -7,12 +8,18 @@
     source,
     selectedSource,
     detailShowingData,
-    selected,
     methodOverride,
   } from "../stores.js";
 
+  onMount(() => {
+    $methodOverride = "";
+  });
+  onDestroy(() => {
+    $methodOverride = "";
+  });
+
   let selectedMethod;
-  let methods = ["nn-mt", "template"];
+  let methods = ["nnmt", "template"];
 </script>
 
 <div id="detail-view-wrapper">
