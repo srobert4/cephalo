@@ -31,7 +31,7 @@
     top: 0;
     left: 0;
     background-color: white;
-    border-bottom: 1px solid grey;
+    box-shadow: 0 0 2px hsla(0, 0%, 0%, 0.2), 0 0 5px hsla(0, 0%, 0%, 0.1);
     z-index: 100;
     width: 100%;
   }
