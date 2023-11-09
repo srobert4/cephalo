@@ -31,7 +31,7 @@ export const sentences = writable(
     return {
       source: s,
       start_index: 0,
-      translation_type: i < 1 ? "nn-mt" : "template",
+      translation_type: i < 1 ? "nnmt" : "template",
       translation_hyp: "translation",
       scores: [
         {
@@ -107,7 +107,7 @@ export const sentences = writable(
 //           return {
 //             source: s,
 //             start_index: 0,
-//             translation_type: i < 1 ? "nn-mt" : "template",
+//             translation_type: i < 1 ? "nnmt" : "template",
 //             translation_hyp: "translation",
 //             scores: [
 //               {
@@ -234,7 +234,7 @@ export const neighborFilterEnabled = derived(
   ($detailShowingData) => {
     return (
       Object.keys($detailShowingData).length > 0 &&
-      $detailShowingData.translation_type == "nn-mt"
+      $detailShowingData.translation_type == "nnmt"
     );
   }
 );

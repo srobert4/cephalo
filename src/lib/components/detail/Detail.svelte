@@ -9,7 +9,7 @@
     source,
     selectedSource,
     detailShowingData,
-    methodOverride,
+    ngrok_connected,
     ngrok_endpoint,
     sentences,
     activeFilters,
@@ -27,6 +27,7 @@
         <select
           bind:value={selectedMethod}
           on:change={(e) => {
+            if (!$ngrok_connected) return;
             analyzeSentence(
               $ngrok_endpoint,
               $detailShowingData.source,
@@ -75,7 +76,7 @@
         <Score {...scoreData} />
       {/each}
     </div>
-    {#if $detailShowingData.translation_type === "nn-mt"}
+    {#if $detailShowingData.translation_type === "nnmt"}
       <NnmtOutput output={$detailShowingData.nnmt_output} />
     {:else if $detailShowingData.translation_type === "template"}
       <TemplateOutput {...$detailShowingData.template_output} />

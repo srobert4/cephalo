@@ -32,7 +32,7 @@
       <p class={"title " + sentenceData.translation_type}>
         {#if sentenceData.translation_type === "template"}
           Matching template
-        {:else if sentenceData.translation_type === "nn-mt"}
+        {:else if sentenceData.translation_type === "nnmt"}
           Using similar translations
         {:else}
           Using baseline model
@@ -67,7 +67,7 @@
           <button on:click|stopPropagation>reject</button>
         </div>
       </div>
-    {:else if sentenceData.translation_type === "nn-mt"}
+    {:else if sentenceData.translation_type === "nnmt"}
       <ScoreRow
         metric={"Utilization"}
         score={sentenceData.nn_mt_metadata.overall_utilization}
@@ -115,7 +115,7 @@
     border-color: green;
   }
 
-  .sentence-detail-view.nn-mt {
+  .sentence-detail-view.nnmt {
     border-color: orange;
   }
 
@@ -151,7 +151,7 @@
     color: green;
   }
 
-  .title.nn-mt {
+  .title.nnmt {
     color: orange;
   }
   .title.baseline {
@@ -176,7 +176,7 @@
     background-color: green;
   }
 
-  .color-bar.nn-mt {
+  .color-bar.nnmt {
     background-color: orange;
   }
 

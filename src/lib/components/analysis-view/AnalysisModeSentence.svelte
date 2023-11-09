@@ -64,8 +64,8 @@
     background-color: rgba(0, 128, 0, 0.1);
   }
 
-  /* .sentence-analysis-view.nn-mt:hover,  */
-  .sentence-analysis-view.nn-mt.selected {
+  /* .sentence-analysis-view.nnmt:hover,  */
+  .sentence-analysis-view.nnmt.selected {
     background-color: rgba(255, 166, 0, 0.1);
   }
 
@@ -84,7 +84,7 @@
     background-color: green;
   }
 
-  .color-bar.nn-mt {
+  .color-bar.nnmt {
     background-color: orange;
   }
 

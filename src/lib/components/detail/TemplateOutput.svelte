@@ -1,5 +1,12 @@
 <script>
-  import { templateOverride } from "../stores.js";
+  import {
+    ngrok_connected,
+    ngrok_endpoint,
+    detailShowingData,
+    selectedSource,
+    sentences,
+  } from "../stores.js";
+  import { analyzeSentence } from "../analyzeSentence.svelte";
 
   export let templates = [];
   export let terms = [];
@@ -10,7 +17,21 @@
 <div class="output-wrapper">
   <select
     bind:value={selectedTemplate}
-    on:change={(e) => ($templateOverride = templates[selectedTemplate])}
+    on:change={(e) => {
+      if (!$ngrok_connected) return;
+      analyzeSentence(
+        $ngrok_endpoint,
+        $detailShowingData.source,
+        "template",
+        templates[selectedTemplate].template
+      ).then((d) => {
+        sentences.update((x) =>
+          x.map((xi, i) => {
+            return i === $selectedSource ? d : xi;
+          })
+        );
+      });
+    }}
   >
     {#each templates as template, i}
       <option value={i}>
