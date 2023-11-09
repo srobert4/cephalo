@@ -1,4 +1,6 @@
 <script>
+  import Ngrok from "./Ngrok.svelte";
+
   export let sidebarOpen;
   export let mode;
 </script>
@@ -9,15 +11,16 @@
       <h2>Cephalo</h2>
     </div>
     <div id="appbar-menu-buttons">
-      <!-- <select bind:value={mode}>
+      <select bind:value={mode}>
         <option>control</option>
         <option>table</option>
         <option>interactive</option>
-      </select> -->
+      </select>
+      <Ngrok />
       <button id="export-button">export</button>
-      <button id="menu-button" on:click={() => (sidebarOpen = !sidebarOpen)}
+      <!-- <button id="menu-button" on:click={() => (sidebarOpen = !sidebarOpen)}
         >menu</button
-      >
+      > -->
     </div>
   </div>
 </header>
@@ -51,5 +54,6 @@
     justify-content: space-around;
     column-gap: 1rem;
     padding-right: 10rem;
+    align-items: center;
   }
 </style>

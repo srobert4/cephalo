@@ -39,22 +39,17 @@
     }
     $ngrok_last_tested = new Date();
   }
+  let showDetail = false;
 </script>
 
 <div id="ngrok-div">
-  <h4>Ngrok Connection</h4>
+  <!-- <h4>Ngrok Connection</h4> -->
   {#if $ngrok_connected}
-    <p>
-      Connected to <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href={$ngrok_endpoint}>{$ngrok_endpoint}</a
-      >
-    </p>
-    <p>Last tested: {$ngrok_last_tested.toLocaleString()}</p>
+    <span style={"color: green"}>✓</span>
   {:else}
-    <p>Not connected to ngrok tunnel</p>
+    <span style={"color: red"}>x</span>
   {/if}
+
   <!-- preventDefault on form to avoid page reload -->
   <form
     on:submit|preventDefault={() => {
@@ -74,12 +69,18 @@
 <style>
   #ngrok-div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
+    column-gap: 0.5rem;
   }
 
-  p,
-  h4 {
+  #detail-hover {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  p {
     text-align: left;
   }
 </style>

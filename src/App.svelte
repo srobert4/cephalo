@@ -22,7 +22,7 @@
 </script>
 
 <Appbar bind:sidebarOpen bind:mode />
-<Sidebar bind:sidebarOpen />
+<!-- <Sidebar bind:sidebarOpen /> -->
 <main>
   <div class="editor-area">
     <!-- {#if analysisMode} -->
