@@ -1,5 +1,6 @@
 <script>
   import Ngrok from "./Ngrok.svelte";
+  import { sentences } from "./stores.js";
 
   export let sidebarOpen;
   export let mode;
@@ -17,7 +18,20 @@
         <option>interactive</option>
       </select>
       <Ngrok />
-      <button id="export-button">export</button>
+      <button
+        id="export-button"
+        on:click={(e) =>
+          navigator.clipboard.writeText(
+            JSON.stringify(
+              $sentences.map((s) => {
+                return {
+                  ...s,
+                  tableResults: [],
+                };
+              })
+            )
+          )}>export</button
+      >
       <!-- <button id="menu-button" on:click={() => (sidebarOpen = !sidebarOpen)}
         >menu</button
       > -->
