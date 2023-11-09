@@ -11,7 +11,9 @@
   export let templates = [];
   export let terms = [];
   export let filled = "";
-  let selectedTemplate = 0;
+  export let idx_of_filled_template = 0;
+
+  $: selectedTemplate = idx_of_filled_template;
 </script>
 
 <div class="output-wrapper">
