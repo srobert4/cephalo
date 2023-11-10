@@ -1,7 +1,7 @@
 <script>
   import { textToInsert } from "./../stores.js";
   import iconPlusSquare from "./../../../assets/icon-plus-square.svg?raw";
-
+  import Icon from "./../Icon.svelte";
   export let data;
 
   let showref = false;
@@ -23,8 +23,14 @@
     on:click={() => {
       // $textToInsert = " " + data.src;
       navigator.clipboard.writeText(data.src);
-    }}>copy</button
+    }}
   >
+    <div
+      style="display: flex; flex-direction: column; justify-content: center; height: 100%"
+    >
+      <Icon name="copy" />
+    </div>
+  </button>
 </div>
 
 <style>

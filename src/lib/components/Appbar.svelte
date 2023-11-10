@@ -1,6 +1,7 @@
 <script>
   import Ngrok from "./Ngrok.svelte";
   import { sentences, control_mode, baselineTranslations } from "./stores.js";
+  import Icon from "./Icon.svelte";
 
   export let sidebarOpen;
   let mode;
@@ -20,7 +21,7 @@
       <Ngrok />
       <button
         id="export-button"
-        on:click={(e) =>
+        on:click={(e) => {
           navigator.clipboard.writeText(
             JSON.stringify(
               $control_mode
@@ -32,8 +33,11 @@
                     };
                   })
             )
-          )}>export</button
+          );
+        }}
       >
+        <Icon name={"export"} width={"1.5rem"} height={"1.5rem"} />
+      </button>
       <!-- <button id="menu-button" on:click={() => (sidebarOpen = !sidebarOpen)}
         >menu</button
       > -->
@@ -71,5 +75,17 @@
     column-gap: 1rem;
     padding-right: 10rem;
     align-items: center;
+  }
+
+  #export-button {
+    padding: 0;
+    background: none;
+  }
+  #export-button:hover {
+    border-color: transparent;
+  }
+  button:focus,
+  button:focus-visible {
+    outline: none;
   }
 </style>

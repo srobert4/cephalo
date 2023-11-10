@@ -7,6 +7,7 @@
     sentences,
     loading_results,
   } from "./stores.js";
+  import Icon from "./Icon.svelte";
 
   import { analyzeSentence } from "./analyzeSentence.svelte";
 
@@ -51,9 +52,9 @@
 <div id="ngrok-div">
   <!-- <h4>Ngrok Connection</h4> -->
   {#if $ngrok_connected}
-    <span style={"color: green"}>✓</span>
+    <Icon name="check" color="green" height="1.2rem" width="1.2rem" />
   {:else}
-    <span style={"color: red"}>x</span>
+    <Icon name="x" color="red" height="1.2rem" width="1.2rem" />
   {/if}
 
   <!-- preventDefault on form to avoid page reload -->

@@ -1,6 +1,7 @@
 <script>
   import SearchBar from "./SearchBar.svelte";
   import TableList from "./TableList.svelte";
+  import Icon from "../Icon.svelte";
 
   import { activeFilters, neighborFilterEnabled } from "./../stores.js";
   let allFilters = ["sentences", "terms", "templates", "nearest neighbors"];
@@ -23,7 +24,7 @@
           filtersPopupOpen = !filtersPopupOpen;
         }}
       >
-        filters
+        <Icon name="filter" width="1.6rem" height="1.6rem" />
       </button>
       {#if filtersPopupOpen}
         <div id="filters-popup">
@@ -70,10 +71,12 @@
           class="remove-tag"
           on:click={(e) => {
             $activeFilters = [...$activeFilters].filter((x) => {
-              return x != active;
+              return x !== active;
             });
-          }}>x</button
+          }}
         >
+          <Icon name={"x"} />
+        </button>
       </div>
     {/each}
     <!-- {#if $termFilter}
@@ -170,6 +173,9 @@
     font-weight: 500;
     background-color: $systemGray5;
     padding: 0.2rem 0.6rem;
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.5rem;
   }
 
   #clear-filters {
@@ -181,6 +187,9 @@
   #clear-filters {
     padding: 0;
     background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   button {
