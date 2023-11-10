@@ -113,7 +113,7 @@
   // }
 
   .color-bar {
-    width: 5px;
+    min-width: 5px;
     height: var(--height);
     align-self: center;
   }
