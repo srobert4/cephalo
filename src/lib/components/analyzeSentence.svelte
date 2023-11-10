@@ -23,10 +23,8 @@
       }),
     })
       .then((response) => response.json())
-      .then((d) => {
-        console.log(d);
-        return d.results;
-      });
+      .then((d) => d.results);
+    console.log(response)
     return response;
   }
 

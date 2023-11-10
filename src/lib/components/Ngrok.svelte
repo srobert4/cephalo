@@ -29,8 +29,9 @@
     if (success) {
       $ngrok_endpoint = cur_tunnel;
       $ngrok_connected = true;
-      let res = $source.map((s) => analyzeSentence($ngrok_endpoint, s));
+      let res = $source.map((s) => {return analyzeSentence(s)});
       Promise.all(res).then((d) => {
+        console.log(d);
         $sentences = d;
       });
     } else {
