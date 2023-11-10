@@ -5,15 +5,7 @@
 
   let maxScore = 5;
   let colorClass = "grey";
-  $: {
-    if (score < 3) {
-      colorClass = "red";
-    } else if (score < 4) {
-      colorClass = "yellow";
-    } else {
-      colorClass = "green";
-    }
-  }
+  $: colorClass = score < 3 ? "red" : score < 4 ? "yellow" : "green";
 </script>
 
 <div class="score-wrapper">

@@ -99,12 +99,12 @@
 
   /* .sentence-analysis-view.template:hover,  */
   .sentence-wrapper.template.selected {
-    background-color: $systemCyant;
+    background-color: $templateColorLight;
   }
 
   /* .sentence-analysis-view.nnmt:hover,  */
   .sentence-wrapper.nnmt.selected {
-    background-color: $systemOranget;
+    background-color: $nnmtColorLight;
   }
 
   /* .sentence-analysis-view.baseline:hover,  */
@@ -123,11 +123,11 @@
   }
 
   .color-bar.template {
-    background-color: $systemCyan;
+    background-color: $templateColor;
   }
 
   .color-bar.nnmt {
-    background-color: $systemOrange;
+    background-color: $nnmtColor;
   }
 
   // .color-bar.baseline {

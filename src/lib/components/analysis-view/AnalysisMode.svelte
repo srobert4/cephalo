@@ -8,6 +8,7 @@
     defaultSentenceData,
   } from "../stores.js";
   import AddBlock from "./AddBlock.svelte";
+  import Legend from "./Legend.svelte";
 
   function addNewBlock(idx) {
     console.log(idx);
@@ -36,6 +37,7 @@
     </div>
     <AddBlock on:click={(e) => addNewBlock(i + 1)} />
   {/each}
+  <Legend />
 </div>
 
 <style>

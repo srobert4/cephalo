@@ -100,7 +100,7 @@
 </div>
 
 <style lang="scss">
-  @import '../../../variables.scss';
+  @import "../../../variables.scss";
   .table-div {
     min-height: 0;
     display: flex;
