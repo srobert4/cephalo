@@ -1,6 +1,8 @@
 <script>
   import { tweened } from "svelte/motion";
   import { cubicOut } from "svelte/easing";
+  import { updateSentenceText } from "../analyzeSentence.svelte";
+
   export let sentenceData = {
     source: "",
     translation_type: "baseline",
@@ -19,12 +21,15 @@
     }
   }
 
+  function init_focused(element) {
+    element.focus();
+  }
+
   $: console.log(sentenceData);
 </script>
 
 <div
-  class={"sentence-analysis-view " + sentenceData.translation_type}
-  class:selected
+  class={"sentence-analysis-view"}
   on:mouseenter={(e) => {
     if (!selected) {
       barHeight.set(100);
@@ -40,39 +45,72 @@
     class={"color-bar " + sentenceData.translation_type}
     style:--height={$barHeight + "%"}
   />
-  <div class={"sentence-wrapper"}>
-    <p>{sentenceData.source}</p>
+  <div
+    class={"sentence-wrapper " + sentenceData.translation_type}
+    class:selected
+  >
+    {#if sentenceData.source === ""}
+      <p
+        class="empty-p"
+        contenteditable="true"
+        on:blur={updateSentenceText}
+        use:init_focused
+      >
+        {sentenceData.source}
+      </p>
+    {:else}
+      <p contenteditable="true" on:blur={updateSentenceText}>
+        {sentenceData.source}
+      </p>
+    {/if}
   </div>
 </div>
 
-<style>
+<style lang="scss">
+  @import "./../../../variables.scss";
+
   .sentence-analysis-view {
     display: flex;
     flex-direction: row;
-    column-gap: 15px;
+    // column-gap: 15px;
     align-items: flex-start;
     width: 100%;
     height: 100%;
   }
 
   .sentence-wrapper {
-    max-width: 90%;
+    flex-grow: 2;
+  }
+
+  p {
+    margin-left: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    text-align: left;
+  }
+
+  .empty-p {
+    // width: 100%;
+    min-height: 1rem;
+  }
+
+  .sentence-wrapper.none.selected {
+    background-color: $systemGray5t;
   }
 
   /* .sentence-analysis-view.template:hover,  */
-  .sentence-analysis-view.template.selected {
-    background-color: rgba(0, 128, 0, 0.1);
+  .sentence-wrapper.template.selected {
+    background-color: $systemCyant;
   }
 
   /* .sentence-analysis-view.nnmt:hover,  */
-  .sentence-analysis-view.nnmt.selected {
-    background-color: rgba(255, 166, 0, 0.1);
+  .sentence-wrapper.nnmt.selected {
+    background-color: $systemOranget;
   }
 
   /* .sentence-analysis-view.baseline:hover,  */
-  .sentence-analysis-view.baseline.selected {
-    background-color: rgba(255, 0, 0, 0.1);
-  }
+  // .sentence-wrapper.baseline.selected {
+  //   background-color: rgba(255, 0, 0, 0.1);
+  // }
 
   .color-bar {
     width: 5px;
@@ -80,19 +118,19 @@
     align-self: center;
   }
 
+  .color-bar.none {
+    background-color: $systemGray5;
+  }
+
   .color-bar.template {
-    background-color: green;
+    background-color: $systemCyan;
   }
 
   .color-bar.nnmt {
-    background-color: orange;
+    background-color: $systemOrange;
   }
 
-  .color-bar.baseline {
-    background-color: red;
-  }
-
-  p {
-    text-align: left;
-  }
+  // .color-bar.baseline {
+  //   background-color: red;
+  // }
 </style>

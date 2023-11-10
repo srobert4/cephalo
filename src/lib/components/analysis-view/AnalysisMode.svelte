@@ -1,54 +1,32 @@
 <script>
   import AnalysisModeSentence from "./AnalysisModeSentence.svelte";
-  import DetailedAnalysisMode from "./detailed-views/DetailedAnalysisMode.svelte";
-  import { createEventDispatcher } from "svelte";
-  import { onMount, onDestroy } from "svelte";
-  import { activeFilters, selectedSource, sentences } from "../stores.js";
+  import {
+    activeFilters,
+    selectedSource,
+    sentences,
+    source,
+    defaultSentenceData,
+  } from "../stores.js";
+  import AddBlock from "./AddBlock.svelte";
 
-  $: console.log($sentences);
-  // const dispatch = createEventDispatcher();
-
-  // let detailView = false;
-
-  // let analysisData = [];
-  // onMount(() => {
-  //   analysisData = $sentences;
-  // });
-
-  // let selected = -1;
-
-  // onDestroy(() => {
-  //   console.log(analysisData);
-  //   if (analysisData.length > 0)
-  //     $source = analysisData.reduce((acc, cur, i) => {
-  //       // console.log(cur.source, cur.source.length, cur.source.trim().length)
-  //       return (
-  //         acc +
-  //         cur.source +
-  //         (cur.source.length > 0 && i !== analysisData.length - 1 ? ". " : "")
-  //       );
-  //     }, "");
-  //   // change this so that it's just a filter tag, not a new tab window
-  //   activeTableTab.set("sentences");
-  //   detailShowingData.set({ source: "", alternatives: [] });
-  // });
+  function addNewBlock(idx) {
+    console.log(idx);
+    $sentences = $sentences.toSpliced(idx, 0, defaultSentenceData);
+    $source = $source.toSpliced(idx, 0, "");
+    $selectedSource = idx;
+  }
 </script>
 
-<div id="analysis-area">
+<div id="analysis-area" on:click={(e) => ($selectedSource = -1)}>
+  <AddBlock on:click={(e) => addNewBlock(0)} />
   {#each $sentences as sentence, i}
     <div
       class="analysis-mode-sentence-wrapper"
-      on:click={(e) => {
+      on:click|stopPropagation={(e) => {
         // $selectedSource = $selectedSource === i ? -1 : i;
-        if ($selectedSource === i) {
-          // $activeFilters = [...$activeFilters].filter((x) => {
-          //   return x != $sentences[$selectedSource].tableFilter;
-          // });
-          $selectedSource = -1;
-        } else {
-          $selectedSource = i;
-          $activeFilters = [$sentences[$selectedSource].tableFilter];
-        }
+        if ($selectedSource === i) return;
+        $selectedSource = i;
+        $activeFilters = [$sentences[$selectedSource].tableFilter];
       }}
     >
       <AnalysisModeSentence
@@ -56,6 +34,7 @@
         sentenceData={sentence}
       />
     </div>
+    <AddBlock on:click={(e) => addNewBlock(i + 1)} />
   {/each}
 </div>
 

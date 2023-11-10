@@ -3,7 +3,7 @@
   import Score from "./Score.svelte";
   import NnmtOutput from "./NnmtOutput.svelte";
   import TemplateOutput from "./TemplateOutput.svelte";
-  import { analyzeSentence } from "../analyzeSentence.svelte";
+  import { updateMethod, updateSentenceText } from "../analyzeSentence.svelte";
 
   import {
     source,
@@ -26,21 +26,7 @@
         >Using:
         <select
           bind:value={selectedMethod}
-          on:change={(e) => {
-            if (!$ngrok_connected) return;
-            analyzeSentence(
-              $ngrok_endpoint,
-              $detailShowingData.source,
-              methods[selectedMethod]
-            ).then((d) => {
-              sentences.update((x) =>
-                x.map((xi, i) => {
-                  return i === $selectedSource ? d : xi;
-                })
-              );
-              $activeFilters = [d.tableFilter];
-            });
-          }}
+          on:change={(e) => updateMethod(methods[selectedMethod])}
         >
           {#each methods as method, i}
             <option
@@ -56,18 +42,7 @@
     <div
       class="input-area"
       contenteditable="true"
-      on:blur={(e) => {
-        if ($detailShowingData.source === e.target.innerText) return;
-        $source[$selectedSource] = e.target.innerText;
-        analyzeSentence($ngrok_endpoint, e.target.innerText).then((d) => {
-          sentences.update((x) =>
-            x.map((xi, i) => {
-              return i === $selectedSource ? d : xi;
-            })
-          );
-          $activeFilters = [d.tableFilter];
-        });
-      }}
+      on:blur={(e) => updateSentenceText(e)}
     >
       {$detailShowingData.source}
     </div>

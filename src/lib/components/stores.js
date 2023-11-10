@@ -22,6 +22,17 @@ export const templateOverride = writable("");
 export const methodOverride = writable("");
 
 // Analysis view
+export const defaultSentenceData = {
+  source: "",
+  start_idx: 0,
+  translation_type: "none",
+  translation_hyp: "",
+  scores: [],
+  nnmt_output: [],
+  template_output: [],
+  tableFilter: "sentences",
+  tableResults: [],
+};
 export const sentences = writable(
   [
     "Dear Mr. Doe,",
