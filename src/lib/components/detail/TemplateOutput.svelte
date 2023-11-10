@@ -36,7 +36,8 @@
   <p>{filled}</p>
 </div>
 
-<style>
+<style lang="scss">
+  @import "../../../variables.scss";
   .output-wrapper {
     display: flex;
     flex-direction: column;
@@ -46,7 +47,7 @@
     text-align: left;
   }
   .de {
-    color: #a8a8a8;
+    color: $systemGray2;
     font-style: italic;
   }
   .term-wrapper {

@@ -4,15 +4,14 @@
   export let score = 3;
 
   let maxScore = 5;
-  let grey = "#A8A8A8";
-  let color = grey;
+  let colorClass = "grey";
   $: {
     if (score < 3) {
-      color = "#D9002F";
+      colorClass = "red";
     } else if (score < 4) {
-      color = "#F4B437";
+      colorClass = "yellow";
     } else {
-      color = "#41AF6D";
+      colorClass = "green";
     }
   }
 </script>
@@ -24,15 +23,13 @@
   </div>
   <div class="score-circles">
     {#each { length: maxScore } as _, i}
-      <div
-        class="circle"
-        style={"background-color: " + (i < score ? color : grey)}
-      />
+      <div class={"circle " + (i < score ? colorClass : "grey")} />
     {/each}
   </div>
 </div>
 
-<style>
+<style lang="scss">
+  @import "../../../variables.scss";
   .score-wrapper {
     display: flex;
     flex-direction: column;
@@ -54,7 +51,7 @@
     column-gap: 0.5rem;
   }
   .info {
-    background-color: #a8a8a8;
+    background-color: $systemGray3;
     width: 1rem;
     height: 1rem;
     text-align: center;
@@ -71,5 +68,18 @@
     width: 1rem;
     height: 1rem;
     border-radius: 2rem;
+  }
+
+  .grey {
+    background-color: $systemGray5;
+  }
+  .red {
+    background-color: $systemRed;
+  }
+  .yellow {
+    background-color: $systemYellow;
+  }
+  .green {
+    background-color: $systemGreen;
   }
 </style>

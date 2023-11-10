@@ -99,7 +99,8 @@
   <TableList />
 </div>
 
-<style>
+<style lang="scss">
+  @import '../../../variables.scss';
   .table-div {
     min-height: 0;
     display: flex;
@@ -164,10 +165,10 @@
 
   .tag {
     border-radius: 5px;
-    box-shadow: 0 0 2px hsla(0, 0%, 0%, 0.2), 0 0 5px hsla(0, 0%, 0%, 0.1);
+    // box-shadow: 0 0 2px hsla(0, 0%, 0%, 0.2), 0 0 5px hsla(0, 0%, 0%, 0.1);
     line-height: 1;
     font-weight: 500;
-    background-color: lightgrey;
+    background-color: $systemGray5;
     padding: 0.2rem 0.6rem;
   }
 

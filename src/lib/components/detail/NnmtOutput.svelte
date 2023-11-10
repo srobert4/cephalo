@@ -20,7 +20,9 @@
   {/each}
 </div>
 
-<style>
+<style lang="scss">
+  @import "../../../variables.scss";
+
   .output-wrapper {
     display: flex;
     flex-direction: row;
@@ -42,7 +44,7 @@
     outline: none;
   }
   .selected {
-    border: 1px solid grey;
+    border: 1px solid $systemGray;
     border-radius: 0.2rem;
   }
   .translated-word {
