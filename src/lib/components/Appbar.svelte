@@ -1,9 +1,10 @@
 <script>
   import Ngrok from "./Ngrok.svelte";
-  import { sentences } from "./stores.js";
+  import { sentences, control_mode, baselineTranslations } from "./stores.js";
 
   export let sidebarOpen;
-  export let mode;
+  let mode;
+  $: $control_mode = mode == "control";
 </script>
 
 <header id="appbar">
@@ -14,8 +15,7 @@
     <div id="appbar-menu-buttons">
       <select bind:value={mode}>
         <option>control</option>
-        <option>table</option>
-        <option>interactive</option>
+        <option>treatment</option>
       </select>
       <Ngrok />
       <button
@@ -23,12 +23,14 @@
         on:click={(e) =>
           navigator.clipboard.writeText(
             JSON.stringify(
-              $sentences.map((s) => {
-                return {
-                  ...s,
-                  tableResults: [],
-                };
-              })
+              $control_mode
+                ? $baselineTranslations
+                : $sentences.map((s) => {
+                    return {
+                      ...s,
+                      tableResults: [],
+                    };
+                  })
             )
           )}>export</button
       >

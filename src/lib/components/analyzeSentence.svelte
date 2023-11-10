@@ -7,6 +7,9 @@
     ngrok_endpoint,
     sentences,
     activeFilters,
+    loading_results,
+    defaultSentenceData,
+    baselineTranslations,
   } from "./stores.js";
 
   import { get } from "svelte/store";
@@ -24,7 +27,21 @@
     })
       .then((response) => response.json())
       .then((d) => d.results);
-    console.log(response)
+    console.log(response);
+    return response;
+  }
+
+  export async function getBaselineTranslation(sentence) {
+    let url = new URL("translate", get(ngrok_endpoint));
+    url.searchParams.append("sentence", sentence);
+    const response = await fetch(url, {
+      method: "get",
+      headers: new Headers({
+        "ngrok-skip-browser-warning": "69420",
+      }),
+    })
+      .then((response) => response.json())
+      .then((d) => d.results);
     return response;
   }
 
@@ -64,14 +81,59 @@
         return i === get(selectedSource) ? e.target.innerText : s;
       })
     );
-    if (!get(ngrok_connected)) return;
-    analyzeSentence(e.target.innerText).then((result) => {
+    if (!get(ngrok_connected)) {
       sentences.update((sentences) =>
         sentences.map((sentenceData, i) => {
-          return i === get(selectedSource) ? result : sentenceData;
+          return i === get(selectedSource)
+            ? {
+                ...sentenceData,
+                source: e.target.innerText,
+                translation_hyp: e.target.innerText,
+              }
+            : sentenceData;
         })
       );
-      activeFilters.set([result.tableFilter]);
-    });
+    } else {
+      loading_results.set(true);
+      analyzeSentence(e.target.innerText).then((result) => {
+        sentences.update((sentences) =>
+          sentences.map((sentenceData, i) => {
+            return i === get(selectedSource) ? result : sentenceData;
+          })
+        );
+        activeFilters.set([result.tableFilter]);
+        loading_results.set(false);
+      });
+    }
+  }
+
+  export async function updateBaselineTranslations(e) {
+    if (get(source)[get(selectedSource)] === e.target.innerText) return;
+    source.update((src) =>
+      src.map((s, i) => {
+        return i === get(selectedSource) ? e.target.innerText : s;
+      })
+    );
+    if (!get(ngrok_connected)) {
+      baselineTranslations.update((ts) =>
+        ts.map((t, i) => {
+          return i === get(selectedSource)
+            ? {
+                ...defaultSentenceData,
+                source: e.target.innerText,
+                translation_hyp: e.target.innerText,
+              }
+            : t;
+        })
+      );
+    } else {
+      getBaselineTranslation(e.target.innerText).then((result) => {
+        baselineTranslations.update((translations) =>
+          translations.map((translation, i) => {
+            return i === get(selectedSource) ? result : translation;
+          })
+        );
+      });
+    }
   }
 </script>

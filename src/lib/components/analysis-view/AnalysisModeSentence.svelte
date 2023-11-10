@@ -1,14 +1,21 @@
 <script>
   import { tweened } from "svelte/motion";
   import { cubicOut } from "svelte/easing";
-  import { updateSentenceText } from "../analyzeSentence.svelte";
+  import {
+    updateBaselineTranslations,
+    updateSentenceText,
+  } from "../analyzeSentence.svelte";
+  import { control_mode } from "../stores";
 
   export let sentenceData = {
     source: "",
+    translation_hyp: "",
     translation_type: "baseline",
   };
 
   export let selected = false;
+  export let showTranslations;
+
   const barHeight = tweened(80, {
     duration: 400,
     easing: cubicOut,
@@ -53,15 +60,27 @@
       <p
         class="empty-p"
         contenteditable="true"
-        on:blur={updateSentenceText}
+        on:blur={(e) => {
+          $control_mode ? updateBaselineTranslations(e) : updateSentenceText(e);
+        }}
         use:init_focused
       >
         {sentenceData.source}
       </p>
     {:else}
-      <p contenteditable="true" on:blur={updateSentenceText}>
+      <p
+        contenteditable="true"
+        on:blur={(e) => {
+          $control_mode ? updateBaselineTranslations(e) : updateSentenceText(e);
+        }}
+      >
         {sentenceData.source}
       </p>
+      {#if showTranslations}
+        <p class="de">
+          {sentenceData.translation_hyp}
+        </p>
+      {/if}
     {/if}
   </div>
 </div>
@@ -83,7 +102,7 @@
   }
 
   p {
-    margin-left: 0.5rem;
+    margin: 0.5rem;
     padding: 0.2rem 0.5rem;
     text-align: left;
   }
@@ -91,6 +110,11 @@
   .empty-p {
     // width: 100%;
     min-height: 1rem;
+  }
+
+  .de {
+    color: $systemGray;
+    font-style: italic;
   }
 
   .sentence-wrapper.none.selected {

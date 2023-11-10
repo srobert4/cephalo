@@ -6,6 +6,8 @@
   import Sidebar from "./lib/components/Sidebar.svelte";
   import Detail from "./lib/components/detail/Detail.svelte";
 
+  import { control_mode } from "./lib/components/stores";
+
   // Holds content of text editor component
   let content = {
     text: "",
@@ -18,10 +20,9 @@
   //    control = editor only
   //    table = editor + table
   //    interactive = editor + table + analysis mode
-  let mode = "control";
 </script>
 
-<Appbar bind:sidebarOpen bind:mode />
+<Appbar bind:sidebarOpen />
 <!-- <Sidebar bind:sidebarOpen /> -->
 <main>
   <div class="editor-area">
@@ -42,13 +43,13 @@
     </button> -->
     <!-- {/if} -->
   </div>
-  <!-- {#if mode !== "control"} -->
-  <!-- Show table in any condition except control -->
-  <div id="right-column">
-    <Table />
-    <Detail />
-  </div>
-  <!-- {/if} -->
+  {#if !$control_mode}
+    <!-- Show table in any condition except control -->
+    <div id="right-column">
+      <Table />
+      <Detail />
+    </div>
+  {/if}
 </main>
 
 <style>

@@ -5,6 +5,7 @@
     ngrok_connected,
     source,
     sentences,
+    loading_results,
   } from "./stores.js";
 
   import { analyzeSentence } from "./analyzeSentence.svelte";
@@ -29,10 +30,14 @@
     if (success) {
       $ngrok_endpoint = cur_tunnel;
       $ngrok_connected = true;
-      let res = $source.map((s) => {return analyzeSentence(s)});
+      $loading_results = true;
+      let res = $source.map((s) => {
+        return analyzeSentence(s);
+      });
       Promise.all(res).then((d) => {
         console.log(d);
         $sentences = d;
+        $loading_results = false;
       });
     } else {
       $ngrok_endpoint = "";

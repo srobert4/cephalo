@@ -13,6 +13,7 @@
     ngrok_endpoint,
     sentences,
     activeFilters,
+    loading_results,
   } from "../stores.js";
 
   let selectedMethod;
@@ -20,7 +21,9 @@
 </script>
 
 <div id="detail-view-wrapper">
-  {#if Object.keys($detailShowingData).length !== 0}
+  {#if $selectedSource !== -1 && $loading_results}
+    <div>Loading...</div>
+  {:else if Object.keys($detailShowingData).length !== 0}
     <div id="method-selector">
       <label
         >Using:
