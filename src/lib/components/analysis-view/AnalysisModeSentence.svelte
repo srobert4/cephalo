@@ -25,6 +25,8 @@
     element.focus();
   }
 
+  $: model = $control_mode ? "baseline" : sentenceData.last_method_selected;
+
   $: console.log(sentenceData);
 </script>
 
@@ -41,14 +43,8 @@
     }
   }}
 >
-  <div
-    class={"color-bar " + sentenceData.last_method_selected}
-    style:--height={$barHeight + "%"}
-  />
-  <div
-    class={"sentence-wrapper " + sentenceData.last_method_selected}
-    class:selected
-  >
+  <div class={"color-bar " + model} style:--height={$barHeight + "%"} />
+  <div class={"sentence-wrapper " + model} class:selected>
     {#if sentenceData.source === ""}
       <p
         class="empty-p"
@@ -64,7 +60,7 @@
       </p>
       {#if showTranslations}
         <p class="de">
-          {sentenceData[sentenceData.last_method_selected].translation_hyp}
+          {sentenceData[model].translation_hyp}
         </p>
       {/if}
     {/if}
