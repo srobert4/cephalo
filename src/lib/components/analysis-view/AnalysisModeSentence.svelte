@@ -1,17 +1,10 @@
 <script>
   import { tweened } from "svelte/motion";
   import { cubicOut } from "svelte/easing";
-  import {
-    updateBaselineTranslations,
-    updateSentenceText,
-  } from "../analyzeSentence.svelte";
-  import { control_mode } from "../stores";
+  import { updateSelectedSentence } from "../analyzeSentence.svelte";
+  import { control_mode, defaultSentenceData } from "../stores";
 
-  export let sentenceData = {
-    source: "",
-    translation_hyp: "",
-    translation_type: "baseline",
-  };
+  export let sentenceData = defaultSentenceData;
 
   export let selected = false;
   export let showTranslations;
@@ -49,36 +42,29 @@
   }}
 >
   <div
-    class={"color-bar " + sentenceData.translation_type}
+    class={"color-bar " + sentenceData.last_method_selected}
     style:--height={$barHeight + "%"}
   />
   <div
-    class={"sentence-wrapper " + sentenceData.translation_type}
+    class={"sentence-wrapper " + sentenceData.last_method_selected}
     class:selected
   >
     {#if sentenceData.source === ""}
       <p
         class="empty-p"
         contenteditable="true"
-        on:blur={(e) => {
-          $control_mode ? updateBaselineTranslations(e) : updateSentenceText(e);
-        }}
+        on:blur={updateSelectedSentence}
         use:init_focused
       >
         {sentenceData.source}
       </p>
     {:else}
-      <p
-        contenteditable="true"
-        on:blur={(e) => {
-          $control_mode ? updateBaselineTranslations(e) : updateSentenceText(e);
-        }}
-      >
+      <p contenteditable="true" on:blur={updateSelectedSentence}>
         {sentenceData.source}
       </p>
       {#if showTranslations}
         <p class="de">
-          {sentenceData.translation_hyp}
+          {sentenceData[sentenceData.last_method_selected].translation_hyp}
         </p>
       {/if}
     {/if}
@@ -120,6 +106,9 @@
   .sentence-wrapper.none.selected {
     background-color: $systemGray5t;
   }
+  .sentence-wrapper.baseline.selected {
+    background-color: $systemGray5t;
+  }
 
   /* .sentence-analysis-view.template:hover,  */
   .sentence-wrapper.template.selected {
@@ -143,6 +132,10 @@
   }
 
   .color-bar.none {
+    background-color: $systemGray5;
+  }
+
+  .color-bar.baseline {
     background-color: $systemGray5;
   }
 

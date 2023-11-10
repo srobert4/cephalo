@@ -9,7 +9,8 @@
     activeFilters,
     loading_results,
     defaultSentenceData,
-    baselineTranslations,
+    data,
+    selected,
   } from "./stores.js";
 
   import { get } from "svelte/store";
@@ -47,48 +48,54 @@
 
   export async function updateTemplate(template) {
     if (!get(ngrok_connected)) return;
-    analyzeSentence(
-      get(detailShowingData).source,
-      (method = "template"),
-      (template = template)
-    ).then((result) => {
-      sentences.update((sentences) =>
-        sentences.map((sentenceData, i) => {
-          return i === get(selectedSource) ? result : sentenceData;
-        })
-      );
-    });
-  }
-
-  export async function updateMethod(method) {
-    if (!get(ngrok_connected)) return;
-    analyzeSentence(get(detailShowingData).source, (method = method)).then(
+    loading_results.set(true);
+    analyzeSentence(get(detailShowingData).source, "template", template).then(
       (result) => {
-        sentences.update((sentences) =>
-          sentences.map((sentenceData, i) => {
+        data.update((data) =>
+          data.map((sentenceData, i) => {
             return i === get(selectedSource) ? result : sentenceData;
           })
         );
-        activeFilters.set([result.tableFilter]);
+        loading_results.set(false);
       }
     );
   }
 
-  export async function updateSentenceText(e) {
-    if (get(detailShowingData).source === e.target.innerText) return;
-    source.update((src) =>
-      src.map((s, i) => {
-        return i === get(selectedSource) ? e.target.innerText : s;
+  export async function updateMethod(method) {
+    data.update((data) =>
+      data.map((d, i) => {
+        return i === get(selectedSource)
+          ? {
+              ...d,
+              last_method_selected: method,
+            }
+          : d;
       })
     );
+    activeFilters.set([get(data)[get(selectedSource)][method].tableFilter]);
+  }
+
+  export async function updateSelectedSentence(e) {
+    if (get(data)[get(selectedSource)].source === e.target.innerText) return;
     if (!get(ngrok_connected)) {
-      sentences.update((sentences) =>
-        sentences.map((sentenceData, i) => {
+      data.update((data) =>
+        data.map((sentenceData, i) => {
           return i === get(selectedSource)
             ? {
                 ...sentenceData,
                 source: e.target.innerText,
-                translation_hyp: e.target.innerText,
+                baseline: {
+                  ...sentenceData.baseline,
+                  translation_hyp: e.target.innerText,
+                },
+                nnmt: {
+                  ...sentenceData.nnmt,
+                  translation_hyp: e.target.innerText,
+                },
+                template: {
+                  ...sentenceData.template,
+                  translation_hyp: e.target.innerText,
+                },
               }
             : sentenceData;
         })
@@ -96,44 +103,119 @@
     } else {
       loading_results.set(true);
       analyzeSentence(e.target.innerText).then((result) => {
-        sentences.update((sentences) =>
-          sentences.map((sentenceData, i) => {
+        data.update((data) =>
+          data.map((sentenceData, i) => {
             return i === get(selectedSource) ? result : sentenceData;
           })
         );
-        activeFilters.set([result.tableFilter]);
+        activeFilters.set([result[result.last_method_selected].tableFilter]);
         loading_results.set(false);
       });
     }
   }
 
-  export async function updateBaselineTranslations(e) {
-    if (get(source)[get(selectedSource)] === e.target.innerText) return;
-    source.update((src) =>
-      src.map((s, i) => {
-        return i === get(selectedSource) ? e.target.innerText : s;
-      })
-    );
-    if (!get(ngrok_connected)) {
-      baselineTranslations.update((ts) =>
-        ts.map((t, i) => {
-          return i === get(selectedSource)
-            ? {
-                ...defaultSentenceData,
-                source: e.target.innerText,
-                translation_hyp: e.target.innerText,
-              }
-            : t;
-        })
-      );
-    } else {
-      getBaselineTranslation(e.target.innerText).then((result) => {
-        baselineTranslations.update((translations) =>
-          translations.map((translation, i) => {
-            return i === get(selectedSource) ? result : translation;
-          })
-        );
-      });
-    }
-  }
+  // export async function updateSentenceText(e) {
+  //   if (get(detailShowingData).source === e.target.innerText) return;
+  //   source.update((src) =>
+  //     src.map((s, i) => {
+  //       return i === get(selectedSource) ? e.target.innerText : s;
+  //     })
+  //   );
+  //   if (!get(ngrok_connected)) {
+  //     sentences.update((sentences) =>
+  //       sentences.map((sentenceData, i) => {
+  //         return i === get(selectedSource)
+  //           ? {
+  //               ...sentenceData,
+  //               source: e.target.innerText,
+  //               translation_hyp: e.target.innerText,
+  //             }
+  //           : sentenceData;
+  //       })
+  //     );
+  //   } else {
+  //     loading_results.set(true);
+  //     analyzeSentence(e.target.innerText).then((result) => {
+  //       sentences.update((sentences) =>
+  //         sentences.map((sentenceData, i) => {
+  //           return i === get(selectedSource) ? result : sentenceData;
+  //         })
+  //       );
+  //       activeFilters.set([result.tableFilter]);
+  //       loading_results.set(false);
+  //     });
+  //   }
+  // }
+
+  // export async function syncTranslations(e) {
+  //   if (e.target.value === 'control') {
+  //     // sync baselineTranslations with sentences
+  //     let res = get(baselineTranslations).map((t,i) => {
+  //       let newSrc = get(source)[i]
+  //       if (t.source === newSrc) return t;
+  //       if (!get(ngrok_connected)) return {
+  //               ...t,
+  //               source: newSrc,
+  //               translation_hyp: newSrc,
+  //             }
+  //       return getBaselineTranslation(newSrc);
+  //     });
+  //     Promise.all(res).then((d) => {
+  //       console.log(d);
+  //       baselineTranslations.set(d);
+  //     });
+  //   } else {
+  //     // sync sentences with baselineTranslations
+  //     loading_results.set(true)
+  //     let res = get(sentences).map((t,i) => {
+  //       let newSrc = get(source)[i]
+  //       if (t.source === newSrc) return t;
+  //       if (!get(ngrok_connected)) return {
+  //               ...t,
+  //               source: newSrc,
+  //               translation_hyp: newSrc,
+  //             }
+  //       return analyzeSentence(newSrc);
+  //     });
+  //     Promise.all(res).then((d) => {
+  //       console.log(d);
+  //       sentences.set(d);
+  //       loading_results.set(false)
+  //     });
+  //   }
+
+  // }
+
+  // export async function updateBaselineTranslations(e) {
+  //   if (get(source)[get(selectedSource)] === e.target.innerText) return;
+  //   source.update((src) =>
+  //     src.map((s, i) => {
+  //       return i === get(selectedSource) ? e.target.innerText : s;
+  //     })
+  //   );
+  //   if (!get(ngrok_connected)) {
+  //     baselineTranslations.update((ts) =>
+  //       ts.map((t, i) => {
+  //         return i === get(selectedSource)
+  //           ? {
+  //               ...defaultSentenceData,
+  //               source: e.target.innerText,
+  //               translation_hyp: e.target.innerText,
+  //             }
+  //           : t;
+  //       })
+  //     );
+  //   } else {
+  //     getBaselineTranslation(e.target.innerText).then((result) => {
+  //       baselineTranslations.update((translations) =>
+  //         translations.map((translation, i) => {
+  //           return i === get(selectedSource) ? {
+  //             ...defaultSentenceData,
+  //             ...result
+  //           } : translation;
+  //         })
+  //       );
+  //     });
+  //   }
+  // }
 </script>

@@ -6,10 +6,14 @@
     source,
     sentences,
     loading_results,
+    data,
   } from "./stores.js";
   import Icon from "./Icon.svelte";
 
-  import { analyzeSentence } from "./analyzeSentence.svelte";
+  import {
+    analyzeSentence,
+    getBaselineTranslation,
+  } from "./analyzeSentence.svelte";
 
   let cur_tunnel = ""; // user input
 
@@ -32,14 +36,21 @@
       $ngrok_endpoint = cur_tunnel;
       $ngrok_connected = true;
       $loading_results = true;
-      let res = $source.map((s) => {
-        return analyzeSentence(s);
+      let res = $data.map((d) => {
+        return analyzeSentence(d.source);
       });
       Promise.all(res).then((d) => {
         console.log(d);
-        $sentences = d;
+        $data = d;
         $loading_results = false;
       });
+      // res = $source.map((s) => {
+      //   return getBaselineTranslation(s);
+      // });
+      // Promise.all(res).then((d) => {
+      //   console.log(d);
+      //   $baselineTranslations = d;
+      // });
     } else {
       $ngrok_endpoint = "";
       $ngrok_connected = false;

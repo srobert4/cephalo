@@ -1,6 +1,6 @@
 <script>
   import Ngrok from "./Ngrok.svelte";
-  import { sentences, control_mode, baselineTranslations } from "./stores.js";
+  import { data, control_mode } from "./stores.js";
   import Icon from "./Icon.svelte";
 
   export let sidebarOpen;
@@ -22,18 +22,7 @@
       <button
         id="export-button"
         on:click={(e) => {
-          navigator.clipboard.writeText(
-            JSON.stringify(
-              $control_mode
-                ? $baselineTranslations
-                : $sentences.map((s) => {
-                    return {
-                      ...s,
-                      tableResults: [],
-                    };
-                  })
-            )
-          );
+          navigator.clipboard.writeText(JSON.stringify($data));
         }}
       >
         <Icon name={"export"} width={"1.5rem"} height={"1.5rem"} />

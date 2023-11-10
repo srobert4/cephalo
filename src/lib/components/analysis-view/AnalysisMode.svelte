@@ -7,7 +7,7 @@
     source,
     defaultSentenceData,
     control_mode,
-    baselineTranslations,
+    data,
   } from "../stores.js";
   import AddBlock from "./AddBlock.svelte";
   import Legend from "./Legend.svelte";
@@ -15,8 +15,7 @@
 
   function addNewBlock(idx) {
     console.log(idx);
-    $sentences = $sentences.toSpliced(idx, 0, defaultSentenceData);
-    $source = $source.toSpliced(idx, 0, "");
+    $data = $data.toSpliced(idx, 0, defaultSentenceData);
     $selectedSource = idx;
   }
 
@@ -26,14 +25,14 @@
 <div id="analysis-area" on:click={(e) => ($selectedSource = -1)}>
   <Switch bind:on={showTranslations} />
   <AddBlock on:click={(e) => addNewBlock(0)} />
-  {#each $control_mode ? $baselineTranslations : $sentences as sentence, i}
+  {#each $data as sentence, i}
     <div
       class="analysis-mode-sentence-wrapper"
       on:click|stopPropagation={(e) => {
         // $selectedSource = $selectedSource === i ? -1 : i;
         if ($selectedSource === i) return;
         $selectedSource = i;
-        $activeFilters = [$sentences[$selectedSource].tableFilter];
+        $activeFilters = [sentence[sentence.last_method_selected].tableFilter];
       }}
     >
       <AnalysisModeSentence

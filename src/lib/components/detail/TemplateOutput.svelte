@@ -3,7 +3,7 @@
 
   export let templates = [];
   export let terms = [];
-  export let filled = "";
+  export let translation_hyp = "";
   export let idx_of_filled_template = 0;
 
   $: selectedTemplate = idx_of_filled_template;
@@ -33,7 +33,7 @@
       {/if}
     </div>
   {/each}
-  <p>{filled}</p>
+  <p>{translation_hyp}</p>
 </div>
 
 <style lang="scss">

@@ -22,28 +22,48 @@ export const selectedSource = writable(-1);
 export const selected = writable(""); // currently not used, could be used to implement "search by selection"
 
 // Analysis view
-export const defaultSentenceData = {
-  source: "",
-  start_idx: 0,
+export const defaultTranslationData = {
   translation_type: "none",
   translation_hyp: "",
   scores: [],
-  nnmt_output: [],
-  template_output: [],
-  tableFilter: "sentences",
+  words: [],
+  templates: [],
+  terms: [],
+  tableFilter: "sentence",
   tableResults: [],
 };
 
-export const baselineTranslations = writable(
+export const defaultSentenceData = {
+  source: "",
+  last_method_selected: "baseline",
+  baseline: defaultTranslationData,
+  nnmt: defaultTranslationData,
+  template: defaultTranslationData,
+};
+
+export const data = writable(
   [
     "Dear Mr. Doe,",
     "You were seen in the emergency department for trouble breathing.",
     "While you were in the hospital we gave you breathing treatments and your symptoms improved.",
   ].map((s) => {
     return {
-      ...defaultSentenceData,
       source: s,
-      translation_hyp: s,
+      last_method_selected: "baseline",
+      baseline: {
+        ...defaultTranslationData,
+        translation_hyp: s,
+      },
+      nnmt: {
+        ...defaultTranslationData,
+        translation_type: "nnmt",
+        translation_hyp: s,
+      },
+      template: {
+        ...defaultTranslationData,
+        translation_type: "template",
+        translation_hyp: s,
+      },
     };
   })
 );
@@ -122,12 +142,12 @@ export const sentences = writable(
 );
 
 export const detailShowingData = derived(
-  [sentences, selectedSource],
-  ([$sentences, $seletedSource]) => {
+  [data, selectedSource],
+  ([$data, $seletedSource]) => {
     if ($seletedSource < 0) {
       return {};
     } else {
-      return $sentences[$seletedSource];
+      return $data[$seletedSource];
     }
   },
   {}
@@ -142,7 +162,7 @@ export const neighborFilterEnabled = derived(
   ($detailShowingData) => {
     return (
       Object.keys($detailShowingData).length > 0 &&
-      $detailShowingData.translation_type == "nnmt"
+      $detailShowingData.last_method_selected == "nnmt"
     );
   }
 );
@@ -170,7 +190,11 @@ export const tableData = derived(
       }
       if ($activeFilters.includes("templates")) {
         if (Object.keys($detailShowingData).length > 0) {
-          data = [...$detailShowingData.tableResults, ...data];
+          data = [
+            ...$detailShowingData[$detailShowingData.last_method_selected]
+              .tableResults,
+            ...data,
+          ];
         } else {
           // TODO: have all templates stored for manual exploration
           data = [...templates, ...data];
@@ -180,7 +204,11 @@ export const tableData = derived(
         $activeFilters.includes("nearest neighbors") &&
         Object.keys($detailShowingData).length > 0
       ) {
-        data = [...$detailShowingData.tableResults, ...data];
+        data = [
+          ...$detailShowingData[$detailShowingData.last_method_selected]
+            .tableResults,
+          ...data,
+        ];
       }
       if (data.length === 0) {
         data = [...tm_sentences, ...terms];

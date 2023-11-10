@@ -1,11 +1,11 @@
 <script>
-  export let output = [];
+  export let words;
 
   let clicked = -1;
 </script>
 
 <div class="output-wrapper">
-  {#each output as word, i}
+  {#each words as word, i}
     <button
       class={"word-button" + (clicked == i ? " selected" : "")}
       on:click={(e) => {

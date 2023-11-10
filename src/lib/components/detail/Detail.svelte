@@ -3,7 +3,10 @@
   import Score from "./Score.svelte";
   import NnmtOutput from "./NnmtOutput.svelte";
   import TemplateOutput from "./TemplateOutput.svelte";
-  import { updateMethod, updateSentenceText } from "../analyzeSentence.svelte";
+  import {
+    updateMethod,
+    updateSelectedSentence,
+  } from "../analyzeSentence.svelte";
 
   import {
     source,
@@ -34,7 +37,7 @@
           {#each methods as method, i}
             <option
               value={i}
-              selected={$detailShowingData.translation_type === method}
+              selected={$detailShowingData.last_method_selected === method}
             >
               {method}
             </option>
@@ -45,19 +48,19 @@
     <div
       class="input-area"
       contenteditable="true"
-      on:blur={(e) => updateSentenceText(e)}
+      on:blur={(e) => updateSelectedSentence(e)}
     >
       {$detailShowingData.source}
     </div>
     <div id="scores-row">
-      {#each $detailShowingData.scores as scoreData}
+      {#each $detailShowingData[$detailShowingData.last_method_selected].scores as scoreData}
         <Score {...scoreData} />
       {/each}
     </div>
-    {#if $detailShowingData.translation_type === "nnmt"}
-      <NnmtOutput output={$detailShowingData.nnmt_output} />
-    {:else if $detailShowingData.translation_type === "template"}
-      <TemplateOutput {...$detailShowingData.template_output} />
+    {#if $detailShowingData.last_method_selected === "nnmt"}
+      <NnmtOutput {...$detailShowingData["nnmt"]} />
+    {:else if $detailShowingData.last_method_selected === "template"}
+      <TemplateOutput {...$detailShowingData["template"]} />
     {/if}
   {:else}
     <p>Select a sentence to view translation analysis.</p>

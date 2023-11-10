@@ -1,10 +1,10 @@
 <script>
-  import { sentences } from "../stores.js";
+  import { data } from "../stores.js";
 
-  $: numTemplates = $sentences.filter(
-    (s) => s.translation_type == "template"
+  $: numTemplates = $data.filter(
+    (s) => s.last_method_selected == "template"
   ).length;
-  $: numNNMT = $sentences.filter((s) => s.translation_type == "nnmt").length;
+  $: numNNMT = $data.filter((s) => s.last_method_selected == "nnmt").length;
 </script>
 
 <div id="legend">
