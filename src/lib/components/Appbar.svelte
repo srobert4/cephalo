@@ -1,7 +1,8 @@
 <script>
   import Ngrok from "./Ngrok.svelte";
-  import { data, control_mode } from "./stores.js";
+  import { data, control_mode, instruction_set } from "./stores.js";
   import Icon from "./Icon.svelte";
+  import { updateInstructionSet } from "./analyzeSentence.svelte";
 
   export let sidebarOpen;
   let mode;
@@ -14,6 +15,12 @@
       <h2>Cephalo</h2>
     </div>
     <div id="appbar-menu-buttons">
+      <select bind:value={$instruction_set} on:change={updateInstructionSet}>
+        <option>tutorial</option>
+        <option>chest pain</option>
+        <option>belly pain</option>
+        <option>back pain</option>
+      </select>
       <select bind:value={mode}>
         <option>control</option>
         <option>treatment</option>

@@ -1,7 +1,8 @@
 import { writable, derived } from "svelte/store";
-import tm_sentences from "../../data/synthetic_tm_data_formatted.json";
+import tm_sentences from "../../data/discharge_instructions_formatted.json";
 import terms from "../../data/terms.json";
 import templates from "../../data/templates.json";
+import instructions from "../../data/source_instructions.json";
 
 // Connection to backend
 export const ngrok_endpoint = writable("");
@@ -11,6 +12,9 @@ export const loading_results = writable(false);
 
 // Control vs Treatment mode
 export const control_mode = writable(true);
+
+// Instruction set
+export const instruction_set = writable("tutorial");
 
 // Editor view
 export const source = writable([
@@ -42,11 +46,7 @@ export const defaultSentenceData = {
 };
 
 export const data = writable(
-  [
-    "Dear Mr. Doe,",
-    "You were seen in the emergency department for trouble breathing.",
-    "While you were in the hospital we gave you breathing treatments and your symptoms improved.",
-  ].map((s) => {
+  instructions["tutorial"].map((s) => {
     return {
       source: s,
       last_method_selected: "baseline",

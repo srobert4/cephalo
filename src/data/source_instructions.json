@@ -1,0 +1,37 @@
+{
+  "tutorial": [
+    "You were seen in the Emergency Department today for abdominal pain.",
+    "Your evaluation, including CT scan of your abdomen, as well as blood and urine tests, indicated no emergency requiring hospitalization today.",
+    "Your symptoms improved with medication in the ER.",
+    "We have prescribed you a medication called Pepcid (famotidine) to take daily to help with your abdominal pain.",
+    "Please follow-up with your primary care doctor in the next 1-2 weeks.",
+    "Please return to the Emergency Department if you experience worsening pain, vomiting, fevers, or other symptoms concerning to you.",
+    "It was a pleasure caring for you today."
+  ],
+  "chest pain": [
+    "You were seen in the Emergency Department today for chest pain.",
+    "Your evaluation, including EKG and blood testing of your heart enzymes, indicated no heart attack or other emergency requiring hospitalization today.",
+    "Your pain improved with observation in the ER.",
+    "Please follow-up with your primary care doctor in the next 1-2 weeks.",
+    "At that time, please discuss your ER visit today.",
+    "You should ask your primary care doctor about whether you should obtain a cardiac stress test to assess your heart function.",
+    "Please return to the Emergency Department if you experience worsening pain, shortness of breath, fevers, or other symptoms concerning to you.",
+    "It was a pleasure caring for you today."
+  ],
+  "belly pain": [
+    "You were seen in the emergency room for your belly pain.",
+    "We did an ultrasound which showed stones in your gallbladder.",
+    "These are very common and can often cause the type of belly pain you experienced.",
+    "We did blood work which did not show signs of infection.",
+    "The surgery team saw you and recommended you follow up with them, they will call you to schedule an appointment for further management.",
+    "Please return to the emergency department if you develop fevers, chills, vomiting, or any other symptoms concerning to you."
+  ],
+  "back pain": [
+    "You were seen in the emergency room for your back pain.",
+    "We did tests which did not show us the cause of your pain as something emergent.",
+    "We suspect you have a herniated disc.",
+    "For pain, please take tylenol 1000mg every 8 hours as needed as well as 400mg ibuprofen or advil every 8 hours as needed.",
+    "Please schedule an appointment for follow-up with your primary care physician this week for further evaluation of your symptoms.",
+    "Please return to the Emergency Department if you experience worsening back pain, difficulty walking, fevers, numbness, tingling, inability to control your bowel or bladder, or any other concerning symptoms."
+  ]
+}
