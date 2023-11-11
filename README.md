@@ -39,8 +39,8 @@ npm run deploy
 
 Easiest, if hacky way to do this.
 
-* Copy `dist` over to a new repo, which you push to GitHub@Berkley and deploy to pages from.
-* Edit paths in `index.html` from `/cephalo/` to `/<your-gh@berkeley-username>/<gh@berkeley-repo-name>/`.
+- Copy `dist` over to a new repo, which you push to GitHub@Berkley and deploy to pages from.
+- Edit paths in `index.html` from `/cephalo/` to `/<your-gh@berkeley-username>/<gh@berkeley-repo-name>/`.
 
 ### Acknowledgements
 
