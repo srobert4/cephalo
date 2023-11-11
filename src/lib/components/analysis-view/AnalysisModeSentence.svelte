@@ -87,6 +87,7 @@
     margin: 0.5rem;
     padding: 0.2rem 0.5rem;
     text-align: left;
+    width: fit-content;
   }
 
   .empty-p {
