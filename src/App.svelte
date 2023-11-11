@@ -68,7 +68,7 @@
     flex-direction: column;
     justify-content: flex-start;
     min-height: 75%;
-    min-width: 40vw;
+    width: 40vw;
     margin: 1rem;
   }
 
@@ -94,7 +94,7 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
-    width: 50vw;
+    max-width: 50vw;
     /* border: 1px solid green; */
   }
 </style>
