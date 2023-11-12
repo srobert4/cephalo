@@ -14,7 +14,7 @@
     selected,
     instruction_set,
   } from "./stores.js";
-  import instructions from "../../data/source_instructions.json";
+  import instructions from "../../data/source_instructions_data.json";
 
   import { get } from "svelte/store";
 
@@ -79,39 +79,40 @@
   }
 
   export async function updateInstructionSet() {
-    let sentences = instructions[get(instruction_set)];
-    if (!get(ngrok_connected)) {
-      data.set(
-        sentences.map((s) => {
-          return {
-            source: s,
-            last_method_selected: "baseline",
-            baseline: {
-              ...defaultTranslationData,
-              translation_hyp: s,
-            },
-            nnmt: {
-              ...defaultTranslationData,
-              translation_type: "nnmt",
-              translation_hyp: s,
-            },
-            template: {
-              ...defaultTranslationData,
-              translation_type: "template",
-              translation_hyp: s,
-            },
-          };
-        })
-      );
-    } else {
-      loading_results.set(true);
-      let res = sentences.map(analyzeSentence);
-      Promise.all(res).then((d) => {
-        console.log(d);
-        data.set(d);
-        loading_results.set(false);
-      });
-    }
+    data.set(instructions[get(instruction_set)]);
+    // let sentences = instructions[get(instruction_set)];
+    // if (!get(ngrok_connected)) {
+    //   data.set(
+    //     sentences.map((s) => {
+    //       return {
+    //         source: s,
+    //         last_method_selected: "baseline",
+    //         baseline: {
+    //           ...defaultTranslationData,
+    //           translation_hyp: s,
+    //         },
+    //         nnmt: {
+    //           ...defaultTranslationData,
+    //           translation_type: "nnmt",
+    //           translation_hyp: s,
+    //         },
+    //         template: {
+    //           ...defaultTranslationData,
+    //           translation_type: "template",
+    //           translation_hyp: s,
+    //         },
+    //       };
+    //     })
+    //   );
+    // } else {
+    //   loading_results.set(true);
+    //   let res = sentences.map((d) => analyzeSentence(d));
+    //   Promise.all(res).then((d) => {
+    //     console.log(d);
+    //     data.set(d);
+    //     loading_results.set(false);
+    //   });
+    // }
   }
 
   export async function updateSelectedSentence(e) {

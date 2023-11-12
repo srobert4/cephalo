@@ -2,7 +2,7 @@ import { writable, derived } from "svelte/store";
 import tm_sentences from "../../data/discharge_instructions_formatted.json";
 import terms from "../../data/terms.json";
 import templates from "../../data/templates.json";
-import instructions from "../../data/source_instructions.json";
+import instructions from "../../data/source_instructions_data.json";
 
 // Connection to backend
 export const ngrok_endpoint = writable("");
@@ -45,28 +45,7 @@ export const defaultSentenceData = {
   template: defaultTranslationData,
 };
 
-export const data = writable(
-  instructions["tutorial"].map((s) => {
-    return {
-      source: s,
-      last_method_selected: "baseline",
-      baseline: {
-        ...defaultTranslationData,
-        translation_hyp: s,
-      },
-      nnmt: {
-        ...defaultTranslationData,
-        translation_type: "nnmt",
-        translation_hyp: s,
-      },
-      template: {
-        ...defaultTranslationData,
-        translation_type: "template",
-        translation_hyp: s,
-      },
-    };
-  })
-);
+export const data = writable(instructions["tutorial"]);
 
 export const sentences = writable(
   [
