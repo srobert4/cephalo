@@ -14,11 +14,7 @@
   </div>
   <div class="col">
     <div class="row">
-      <div
-        class="bar"
-        id="template-bar"
-        style:--width={numTemplates + "rem"}
-      />
+      <div class="bar" id="template-bar" style:--width={numTemplates + "rem"} />
       {numTemplates}
     </div>
     <div class="row">

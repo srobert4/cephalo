@@ -3,7 +3,7 @@
   import Score from "./Score.svelte";
   import NnmtOutput from "./NnmtOutput.svelte";
   import TemplateOutput from "./TemplateOutput.svelte";
-  import Legend from './Legend.svelte';
+  import Legend from "./Legend.svelte";
   import {
     updateMethod,
     updateSelectedSentence,
@@ -60,7 +60,7 @@
     {/if}
   {:else}
     <p>Select a sentence to view translation analysis.</p>
-    <Legend/>
+    <Legend />
   {/if}
 </div>
 

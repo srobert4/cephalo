@@ -1,5 +1,6 @@
 <script>
   import { updateTemplate } from "../analyzeSentence.svelte";
+  import Icon from "../Icon.svelte";
 
   export let templates = [];
   export let terms = [];
@@ -29,7 +30,7 @@
         <span class="de">{term.translation}</span>
       </div>
       {#if !term.translation_in_filled}
-        <span style="color:red">!!</span>
+        <Icon name={"warning"} color={"red"} />
       {/if}
     </div>
   {/each}
@@ -54,6 +55,7 @@
     display: flex;
     flex-direction: row;
     column-gap: 1rem;
+    align-items: center;
   }
   .term-translation-wrapper {
     display: flex;
