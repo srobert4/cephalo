@@ -3,14 +3,10 @@
   import {
     activeFilters,
     selectedSource,
-    sentences,
-    source,
     defaultSentenceData,
-    control_mode,
     data,
   } from "../stores.js";
   import AddBlock from "./AddBlock.svelte";
-  import Legend from "./Legend.svelte";
   import Switch from "./Switch.svelte";
 
   function addNewBlock(idx) {

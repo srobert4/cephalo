@@ -33,16 +33,16 @@
 
   #legend {
     display: flex;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: 2;
+    // position: absolute;
+    // bottom: 0;
+    // right: 0;
+    // z-index: 2;
     flex-direction: row;
     align-items: flex-start;
     padding: 5px 5px 5px 5px;
     gap: 5px;
     border-radius: 5px;
-    box-shadow: 0 0 2px hsla(0, 0%, 0%, 0.2), 0 0 5px hsla(0, 0%, 0%, 0.1);
+    // box-shadow: 0 0 2px hsla(0, 0%, 0%, 0.2), 0 0 5px hsla(0, 0%, 0%, 0.1);
     line-height: 1;
     font-weight: 500;
     background-color: rgba(255, 255, 255, 0.97);

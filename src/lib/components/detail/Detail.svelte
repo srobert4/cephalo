@@ -3,19 +3,15 @@
   import Score from "./Score.svelte";
   import NnmtOutput from "./NnmtOutput.svelte";
   import TemplateOutput from "./TemplateOutput.svelte";
+  import Legend from './Legend.svelte';
   import {
     updateMethod,
     updateSelectedSentence,
   } from "../analyzeSentence.svelte";
 
   import {
-    source,
     selectedSource,
     detailShowingData,
-    ngrok_connected,
-    ngrok_endpoint,
-    sentences,
-    activeFilters,
     loading_results,
   } from "../stores.js";
 
@@ -64,6 +60,7 @@
     {/if}
   {:else}
     <p>Select a sentence to view translation analysis.</p>
+    <Legend/>
   {/if}
 </div>
 
