@@ -73,6 +73,8 @@
     padding: 1rem;
     /* border: 1px solid blue; */
     /* width: 100%; */
+    max-height: 60%;
+    overflow: scroll;
     border-radius: 5px;
     box-shadow: 0 0 2px hsla(0, 0%, 0%, 0.2), 0 0 5px hsla(0, 0%, 0%, 0.1);
   }

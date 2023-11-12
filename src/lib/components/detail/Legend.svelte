@@ -46,7 +46,8 @@
     line-height: 1;
     font-weight: 500;
     background-color: rgba(255, 255, 255, 0.97);
-    width: fit-content;
+    width: 100%;
+    justify-content: center;
   }
   .col {
     display: flex;
