@@ -33,7 +33,7 @@
       {/if}
     </div>
   {/each}
-  <p>{translation_hyp}</p>
+  <p class="de">{translation_hyp}</p>
 </div>
 
 <style lang="scss">

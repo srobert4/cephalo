@@ -109,7 +109,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    flex: 2;
+    flex: 1;
     /* border: 1px solid red; */
     width: 100%;
     row-gap: 0.6rem;
@@ -129,7 +129,8 @@
   }
 
   #open-filters-button {
-    padding: 0.6rem;
+    padding: 0;
+    background: none;
   }
   .inactive-label {
     font-weight: normal;

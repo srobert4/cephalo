@@ -48,12 +48,12 @@
     >
       {$detailShowingData.source}
     </div>
-    <div id="scores-row">
-      {#each $detailShowingData[$detailShowingData.last_method_selected].scores as scoreData}
-        <Score {...scoreData} />
-      {/each}
-    </div>
     {#if $detailShowingData.last_method_selected === "nnmt"}
+      <div id="scores-row">
+        {#each $detailShowingData[$detailShowingData.last_method_selected].scores as scoreData}
+          <Score {...scoreData} />
+        {/each}
+      </div>
       <NnmtOutput {...$detailShowingData["nnmt"]} />
     {:else if $detailShowingData.last_method_selected === "template"}
       <TemplateOutput {...$detailShowingData["template"]} />
@@ -69,7 +69,7 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
-    flex: 1;
+    /* flex: 1; */
     padding: 1rem;
     /* border: 1px solid blue; */
     /* width: 100%; */
@@ -84,7 +84,6 @@
   }
   .input-area {
     text-align: left;
-    min-height: 2rem;
   }
   #scores-row {
     display: flex;

@@ -26,7 +26,7 @@
     display: flex;
     flex-direction: column;
     width: fit-content;
-    row-gap: 1rem;
+    row-gap: 0.5rem;
   }
   .score-name-wrapper {
     display: flex;
