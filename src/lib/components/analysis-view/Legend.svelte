@@ -17,12 +17,12 @@
       <div
         class="bar"
         id="template-bar"
-        style:--width={numTemplates * 2 + "rem"}
+        style:--width={numTemplates + "rem"}
       />
       {numTemplates}
     </div>
     <div class="row">
-      <div class="bar" id="nnmt-bar" style:--width={numNNMT * 2 + "rem"} />
+      <div class="bar" id="nnmt-bar" style:--width={numNNMT + "rem"} />
       {numNNMT}
     </div>
   </div>
@@ -34,8 +34,8 @@
   #legend {
     display: flex;
     position: absolute;
-    bottom: 0.5rem;
-    right: 0.5rem;
+    bottom: 0;
+    right: 0;
     z-index: 2;
     flex-direction: row;
     align-items: flex-start;
@@ -46,6 +46,7 @@
     line-height: 1;
     font-weight: 500;
     background-color: rgba(255, 255, 255, 0.97);
+    width: fit-content;
   }
   .col {
     display: flex;

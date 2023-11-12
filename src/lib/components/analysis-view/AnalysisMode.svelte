@@ -24,6 +24,7 @@
 
 <div id="analysis-area" on:click={(e) => ($selectedSource = -1)}>
   <Switch bind:on={showTranslations} />
+  <div id="sentence-list">
   <AddBlock on:click={(e) => addNewBlock(0)} />
   {#each $data as sentence, i}
     <div
@@ -43,9 +44,7 @@
     </div>
     <AddBlock on:click={(e) => addNewBlock(i + 1)} />
   {/each}
-  {#if !$control_mode}
-    <Legend />
-  {/if}
+  </div>
 </div>
 
 <style>
@@ -53,6 +52,13 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    /* overflow: scroll; */
+  }
+
+  #sentence-list {
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem;
+    padding: 0.5rem;
   }
 </style>
