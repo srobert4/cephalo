@@ -46,6 +46,8 @@ export const defaultSentenceData = {
 };
 
 export const data = writable(instructions["tutorial"]);
+export const lastDeletedIdx = writable(-1);
+export const lastDeleted = writable({});
 
 export const sentences = writable(
   [

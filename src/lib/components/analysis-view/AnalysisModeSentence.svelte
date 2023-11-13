@@ -50,25 +50,34 @@
 >
   <div class={"color-bar " + model} style:--height={$barHeight + "%"} />
   <div class={"sentence-wrapper " + model} class:selected>
-    {#if sentenceData.source === ""}
-      <p
-        class="empty-p"
-        contenteditable="true"
-        on:blur={(e) => {updateSentence(e, id)}}
-        use:init_focused
-      >
-        {sentenceData.source}
-      </p>
-    {:else}
-      <p contenteditable="true" on:blur={(e) => {updateSentence(e, id)}}>
-        {sentenceData.source}
-      </p>
-      {#if showTranslations}
-        <p class="de">
-          {sentenceData[model].translation_hyp}
+    <div id="sentence-stack">
+      {#if sentenceData.source === ""}
+        <p
+          class="empty-p"
+          contenteditable="true"
+          on:blur={(e) => {
+            updateSentence(e, id);
+          }}
+          use:init_focused
+        >
+          {sentenceData.source}
         </p>
+      {:else}
+        <p
+          contenteditable="true"
+          on:blur={(e) => {
+            updateSentence(e, id);
+          }}
+        >
+          {sentenceData.source}
+        </p>
+        {#if showTranslations}
+          <p class="de">
+            {sentenceData[model].translation_hyp}
+          </p>
+        {/if}
       {/if}
-    {/if}
+    </div>
     <button
       class="x-button"
       on:click|stopPropagation={(e) => dispatch("x-pressed", e)}
@@ -98,6 +107,11 @@
     justify-content: space-between;
   }
 
+  #sentence-stack {
+    display: flex;
+    flex-direction: column;
+  }
+
   p {
     margin: 0.5rem;
     padding: 0.2rem 0.5rem;
@@ -121,6 +135,7 @@
     // top: 1rem;
     background: none;
     padding: 0;
+    padding-right: 0.25rem;
   }
 
   .x-button:hover {

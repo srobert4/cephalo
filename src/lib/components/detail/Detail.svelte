@@ -4,10 +4,7 @@
   import NnmtOutput from "./NnmtOutput.svelte";
   import TemplateOutput from "./TemplateOutput.svelte";
   import Legend from "./Legend.svelte";
-  import {
-    updateMethod,
-    updateSentence,
-  } from "../analyzeSentence.svelte";
+  import { updateMethod, updateSentence } from "../analyzeSentence.svelte";
 
   import {
     selectedSource,
@@ -41,9 +38,7 @@
         </select>
       </label>
     </div>
-    <div
-      class="input-area"
-    >
+    <div class="input-area">
       {$detailShowingData.source}
     </div>
     {#if $detailShowingData.last_method_selected === "nnmt"}

@@ -5,9 +5,12 @@
     selectedSource,
     defaultSentenceData,
     data,
+    lastDeleted,
+    lastDeletedIdx,
   } from "../stores.js";
   import AddBlock from "./AddBlock.svelte";
   import Switch from "./Switch.svelte";
+  import Icon from "../Icon.svelte";
 
   function addNewBlock(idx) {
     console.log(idx);
@@ -16,15 +19,33 @@
   }
 
   function removeBlock(idx) {
+    $lastDeleted = $data[idx];
     $data = $data.toSpliced(idx, 1);
+    $lastDeletedIdx = idx;
     if ($selectedSource === idx) $selectedSource = -1;
+  }
+
+  function undoDelete() {
+    if ($lastDeletedIdx === -1) return;
+    $data = $data.toSpliced($lastDeletedIdx, 0, $lastDeleted);
+    $lastDeletedIdx = -1;
   }
 
   let showTranslations = false;
 </script>
 
 <div id="analysis-area" on:click={(e) => ($selectedSource = -1)}>
-  <Switch bind:on={showTranslations} />
+  <div id="top-row">
+    <button on:click={undoDelete}
+      ><Icon
+        name={"undo"}
+        height={"1.5rem"}
+        width={"1.5rem"}
+        color={"grey"}
+      /></button
+    >
+    <Switch bind:on={showTranslations} />
+  </div>
   <div id="sentence-list">
     <AddBlock on:click={(e) => addNewBlock(0)} />
     {#each $data as sentence, i}
@@ -66,6 +87,12 @@
     flex-direction: column;
     margin: 0.5rem;
     padding: 0.5rem;
+  }
+
+  #top-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   // .analysis-mode-sentence-wrapper {
