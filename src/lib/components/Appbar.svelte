@@ -7,6 +7,7 @@
   export let sidebarOpen;
   let mode;
   $: $control_mode = mode == "control";
+  let showCopiedMessage = false;
 </script>
 
 <header id="appbar">
@@ -29,11 +30,32 @@
       <button
         id="export-button"
         on:click={(e) => {
-          navigator.clipboard.writeText(JSON.stringify($data));
+          navigator.clipboard.writeText(
+            JSON.stringify(
+              $data.map((d) => {
+                return {
+                  ...d,
+                  nnmt: {
+                    ...d.nnmt,
+                    tableResults: [],
+                  },
+                  template: {
+                    ...d.template,
+                    tableResults: [],
+                  },
+                };
+              })
+            )
+          );
+          showCopiedMessage = true;
+          setTimeout(() => (showCopiedMessage = false), 2000);
         }}
       >
         <Icon name={"export"} width={"1.5rem"} height={"1.5rem"} />
       </button>
+      {#if showCopiedMessage}
+        <div id="copy-message">Copied to clipboard!</div>
+      {/if}
       <!-- <button id="menu-button" on:click={() => (sidebarOpen = !sidebarOpen)}
         >menu</button
       > -->
@@ -83,5 +105,19 @@
   button:focus,
   button:focus-visible {
     outline: none;
+  }
+
+  #copy-message {
+    position: absolute;
+    top: 2.5rem;
+    right: 1rem;
+    background-color: white;
+    z-index: 3;
+    padding: 10px;
+    gap: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 2px hsla(0, 0%, 0%, 0.2), 0 0 5px hsla(0, 0%, 0%, 0.1);
+    line-height: 1;
+    font-weight: 500;
   }
 </style>
