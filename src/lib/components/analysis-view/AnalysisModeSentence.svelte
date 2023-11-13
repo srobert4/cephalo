@@ -3,6 +3,10 @@
   import { cubicOut } from "svelte/easing";
   import { updateSelectedSentence } from "../analyzeSentence.svelte";
   import { control_mode, defaultSentenceData } from "../stores";
+  import { createEventDispatcher } from "svelte";
+  import Icon from "../Icon.svelte";
+
+  const dispatch = createEventDispatcher();
 
   export let sentenceData = defaultSentenceData;
 
@@ -31,7 +35,7 @@
 </script>
 
 <div
-  class={"sentence-analysis-view"}
+  class={"sentence-analysis-view " + model}
   on:mouseenter={(e) => {
     if (!selected) {
       barHeight.set(100);
@@ -64,6 +68,12 @@
         </p>
       {/if}
     {/if}
+    <button
+      class="x-button"
+      on:click|stopPropagation={(e) => dispatch("x-pressed", e)}
+    >
+      <Icon name={"x"} height={"1.2rem"} width={"1.2rem"} color={"grey"} />
+    </button>
   </div>
 </div>
 
@@ -74,13 +84,16 @@
     display: flex;
     flex-direction: row;
     // column-gap: 15px;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
     height: 100%;
+    position: relative;
   }
 
   .sentence-wrapper {
     flex-grow: 2;
+    display: flex;
+    flex-direction: row;
   }
 
   p {
@@ -100,7 +113,24 @@
     font-style: italic;
   }
 
+  .x-button {
+    // position: absolute;
+    // right: 0;
+    // top: 1rem;
+    background: none;
+    padding: 0;
+  }
+
+  .x-button:hover {
+    border-color: transparent;
+  }
+  button:focus,
+  button:focus-visible {
+    outline: none;
+  }
+
   .sentence-wrapper.none.selected {
+    // .sentence-analysis-view.none.selected
     background-color: $systemGray5t;
   }
   .sentence-wrapper.baseline.selected {
@@ -109,6 +139,7 @@
 
   /* .sentence-analysis-view.template:hover,  */
   .sentence-wrapper.template.selected {
+    // .sentence-analysis-view.template.selected {
     background-color: $templateColorLight;
   }
 

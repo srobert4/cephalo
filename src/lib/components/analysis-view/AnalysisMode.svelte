@@ -15,6 +15,11 @@
     $selectedSource = idx;
   }
 
+  function removeBlock(idx) {
+    $data = $data.toSpliced(idx, 1);
+    if ($selectedSource === idx) $selectedSource = -1;
+  }
+
   let showTranslations = false;
 </script>
 
@@ -38,6 +43,7 @@
           selected={$selectedSource === i}
           sentenceData={sentence}
           bind:showTranslations
+          on:x-pressed={(e) => removeBlock(i)}
         />
       </div>
       <AddBlock on:click={(e) => addNewBlock(i + 1)} />
@@ -45,7 +51,8 @@
   </div>
 </div>
 
-<style>
+<style lang="scss">
+  @import "../../../variables.scss";
   #analysis-area {
     height: 100%;
     display: flex;
@@ -59,4 +66,8 @@
     margin: 0.5rem;
     padding: 0.5rem;
   }
+
+  // .analysis-mode-sentence-wrapper {
+  //   background-color: $systemGray5t;
+  // }
 </style>
