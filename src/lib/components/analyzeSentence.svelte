@@ -115,12 +115,12 @@
     // }
   }
 
-  export async function updateSelectedSentence(e) {
-    if (get(data)[get(selectedSource)].source === e.target.innerText) return;
+  export async function updateSentence(e, idx) {
+    if (get(data)[idx].source === e.target.innerText) return;
     if (!get(ngrok_connected)) {
       data.update((data) =>
         data.map((sentenceData, i) => {
-          return i === get(selectedSource)
+          return i === idx
             ? {
                 ...sentenceData,
                 source: e.target.innerText,
@@ -145,7 +145,7 @@
       analyzeSentence(e.target.innerText).then((result) => {
         data.update((data) =>
           data.map((sentenceData, i) => {
-            return i === get(selectedSource) ? result : sentenceData;
+            return i === idx ? result : sentenceData;
           })
         );
         activeFilters.set([result[result.last_method_selected].tableFilter]);

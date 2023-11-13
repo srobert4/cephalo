@@ -6,7 +6,7 @@
 
   export let sidebarOpen;
   let mode;
-  $: $control_mode = mode == "control";
+  $: $control_mode = mode == "static";
   let showCopiedMessage = false;
 </script>
 
@@ -23,8 +23,8 @@
         <option>back pain</option>
       </select>
       <select bind:value={mode}>
-        <option>control</option>
-        <option>treatment</option>
+        <option>static</option>
+        <option>interactive</option>
       </select>
       <Ngrok />
       <button

@@ -42,6 +42,7 @@
         <AnalysisModeSentence
           selected={$selectedSource === i}
           sentenceData={sentence}
+          id={i}
           bind:showTranslations
           on:x-pressed={(e) => removeBlock(i)}
         />

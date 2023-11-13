@@ -1,7 +1,7 @@
 <script>
   import { tweened } from "svelte/motion";
   import { cubicOut } from "svelte/easing";
-  import { updateSelectedSentence } from "../analyzeSentence.svelte";
+  import { updateSentence } from "../analyzeSentence.svelte";
   import { control_mode, defaultSentenceData } from "../stores";
   import { createEventDispatcher } from "svelte";
   import Icon from "../Icon.svelte";
@@ -12,6 +12,7 @@
 
   export let selected = false;
   export let showTranslations;
+  export let id;
 
   const barHeight = tweened(80, {
     duration: 400,
@@ -53,13 +54,13 @@
       <p
         class="empty-p"
         contenteditable="true"
-        on:blur={updateSelectedSentence}
+        on:blur={(e) => {updateSentence(e, id)}}
         use:init_focused
       >
         {sentenceData.source}
       </p>
     {:else}
-      <p contenteditable="true" on:blur={updateSelectedSentence}>
+      <p contenteditable="true" on:blur={(e) => {updateSentence(e, id)}}>
         {sentenceData.source}
       </p>
       {#if showTranslations}
@@ -94,6 +95,7 @@
     flex-grow: 2;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
   }
 
   p {
