@@ -35,15 +35,15 @@
     if (success) {
       $ngrok_endpoint = cur_tunnel;
       $ngrok_connected = true;
-      $loading_results = true;
-      let res = $data.map((d) => {
-        return analyzeSentence(d.source);
-      });
-      Promise.all(res).then((d) => {
-        console.log(d);
-        $data = d;
-        $loading_results = false;
-      });
+      // $loading_results = true;
+      // let res = $data.map((d) => {
+      //   return analyzeSentence(d.source);
+      // });
+      // Promise.all(res).then((d) => {
+      //   console.log(d);
+      //   $data = d;
+      //   $loading_results = false;
+      // });
       // res = $source.map((s) => {
       //   return getBaselineTranslation(s);
       // });
