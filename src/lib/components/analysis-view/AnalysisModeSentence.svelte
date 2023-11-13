@@ -91,7 +91,7 @@
   }
 
   .empty-p {
-    // width: 100%;
+    width: 80%;
     min-height: 1rem;
   }
 
