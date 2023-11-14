@@ -31,12 +31,13 @@
     $lastDeletedIdx = -1;
   }
 
+  $: nothingToUndo = $lastDeletedIdx === -1;
   let showTranslations = false;
 </script>
 
 <div id="analysis-area" on:click={(e) => ($selectedSource = -1)}>
   <div id="top-row">
-    <button on:click={undoDelete}
+    <button id="undo" disabled={nothingToUndo} on:click={undoDelete}
       ><Icon
         name={"undo"}
         height={"1.5rem"}
@@ -94,7 +95,17 @@
     flex-direction: row;
     justify-content: space-between;
   }
+  #undo {
+    padding: 0;
+  }
+  #undo:disabled {
+    cursor: auto;
+    opacity: 50%;
+  }
 
+  #undo:disabled:hover {
+    border-color: transparent;
+  }
   // .analysis-mode-sentence-wrapper {
   //   background-color: $systemGray5t;
   // }
