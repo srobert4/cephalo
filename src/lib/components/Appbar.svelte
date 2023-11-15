@@ -2,9 +2,11 @@
   import Ngrok from "./Ngrok.svelte";
   import { data, control_mode, instruction_set } from "./stores.js";
   import Icon from "./Icon.svelte";
-  import { updateInstructionSet } from "./analyzeSentence.svelte";
+  import { resetInstructions } from "./analyzeSentence.svelte";
 
   export let sidebarOpen;
+  let lastInstructionSetActive = "infection";
+  let lastConditionActive = "static";
   let mode;
   $: $control_mode = mode == "static";
   let showCopiedMessage = false;
@@ -16,13 +18,22 @@
       <h2>Cephalo</h2>
     </div>
     <div id="appbar-menu-buttons">
-      <select bind:value={$instruction_set} on:change={updateInstructionSet}>
-        <option>tutorial</option>
-        <option>chest pain</option>
-        <option>belly pain</option>
-        <option>back pain</option>
+      <select
+        bind:value={$instruction_set}
+        on:click={(e) => (lastInstructionSetActive = $instruction_set)}
+        on:change={(e) =>
+          resetInstructions(lastInstructionSetActive, lastConditionActive)}
+      >
+        <option>infection</option>
+        <option>fainting</option>
+        <option>alcohol</option>
       </select>
-      <select bind:value={mode}>
+      <select
+        bind:value={mode}
+        on:click={(e) => (lastConditionActive = mode)}
+        on:change={(e) =>
+          resetInstructions(lastInstructionSetActive, lastConditionActive)}
+      >
         <option>static</option>
         <option>interactive</option>
       </select>

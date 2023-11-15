@@ -12,6 +12,7 @@
     loading_results,
   } from "../stores.js";
 
+  $: console.log(selectedMethod);
   let selectedMethod;
   let methods = ["nnmt", "template"];
 </script>

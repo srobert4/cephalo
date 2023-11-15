@@ -35,6 +35,21 @@
     return response;
   }
 
+  export async function logData(condition = "", instructions = "") {
+    let url = new URL("log", get(ngrok_endpoint));
+    url.searchParams.append("condition", condition);
+    url.searchParams.append("instructions", instructions);
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(get(data)),
+      headers: new Headers({
+        "ngrok-skip-browser-warning": "69420",
+        "Content-type": "application/json",
+      }),
+    });
+    return response;
+  }
+
   export async function getBaselineTranslation(sentence) {
     let url = new URL("translate", get(ngrok_endpoint));
     url.searchParams.append("sentence", sentence);
@@ -78,7 +93,12 @@
     activeFilters.set([get(data)[get(selectedSource)][method].tableFilter]);
   }
 
-  export async function updateInstructionSet() {
+  export async function resetInstructions(
+    lastCondition = "",
+    lastInstructions = ""
+  ) {
+    logData(lastCondition, lastInstructions).then((d) => console.log(d));
+    selectedSource.set(-1);
     data.set(instructions[get(instruction_set)]);
     // let sentences = instructions[get(instruction_set)];
     // if (!get(ngrok_connected)) {

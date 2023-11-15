@@ -14,7 +14,7 @@ export const loading_results = writable(false);
 export const control_mode = writable(true);
 
 // Instruction set
-export const instruction_set = writable("tutorial");
+export const instruction_set = writable("infection");
 
 // Editor view
 export const source = writable([
@@ -45,7 +45,7 @@ export const defaultSentenceData = {
   template: defaultTranslationData,
 };
 
-export const data = writable(instructions["tutorial"]);
+export const data = writable(instructions["infection"]);
 export const lastDeletedIdx = writable(-1);
 export const lastDeleted = writable({});
 
