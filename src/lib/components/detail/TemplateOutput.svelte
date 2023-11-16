@@ -1,6 +1,8 @@
 <script>
+  import { detailShowingData, selectedSource } from "../stores";
   import { updateTemplate } from "../analyzeSentence.svelte";
   import Icon from "../Icon.svelte";
+  import TermList from "./TermList.svelte";
 
   export let templates = [];
   export let terms = [];
@@ -8,21 +10,30 @@
   export let idx_of_filled_template = 0;
 
   $: selectedTemplate = idx_of_filled_template;
+
+  $: console.log(terms);
 </script>
 
 <div class="output-wrapper">
-  <select
-    bind:value={selectedTemplate}
-    on:change={(e) => updateTemplate(templates[selectedTemplate].template)}
-  >
+  <select class="template-selector" bind:value={selectedTemplate}>
     {#each templates as template, i}
       <option value={i}>
         {@html template.template}
       </option>
     {/each}
   </select>
+  <TermList bind:terms />
+  <button
+    on:click={(e) =>
+      updateTemplate(
+        $selectedSource,
+        $detailShowingData.source,
+        templates[selectedTemplate].template,
+        terms
+      )}>reload</button
+  >
   <p class="de">{@html templates[selectedTemplate].translation}</p>
-  {#each terms as term}
+  <!-- {#each terms as term}
     <div class="term-wrapper">
       <span>{@html term.type} = </span>
       <div class="term-translation-wrapper">
@@ -33,7 +44,7 @@
         <Icon name={"warning"} color={"red"} />
       {/if}
     </div>
-  {/each}
+  {/each} -->
   <p class="de">{translation_hyp}</p>
 </div>
 
@@ -44,6 +55,13 @@
     flex-direction: column;
     align-items: left;
   }
+  .template-selector {
+    height: 3rem;
+    white-space: pre-wrap;
+    font-size: 1rem;
+    padding: 0.2rem;
+  }
+
   p {
     text-align: left;
   }

@@ -18,11 +18,17 @@
 
   import { get } from "svelte/store";
 
-  export async function analyzeSentence(sentence, method = "", template = "") {
+  export async function analyzeSentence(
+    sentence,
+    method = "",
+    template = "",
+    terms = []
+  ) {
     let url = new URL("analyze", get(ngrok_endpoint));
     url.searchParams.append("sentence", sentence);
     url.searchParams.append("method", method);
     url.searchParams.append("template", template);
+    url.searchParams.append("terms", JSON.stringify(terms));
     const response = await fetch(url, {
       method: "get",
       headers: new Headers({
@@ -64,19 +70,19 @@
     return response;
   }
 
-  export async function updateTemplate(template) {
+  export async function updateTemplate(idx, source, template, terms) {
     if (!get(ngrok_connected)) return;
     loading_results.set(true);
-    analyzeSentence(get(detailShowingData).source, "template", template).then(
-      (result) => {
-        data.update((data) =>
-          data.map((sentenceData, i) => {
-            return i === get(selectedSource) ? result : sentenceData;
-          })
-        );
-        loading_results.set(false);
-      }
-    );
+    // let terms_src_only = terms.map((t) => (t.term));
+    // console.log(terms_src_only);
+    analyzeSentence(source, "template", template, terms).then((result) => {
+      data.update((data) =>
+        data.map((sentenceData, i) => {
+          return i === idx ? result : sentenceData;
+        })
+      );
+      loading_results.set(false);
+    });
   }
 
   export async function updateMethod(method) {

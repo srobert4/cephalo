@@ -1,11 +1,59 @@
 <script>
-  export let words;
+  import Selector from "./Selector.svelte";
 
-  let clicked = -1;
+  export let scores;
+  export let selectedUtilization = "Default";
+  $: console.log(selectedUtilization);
+
+  let utilization = scores[0].score;
+  let relevance = scores[1].score;
+
+  let guidance;
+  $: {
+    if (relevance < 3) {
+      if (utilization < 3) {
+        guidance =
+          "Relevance and utilization are both <span style='color:red'>low</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider rephrasing.</span>";
+      } else if (utilization === 3) {
+        guidance =
+          "Relevance is <span style='color:red'>low</span> and utilization is <span style='color:orange'>moderate</span>. This sentence has a moderate risk of translation errors. <span style='font-weight: bold'>Consider rephrasing.</span>";
+      } else {
+        guidance =
+          "Relevance is <span style='color:red'>low</span> but utilization is <span style='color:green'>high</span>. This sentence has a high risk of translation errors. <span style='font-weight: bold'>Consider rephrasing or decreasing utilization.</span>";
+      }
+    } else if (relevance === 3) {
+      if (utilization < 3) {
+        guidance =
+          "Relevance is <span style='color:orange'>moderate</span> and utilization is <span style='color:red'>low</span>. Translation may not be consistend with the database. <span style='font-weight: bold'>Consider rephrasing.</span>";
+      } else if (utilization === 3) {
+        guidance =
+          "Relevance and utilization are both <span style='color:orange'>moderate</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider rephrasing.</span>";
+      } else {
+        guidance =
+          "Relevance is <span style='color:orange'>moderate</span> and utilization is <span style='color:green'>high</span>. This sentence has a moderate risk of translation errors. <span style='font-weight: bold'>Consider rephrasing.</span>";
+      }
+    } else {
+      if (utilization < 3) {
+        guidance =
+          "Relevance is <span style='color:green'>high</span> but utilization is <span style='color:red'>low</span>.  Translation may not be consistent with the database. <span style='font-weight: bold'>Consider increasing utilization or looking for a template.</span>";
+      } else if (utilization === 3) {
+        guidance =
+          "Relevance is <span style='color:green'>high</span> and utilization is <span style='color:orange'>moderate</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider increasing utilization or looking for a template.</span>";
+      } else {
+        guidance =
+          "Relevance and utilization are both <span style='color:green'>high</span>. Translation likely to be consistent with the database.";
+      }
+    }
+  }
 </script>
 
 <div class="output-wrapper">
-  {#each words as word, i}
+  <p>{@html guidance}</p>
+  <Selector
+    bind:value={selectedUtilization}
+    options={["Not at all", "Less", "Default", "More"]}
+  />
+  <!-- {#each words as word, i}
     <button
       class={"word-button" + (clicked == i ? " selected" : "")}
       on:click={(e) => {
@@ -17,7 +65,7 @@
         <span class="backtranslation">{word.backtranslation}</span>
       {/if}
     </button>
-  {/each}
+  {/each} -->
 </div>
 
 <style lang="scss">
@@ -28,6 +76,11 @@
     flex-direction: row;
     flex-wrap: wrap;
   }
+
+  p {
+    text-align: left;
+  }
+
   .word-button {
     display: flex;
     flex-direction: column;

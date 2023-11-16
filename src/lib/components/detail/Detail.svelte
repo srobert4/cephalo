@@ -39,15 +39,15 @@
         </select>
       </label>
     </div>
-    <div class="input-area">
+    <!-- <div class="input-area">
       {$detailShowingData.source}
-    </div>
+    </div> -->
     {#if $detailShowingData.last_method_selected === "nnmt"}
-      <div id="scores-row">
+      <!-- <div id="scores-row">
         {#each $detailShowingData[$detailShowingData.last_method_selected].scores as scoreData}
           <Score {...scoreData} />
         {/each}
-      </div>
+      </div> -->
       <NnmtOutput {...$detailShowingData["nnmt"]} />
     {:else if $detailShowingData.last_method_selected === "template"}
       <TemplateOutput {...$detailShowingData["template"]} />
