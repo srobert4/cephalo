@@ -2,7 +2,7 @@
   import Ngrok from "./Ngrok.svelte";
   import { data, control_mode, instruction_set } from "./stores.js";
   import Icon from "./Icon.svelte";
-  import { resetInstructions } from "./analyzeSentence.svelte";
+  import { logData, resetInstructions } from "./analyzeSentence.svelte";
 
   export let sidebarOpen;
   let lastInstructionSetActive = "infection";
@@ -41,6 +41,7 @@
       <button
         id="export-button"
         on:click={(e) => {
+          logData(mode, $instruction_set);
           navigator.clipboard.writeText(
             JSON.stringify(
               $data.map((d) => {
