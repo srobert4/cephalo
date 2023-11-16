@@ -22,7 +22,7 @@
         bind:value={$instruction_set}
         on:click={(e) => (lastInstructionSetActive = $instruction_set)}
         on:change={(e) =>
-          resetInstructions(lastInstructionSetActive, lastConditionActive)}
+          resetInstructions(lastConditionActive, lastInstructionSetActive)}
       >
         <option>infection</option>
         <option>fainting</option>
@@ -32,7 +32,7 @@
         bind:value={mode}
         on:click={(e) => (lastConditionActive = mode)}
         on:change={(e) =>
-          resetInstructions(lastInstructionSetActive, lastConditionActive)}
+          resetInstructions(lastConditionActive, lastInstructionSetActive)}
       >
         <option>static</option>
         <option>interactive</option>

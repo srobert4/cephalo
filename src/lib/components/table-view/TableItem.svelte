@@ -5,11 +5,16 @@
   export let data;
 
   let showref = false;
+  let srcButton;
 </script>
 
 <div class="list-row">
   <div class="text-col">
-    <button class="sentence-wrapper" on:click={() => (showref = !showref)}>
+    <button
+      class="sentence-wrapper"
+      on:click={() => (showref = !showref)}
+      bind:this={srcButton}
+    >
       {@html data.display_src}
     </button>
     {#if showref}
@@ -22,7 +27,7 @@
     class="add-sentence-button icon-button"
     on:click={() => {
       // $textToInsert = " " + data.src;
-      navigator.clipboard.writeText(data.src);
+      navigator.clipboard.writeText(srcButton.innerText);
     }}
   >
     <div

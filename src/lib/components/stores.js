@@ -138,16 +138,7 @@ export const detailShowingData = derived(
 export const query = writable("");
 // export const activeTableTab = writable("sentences");
 export const textToInsert = writable(""); // connects table to editor, currently not used, was used for + buttons on table rows
-export const neighborFilterEnabled = derived(
-  detailShowingData,
-  ($detailShowingData) => {
-    return (
-      Object.keys($detailShowingData).length > 0 &&
-      $detailShowingData.last_method_selected == "nnmt"
-    );
-  }
-);
-export const activeFilters = writable(["sentences"]);
+export const activeFilters = writable([]);
 
 // export const sentenceFilter = writable(true);
 // export const termFilter = writable(false);
@@ -164,20 +155,17 @@ export const tableData = derived(
       // if no backend, load local data and filter to exact matches
       let data = [];
       if ($activeFilters.includes("sentences")) {
-        data = [...data, ...tm_sentences];
+        data = [...tm_sentences, ...data];
       }
       if ($activeFilters.includes("terms")) {
-        data = [...data, ...terms];
+        data = [...terms, ...data];
       }
       if ($activeFilters.includes("templates")) {
         if (Object.keys($detailShowingData).length > 0) {
-          data = [
-            ...$detailShowingData[$detailShowingData.last_method_selected]
-              .tableResults,
-            ...data,
-          ];
+          // ordered by similarity to selected sentence
+          data = [...$detailShowingData["template"].tableResults, ...data];
         } else {
-          // TODO: have all templates stored for manual exploration
+          // unordered
           data = [...templates, ...data];
         }
       }
@@ -185,14 +173,10 @@ export const tableData = derived(
         $activeFilters.includes("nearest neighbors") &&
         Object.keys($detailShowingData).length > 0
       ) {
-        data = [
-          ...$detailShowingData[$detailShowingData.last_method_selected]
-            .tableResults,
-          ...data,
-        ];
+        data = [...$detailShowingData["nnmt"].tableResults, ...data];
       }
       if (data.length === 0) {
-        data = [...tm_sentences, ...terms];
+        data = [...templates, ...tm_sentences, ...terms];
       }
       if ($query.length === 0) {
         // if no query, return all data

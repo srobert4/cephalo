@@ -116,6 +116,10 @@
     activeFilters.set([get(data)[get(selectedSource)][method].tableFilter]);
   }
 
+  export function cancelReload() {
+    loading_results.set(false); // DANGEROUS... should think of better way
+  }
+
   export async function resetInstructions(
     lastCondition = "",
     lastInstructions = ""
@@ -161,7 +165,7 @@
 
   export async function updateSentence(e, idx) {
     if (get(data)[idx].source === e.target.innerText) return;
-    if (!get(ngrok_connected)) {
+    if (!get(ngrok_connected) || e.target.innerText === "") {
       data.update((data) =>
         data.map((sentenceData, i) => {
           return i === idx

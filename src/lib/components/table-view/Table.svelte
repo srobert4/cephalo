@@ -3,7 +3,7 @@
   import TableList from "./TableList.svelte";
   import Icon from "../Icon.svelte";
 
-  import { activeFilters, neighborFilterEnabled } from "./../stores.js";
+  import { activeFilters, selectedSource } from "./../stores.js";
   let allFilters = ["sentences", "terms", "templates", "nearest neighbors"];
   let filtersPopupOpen = false;
 </script>
@@ -31,9 +31,9 @@
           {#each allFilters as filterName}
             <label
               class={filterName === "nearest neighbors"
-                ? $neighborFilterEnabled
-                  ? ""
-                  : "inactive-label"
+                ? $selectedSource === -1
+                  ? "inactive-label"
+                  : ""
                 : ""}
               ><input
                 type="checkbox"

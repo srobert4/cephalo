@@ -24,7 +24,7 @@
     } else if (relevance === 3) {
       if (utilization < 3) {
         guidance =
-          "Relevance is <span style='color:orange'>moderate</span> and utilization is <span style='color:red'>low</span>. Translation may not be consistend with the database. <span style='font-weight: bold'>Consider rephrasing.</span>";
+          "Relevance is <span style='color:orange'>moderate</span> and utilization is <span style='color:red'>low</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider rephrasing.</span>";
       } else if (utilization === 3) {
         guidance =
           "Relevance and utilization are both <span style='color:orange'>moderate</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider rephrasing.</span>";
@@ -68,9 +68,10 @@
   {/each} -->
 </div>
 <button
+  disabled={strength === $detailShowingData["nnmt"].strength}
   on:click={(e) =>
     updateModelStrength($selectedSource, $detailShowingData.source, strength)}
-  >reload</button
+  >apply changes</button
 >
 
 <style lang="scss">

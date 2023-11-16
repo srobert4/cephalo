@@ -55,7 +55,7 @@
       on:blur={getTranslation}
       bind:innerText={curTermText}>{data.term}</span
     >
-    <!-- <span class="de">{data.translation}</span> -->
+    <span class="de">{data.translation}</span>
   </div>
   <button
     on:click={(e) => {

@@ -12,7 +12,9 @@
 
   $: selectedTemplate = idx_of_filled_template;
 
-  $: console.log(terms);
+  $: noChanges =
+    selectedTemplate === idx_of_filled_template &&
+    terms === $detailShowingData["template"].terms;
 </script>
 
 <div class="output-wrapper">
@@ -23,18 +25,35 @@
       </option>
     {/each}
   </select>
-  <!-- <p class="de">{@html templates[selectedTemplate].translation}</p> -->
+  <p class="de">{@html templates[selectedTemplate].translation}</p>
   <TermList bind:terms />
-  <!-- <p class="de">{@html translation_hyp_formatted}</p> -->
-  <button
-    on:click={(e) =>
-      updateTemplate(
-        $selectedSource,
-        $detailShowingData.source,
-        templates[selectedTemplate].template,
-        terms
-      )}>reload</button
-  >
+  <p>
+    Filled:
+    {#if noChanges}
+      <span class="de">{@html translation_hyp_formatted}</span>
+    {:else}
+      <span class="de">apply changes to see output</span>
+    {/if}
+  </p>
+  <div class="button-row">
+    <button
+      disabled={noChanges}
+      on:click={(e) =>
+        updateTemplate(
+          $selectedSource,
+          $detailShowingData.source,
+          templates[selectedTemplate].template,
+          terms
+        )}>apply changes</button
+    >
+    <button
+      disabled={noChanges}
+      on:click={(e) => {
+        selectedTemplate = idx_of_filled_template;
+        terms = $detailShowingData["template"].terms;
+      }}>reset changes</button
+    >
+  </div>
   <!-- {#each terms as term}
     <div class="term-wrapper">
       <span>{@html term.type} = </span>
@@ -80,5 +99,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+  .button-row {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1rem;
+    justify-content: center;
   }
 </style>

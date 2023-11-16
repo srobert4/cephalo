@@ -2,12 +2,12 @@
   import { query } from "./../stores.js";
 </script>
 
-<form class="search-bar">
+<form class="search-bar" on:submit|preventDefault>
   <input
     class="search-bar-input"
     type="search"
     id="input-search"
-    on:input={(e) => ($query = e.target.value)}
+    bind:value={$query}
     placeholder="Type to search..."
   />
 </form>

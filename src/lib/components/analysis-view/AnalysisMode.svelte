@@ -7,6 +7,7 @@
     data,
     lastDeleted,
     lastDeletedIdx,
+    query,
   } from "../stores.js";
   import AddBlock from "./AddBlock.svelte";
   import Switch from "./Switch.svelte";
@@ -16,6 +17,7 @@
     console.log(idx);
     $data = $data.toSpliced(idx, 0, defaultSentenceData);
     $selectedSource = idx;
+    $activeFilters = $activeFilters.filter((x) => x !== "nearest neighbors");
   }
 
   function removeBlock(idx) {
@@ -23,6 +25,7 @@
     $data = $data.toSpliced(idx, 1);
     $lastDeletedIdx = idx;
     if ($selectedSource === idx) $selectedSource = -1;
+    $activeFilters = $activeFilters.filter((x) => x !== "nearest neighbors");
   }
 
   function undoDelete() {
@@ -39,7 +42,8 @@
   id="analysis-area"
   on:click={(e) => {
     $selectedSource = -1;
-    $activeFilters = $activeFilters.filter((x) => x !== "nearest neighbors");
+    $query = "";
+    $activeFilters = [];
   }}
 >
   <div id="top-row">
@@ -65,6 +69,7 @@
           $activeFilters = [
             sentence[sentence.last_method_selected].tableFilter,
           ];
+          $query = "";
         }}
       >
         <AnalysisModeSentence

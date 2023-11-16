@@ -4,7 +4,11 @@
   import NnmtOutput from "./NnmtOutput.svelte";
   import TemplateOutput from "./TemplateOutput.svelte";
   import Legend from "./Legend.svelte";
-  import { updateMethod, updateSentence } from "../analyzeSentence.svelte";
+  import {
+    updateMethod,
+    updateSentence,
+    cancelReload,
+  } from "../analyzeSentence.svelte";
 
   import {
     selectedSource,
@@ -20,6 +24,7 @@
 <div id="detail-view-wrapper">
   {#if $selectedSource !== -1 && $loading_results}
     <div>Loading...</div>
+    <button on:click={cancelReload}>Cancel reload</button>
   {:else if Object.keys($detailShowingData).length !== 0}
     <div id="method-selector">
       <label
