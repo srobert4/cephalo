@@ -35,7 +35,13 @@
   let showTranslations = false;
 </script>
 
-<div id="analysis-area" on:click={(e) => ($selectedSource = -1)}>
+<div
+  id="analysis-area"
+  on:click={(e) => {
+    $selectedSource = -1;
+    $activeFilters = $activeFilters.filter((x) => x !== "nearest neighbors");
+  }}
+>
   <div id="top-row">
     <button id="undo" disabled={nothingToUndo} on:click={undoDelete}
       ><Icon
