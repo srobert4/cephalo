@@ -22,13 +22,15 @@
     sentence,
     method = "",
     template = "",
-    terms = []
+    terms = [],
+    strength = "Default"
   ) {
     let url = new URL("analyze", get(ngrok_endpoint));
     url.searchParams.append("sentence", sentence);
     url.searchParams.append("method", method);
     url.searchParams.append("template", template);
     url.searchParams.append("terms", JSON.stringify(terms));
+    url.searchParams.append("strength", strength);
     const response = await fetch(url, {
       method: "get",
       headers: new Headers({
@@ -85,10 +87,25 @@
     });
   }
 
-  export async function updateMethod(method) {
+  export async function updateModelStrength(idx, source, selectedStrength) {
+    if (!get(ngrok_connected)) return;
+    loading_results.set(true);
+    // let terms_src_only = terms.map((t) => (t.term));
+    // console.log(terms_src_only);
+    analyzeSentence(source, "nnmt", "", [], selectedStrength).then((result) => {
+      data.update((data) =>
+        data.map((sentenceData, i) => {
+          return i === idx ? result : sentenceData;
+        })
+      );
+      loading_results.set(false);
+    });
+  }
+
+  export function updateMethod(idx, method) {
     data.update((data) =>
       data.map((d, i) => {
-        return i === get(selectedSource)
+        return i === idx
           ? {
               ...d,
               last_method_selected: method,
@@ -103,7 +120,8 @@
     lastCondition = "",
     lastInstructions = ""
   ) {
-    logData(lastCondition, lastInstructions).then((d) => console.log(d));
+    if (get(ngrok_connected))
+      logData(lastCondition, lastInstructions).then((d) => console.log(d));
     selectedSource.set(-1);
     data.set(instructions[get(instruction_set)]);
     // let sentences = instructions[get(instruction_set)];

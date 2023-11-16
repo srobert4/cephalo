@@ -7,7 +7,21 @@
 
   const dispatch = createEventDispatcher();
 
-  let types = ["symptom", "condition", "time"];
+  let types = [
+    "body part",
+    "clinic",
+    "condition",
+    "frequency",
+    "measurement",
+    "medication",
+    "number",
+    "office",
+    "symptom",
+    "test",
+    "time",
+    "treatment",
+    "units",
+  ].map((s) => s.toUpperCase());
 
   function getTranslation() {
     data.term = curTermText;
@@ -31,7 +45,7 @@
 <div class="term-wrapper">
   <select on:change={updateType}>
     {#each types as type}
-      <option selected={type === data.type}>{type.toUpperCase()}</option>
+      <option selected={type === data.type}>{type}</option>
     {/each}
   </select>
   <span>=</span>
@@ -41,18 +55,20 @@
       on:blur={getTranslation}
       bind:innerText={curTermText}>{data.term}</span
     >
-    <span class="de">{data.translation}</span>
+    <!-- <span class="de">{data.translation}</span> -->
   </div>
-  {#if data.translation === "Not in database"}
-    <Icon name={"warning"} color={"red"} />
-  {:else if !data.translation_in_filled}
-    <Icon name={"warning"} color={"orange"} />
-  {/if}
   <button
     on:click={(e) => {
       dispatch("remove", e);
     }}>-</button
   >
+  {#if data.translation === "Not in database"}
+    <Icon name={"warning"} color={"red"} />
+    <span class="de">term not in database</span>
+  {:else if !data.translation_in_filled}
+    <Icon name={"warning"} color={"orange"} />
+    <span class="de">translation not in output</span>
+  {/if}
 </div>
 
 <style lang="scss">

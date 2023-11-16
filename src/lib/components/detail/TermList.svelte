@@ -7,6 +7,7 @@
     translation_in_filled: true,
   };
   export let terms;
+  $: console.log(terms);
 </script>
 
 <div id="termlist">

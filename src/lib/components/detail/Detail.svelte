@@ -26,7 +26,8 @@
         >Using:
         <select
           bind:value={selectedMethod}
-          on:change={(e) => updateMethod(methods[selectedMethod])}
+          on:change={(e) =>
+            updateMethod($selectedSource, methods[selectedMethod])}
         >
           {#each methods as method, i}
             <option

@@ -9,9 +9,14 @@
       "nnmt": {
         "translation_type": "nnmt",
         "translation_hyp": "Sie wurden heute in der Notaufnahme wegen Ihrer Hautinfektion gesehen.",
-        "strength": "Default",
-        "utilization": 2,
-        "relevance": 4,
+        "scores": [
+          {
+            "name": "Utilization",
+            "info": "utilization description",
+            "score": 2
+          },
+          { "name": "Relevance", "info": "relevance description", "score": 4 }
+        ],
         "words": [
           { "word": "Sie", "utilized": true, "backtranslation": "They" },
           {
@@ -488,8 +493,7 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Sie wurden in der Notaufnahme wegen Ihrer Hautinfektion gesehen.",
-        "translation_hyp_formatted": "Sie wurden in der Notaufnahme <span style=\"color: red;\"> wegen Ihrer</span> <span style=\"color: blue;\">Hautinfektion</span> gesehen.</span>",
+        "translation_hyp": "Sie wurden in der Notaufnahme wegen Ihrer Hautinfektion heute gesehen.",
         "scores": [
           { "name": "ChrF", "info": "chrf description", "score": 3 },
           {
@@ -1542,9 +1546,14 @@
       "nnmt": {
         "translation_type": "nnmt",
         "translation_hyp": "W\u00e4hrend es eine Infektion auf Ihrer Haut, gehen wir davon aus, dass es auf der Umgebung, die betroffen ist, lokalisiert ist.",
-        "strength": "Default",
-        "utilization": 1,
-        "relevance": 1,
+        "scores": [
+          {
+            "name": "Utilization",
+            "info": "utilization description",
+            "score": 1
+          },
+          { "name": "Relevance", "info": "relevance description", "score": 1 }
+        ],
         "words": [
           {
             "word": "<span style=\"color: #A8A8A8\">W\u00e4hrend</span>",
@@ -2581,7 +2590,6 @@
       "template": {
         "translation_type": "template",
         "translation_hyp": "Tragen Sie t\u00e4glich eine Antibiotika-Salbe (Neosporin) auf.",
-        "translation_hyp_formatted": "Tragen Sie t\u00e4glich eine Antibiotika-Salbe (Neosporin) auf.",
         "scores": [
           { "name": "ChrF", "info": "chrf description", "score": 5 },
           {
@@ -3627,9 +3635,14 @@
       "nnmt": {
         "translation_type": "nnmt",
         "translation_hyp": "Bitte nehmen Sie die Antibiotika, die wir Ihnen verschrieben haben, um die Apotheke zu finden.",
-        "strength": "Default",
-        "utilization": 1,
-        "relevance": 1,
+        "scores": [
+          {
+            "name": "Utilization",
+            "info": "utilization description",
+            "score": 1
+          },
+          { "name": "Relevance", "info": "relevance description", "score": 1 }
+        ],
         "words": [
           { "word": "Bitte", "utilized": true, "backtranslation": "Please" },
           { "word": "nehmen", "utilized": true, "backtranslation": "Take" },
@@ -4244,7 +4257,6 @@
       "template": {
         "translation_type": "template",
         "translation_hyp": "Bitte nehmen Sie Ihre Medikamente entsprechend den Anweisungen ein.",
-        "translation_hyp_formatted": "Bitte nehmen Sie Ihre Medikamente entsprechend den Anweisungen ein.",
         "scores": [
           { "name": "ChrF", "info": "chrf description", "score": 5 },
           {
@@ -5290,9 +5302,14 @@
       "nnmt": {
         "translation_type": "nnmt",
         "translation_hyp": "Bitte wenden Sie sich erneut an die Notaufnahme, wenn bei Ihnen Fieber, Sch\u00fcttelfrost, Erbrechen oder andere besorgniserregende Symptome auftreten.",
-        "strength": "Default",
-        "utilization": 5,
-        "relevance": 4,
+        "scores": [
+          {
+            "name": "Utilization",
+            "info": "utilization description",
+            "score": 5
+          },
+          { "name": "Relevance", "info": "relevance description", "score": 4 }
+        ],
         "words": [
           { "word": "Bitte", "utilized": true, "backtranslation": "Please" },
           { "word": "wenden", "utilized": true, "backtranslation": "Page 3" },
@@ -6024,14 +6041,13 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie Fieber, Sch\u00fcttelfrost, Erbrechen oder alle neuen oder sich verschlimmernden besorgniserregenden Symptome bemerken.",
-        "translation_hyp_formatted": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie <span style=\"color: red;\"></span> <span style=\"color: blue;\">Fieber,</span> <span style=\"color: blue;\">Sch\u00fcttelfrost,</span> <span style=\"color: blue;\">Erbrechen</span> oder alle neuen oder sich verschlimmernden <span style=\"color: red;\"> besorgniserregenden Symptome bemerken.</span>",
+        "translation_hyp": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie Fieber, Sch\u00fcttelfrost, Erbrechen oder neue oder sich verschlimmernde besorgniserregende Symptome bemerken.",
         "scores": [
           { "name": "ChrF", "info": "chrf description", "score": 4 },
           {
             "name": "Prop changed",
             "info": "prop changed description",
-            "score": 5
+            "score": 4
           }
         ],
         "templates": [
@@ -7092,9 +7108,14 @@
       "nnmt": {
         "translation_type": "nnmt",
         "translation_hyp": "Sie wurden in der Notaufnahme gesehen, nachdem Sie synkopisiert wurden (get\u00e4uscht).",
-        "strength": "Default",
-        "utilization": 1,
-        "relevance": 3,
+        "scores": [
+          {
+            "name": "Utilization",
+            "info": "utilization description",
+            "score": 1
+          },
+          { "name": "Relevance", "info": "relevance description", "score": 3 }
+        ],
         "words": [
           { "word": "Sie", "utilized": true, "backtranslation": "They" },
           {
@@ -7732,8 +7753,7 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Sie wurden in der Notaufnahme gesehen, nachdem Sie ohnm\u00e4chtig geworden sind.",
-        "translation_hyp_formatted": "Sie wurden in der Notaufnahme <span style=\"color: red;\"> gesehen, nachdem Sie ohnm\u00e4chtig geworden sind.</span>",
+        "translation_hyp": "Sie wurden in der Notaufnahme gesehen, nachdem Sie synkopiert (gef\u00e4llt) haben.",
         "scores": [
           { "name": "ChrF", "info": "chrf description", "score": 3 },
           {
@@ -7790,7 +7810,7 @@
             "type": "SYMPTOM",
             "term": "syncopized",
             "translation": "synkopiert",
-            "translation_in_filled": false
+            "translation_in_filled": true
           }
         ],
         "tableFilter": "templates",
@@ -8786,9 +8806,14 @@
       "nnmt": {
         "translation_type": "nnmt",
         "translation_hyp": "Wir haben Blutuntersuchung durchgef\u00fchrt und ein EKG, das keine akute Ursache dieser Symptome zeigte.",
-        "strength": "Default",
-        "utilization": 5,
-        "relevance": 1,
+        "scores": [
+          {
+            "name": "Utilization",
+            "info": "utilization description",
+            "score": 5
+          },
+          { "name": "Relevance", "info": "relevance description", "score": 1 }
+        ],
         "words": [
           { "word": "Wir", "utilized": true, "backtranslation": "We" },
           { "word": "haben", "utilized": true, "backtranslation": "have" },
@@ -9633,14 +9658,13 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Wir haben keine gef\u00e4hrliche Ursache f\u00fcr diese Symptome gefunden.",
-        "translation_hyp_formatted": "Wir haben keine gef\u00e4hrliche Ursache f\u00fcr <span style=\"color: red;\"> diese Symptome gefunden.</span>",
+        "translation_hyp": "Wir haben keine gef\u00e4hrliche Ursache f\u00fcr Sie gefunden<SYMPTOM> .",
         "scores": [
-          { "name": "ChrF", "info": "chrf description", "score": 4 },
+          { "name": "ChrF", "info": "chrf description", "score": 5 },
           {
             "name": "Prop changed",
             "info": "prop changed description",
-            "score": 4
+            "score": 5
           }
         ],
         "templates": [
@@ -10680,9 +10704,14 @@
       "nnmt": {
         "translation_type": "nnmt",
         "translation_hyp": "Wir vermuten, dass dies auf eine Reaktion in Ihrem K\u00f6rper nach dem Wasserlassen zur\u00fcckzuf\u00fchren ist.",
-        "strength": "Default",
-        "utilization": 2,
-        "relevance": 2,
+        "scores": [
+          {
+            "name": "Utilization",
+            "info": "utilization description",
+            "score": 2
+          },
+          { "name": "Relevance", "info": "relevance description", "score": 2 }
+        ],
         "words": [
           { "word": "Wir", "utilized": true, "backtranslation": "We" },
           {
@@ -11412,8 +11441,7 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Wir denken, dass Ihre Reaktion Ihres K\u00f6rpers nach dem Wasserlassen auf einer Medikamentenreaktion beruht.",
-        "translation_hyp_formatted": "Wir denken, <span style=\"color: red;\"> dass Ihre Reaktion Ihres K\u00f6rpers nach dem Wasserlassen auf einer Medikamentenreaktion beruht.</span>",
+        "translation_hyp": "Wir denken, dass Ihre Reaktion nach dem Wasserlassen auf eine k\u00f6rperliche Antwort in Ihrem K\u00f6rper beruht.",
         "scores": [
           { "name": "ChrF", "info": "chrf description", "score": 1 },
           {
@@ -11470,7 +11498,7 @@
             "type": "SYMPTOM",
             "term": "response in your body after urinating",
             "translation": "Reaktion Ihres K\u00f6rpers nach dem Wasserlassen",
-            "translation_in_filled": true
+            "translation_in_filled": false
           }
         ],
         "tableFilter": "templates",
@@ -12466,9 +12494,14 @@
       "nnmt": {
         "translation_type": "nnmt",
         "translation_hyp": "Es ist sehr wichtig, einen Termin mit Ihrem Hausarzt zu vereinbaren und sich zur Nachsorge innerhalb von 2-7 Tagen an Ihren Symptomen zu wenden und die Notaufnahme zu besuchen.",
-        "strength": "Default",
-        "utilization": 4,
-        "relevance": 2,
+        "scores": [
+          {
+            "name": "Utilization",
+            "info": "utilization description",
+            "score": 4
+          },
+          { "name": "Relevance", "info": "relevance description", "score": 2 }
+        ],
         "words": [
           { "word": "Es", "utilized": true, "backtranslation": "It" },
           { "word": "ist", "utilized": true, "backtranslation": "is" },
@@ -13468,14 +13501,13 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie einen Termin bemerken oder alle neuen oder sich verschlimmernden besorgniserregenden Symptome haben.",
-        "translation_hyp_formatted": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie <span style=\"color: red;\"> einen</span> <span style=\"color: blue;\">Termin</span> bemerken</span> oder alle neuen oder sich verschlimmernden <span style=\"color: red;\"> besorgniserregenden Symptome haben.</span>",
+        "translation_hyp": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie Brustschmerzen oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend sind, bemerken.",
         "scores": [
           { "name": "ChrF", "info": "chrf description", "score": 4 },
           {
             "name": "Prop changed",
             "info": "prop changed description",
-            "score": 4
+            "score": 5
           }
         ],
         "templates": [
@@ -13524,45 +13556,27 @@
         "terms": [
           {
             "type": "SYMPTOM",
-            "term": "appointment",
-            "translation": "Termin",
+            "term": "chest pain",
+            "translation": "Brustschmerzen",
             "translation_in_filled": true
           },
           {
             "type": "SYMPTOM",
-            "term": "primary care doctor",
-            "translation": "Hausarzt",
+            "term": "shortness of breath",
+            "translation": "Kurzatmigkeit",
             "translation_in_filled": false
           },
           {
             "type": "SYMPTOM",
-            "term": "follow up",
-            "translation": "Nachverfolgen",
+            "term": "dizziness",
+            "translation": "Schwindel",
             "translation_in_filled": false
           },
           {
             "type": "SYMPTOM",
-            "term": "2-7 days",
-            "translation": "2-7 Tage",
+            "term": "nausea",
+            "translation": "Brechreiz",
             "translation_in_filled": false
-          },
-          {
-            "type": "SYMPTOM",
-            "term": "discuss",
-            "translation": "diskutieren",
-            "translation_in_filled": false
-          },
-          {
-            "type": "SYMPTOM",
-            "term": "visit",
-            "translation": "besuchen",
-            "translation_in_filled": false
-          },
-          {
-            "type": "SYMPTOM",
-            "term": "emergency room",
-            "translation": "Notaufnahme",
-            "translation_in_filled": true
           }
         ],
         "tableFilter": "templates",
@@ -14558,9 +14572,14 @@
       "nnmt": {
         "translation_type": "nnmt",
         "translation_hyp": "Bitte wenden Sie sich erneut an die Notaufnahme, wenn bei Ihnen Brustschmerzen, Kurzatmigkeit, Fieber, Erbrechen oder andere besorgniserregende Symptome auftreten.",
-        "strength": "Default",
-        "utilization": 5,
-        "relevance": 4,
+        "scores": [
+          {
+            "name": "Utilization",
+            "info": "utilization description",
+            "score": 5
+          },
+          { "name": "Relevance", "info": "relevance description", "score": 4 }
+        ],
         "words": [
           { "word": "Bitte", "utilized": true, "backtranslation": "Please" },
           { "word": "wenden", "utilized": true, "backtranslation": "Page 3" },
@@ -15280,7 +15299,6 @@
       "template": {
         "translation_type": "template",
         "translation_hyp": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie Brustschmerzen, Kurzatmigkeit, Fieber, Erbrechen oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend sind, bemerken.",
-        "translation_hyp_formatted": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie <span style=\"color: red;\"></span> <span style=\"color: blue;\">Brustschmerzen,</span> <span style=\"color: blue;\">Kurzatmigkeit,</span> <span style=\"color: blue;\">Fieber,</span> <span style=\"color: blue;\">Erbrechen</span> oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend <span style=\"color: red;\"> sind, bemerken.</span>",
         "scores": [
           { "name": "ChrF", "info": "chrf description", "score": 4 },
           {
@@ -16353,9 +16371,14 @@
       "nnmt": {
         "translation_type": "nnmt",
         "translation_hyp": "Sie wurden in der Notaufnahme wegen Alkoholkonsum in der Notaufnahme gesehen.",
-        "strength": "Default",
-        "utilization": 1,
-        "relevance": 1,
+        "scores": [
+          {
+            "name": "Utilization",
+            "info": "utilization description",
+            "score": 1
+          },
+          { "name": "Relevance", "info": "relevance description", "score": 1 }
+        ],
         "words": [
           { "word": "Sie", "utilized": true, "backtranslation": "They" },
           {
@@ -16809,14 +16832,13 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Sie wurden in der Notaufnahme gesehen aufgrund ihres Alkoholkonsums.",
-        "translation_hyp_formatted": "Sie wurden in der Notaufnahme <span style=\"color: red;\"> gesehen aufgrund ihres Alkoholkonsums.</span>",
+        "translation_hyp": "Sie wurden in der Notaufnahme wegen Alkoholkonsum gesehen.",
         "scores": [
           { "name": "ChrF", "info": "chrf description", "score": 3 },
           {
             "name": "Prop changed",
             "info": "prop changed description",
-            "score": 4
+            "score": 5
           }
         ],
         "templates": [
@@ -17863,9 +17885,14 @@
       "nnmt": {
         "translation_type": "nnmt",
         "translation_hyp": "Nach einiger Zeit haben wir Sie neu bewertet und Sie haben gesagt, dass Sie sich wieder wohl f\u00fchlen.",
-        "strength": "Default",
-        "utilization": 1,
-        "relevance": 1,
+        "scores": [
+          {
+            "name": "Utilization",
+            "info": "utilization description",
+            "score": 1
+          },
+          { "name": "Relevance", "info": "relevance description", "score": 1 }
+        ],
         "words": [
           { "word": "Nach", "utilized": true, "backtranslation": "Page 3" },
           {
@@ -18659,7 +18686,6 @@
       "template": {
         "translation_type": "template",
         "translation_hyp": "Sie sind ohne Behandlung genesen.",
-        "translation_hyp_formatted": "Sie sind ohne Behandlung genesen.",
         "scores": [
           { "name": "ChrF", "info": "chrf description", "score": 5 },
           {
@@ -19705,9 +19731,14 @@
       "nnmt": {
         "translation_type": "nnmt",
         "translation_hyp": "Wir entladen Sie aus der Notaufnahme.",
-        "strength": "Default",
-        "utilization": 3,
-        "relevance": 2,
+        "scores": [
+          {
+            "name": "Utilization",
+            "info": "utilization description",
+            "score": 3
+          },
+          { "name": "Relevance", "info": "relevance description", "score": 2 }
+        ],
         "words": [
           { "word": "Wir", "utilized": true, "backtranslation": "We" },
           {
@@ -20210,14 +20241,13 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Sie wurden in der Notaufnahme gesehen und werden jetzt entlassen.",
-        "translation_hyp_formatted": "Sie wurden in der Notaufnahme <span style=\"color: red;\"> gesehen und werden jetzt entlassen.</span>",
+        "translation_hyp": "Sie wurden in der Notaufnahme gesehen<SYMPTOM>",
         "scores": [
-          { "name": "ChrF", "info": "chrf description", "score": 4 },
+          { "name": "ChrF", "info": "chrf description", "score": 5 },
           {
             "name": "Prop changed",
             "info": "prop changed description",
-            "score": 4
+            "score": 5
           }
         ],
         "templates": [
@@ -21257,9 +21287,14 @@
       "nnmt": {
         "translation_type": "nnmt",
         "translation_hyp": "Bitte kehren Sie zur Notaufnahme zur\u00fcck, wenn Sie Symptome entwickeln, die Sie betreffen.",
-        "strength": "Default",
-        "utilization": 1,
-        "relevance": 4,
+        "scores": [
+          {
+            "name": "Utilization",
+            "info": "utilization description",
+            "score": 1
+          },
+          { "name": "Relevance", "info": "relevance description", "score": 4 }
+        ],
         "words": [
           { "word": "Bitte", "utilized": true, "backtranslation": "Please" },
           {
@@ -21869,10 +21904,9 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie etwas bemerken, das besorgniserregend ist oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend sind, auftreten.",
-        "translation_hyp_formatted": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie etwas <span style=\"color: red;\"> bemerken, das besorgniserregend ist</span> oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend <span style=\"color: red;\"> sind, auftreten.</span>",
+        "translation_hyp": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie etwas bemerken<SYMPTOM> oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend sind.",
         "scores": [
-          { "name": "ChrF", "info": "chrf description", "score": 4 },
+          { "name": "ChrF", "info": "chrf description", "score": 5 },
           {
             "name": "Prop changed",
             "info": "prop changed description",

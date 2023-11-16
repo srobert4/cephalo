@@ -7,6 +7,7 @@
   export let templates = [];
   export let terms = [];
   export let translation_hyp = "";
+  export let translation_hyp_formatted = "";
   export let idx_of_filled_template = 0;
 
   $: selectedTemplate = idx_of_filled_template;
@@ -22,7 +23,9 @@
       </option>
     {/each}
   </select>
+  <!-- <p class="de">{@html templates[selectedTemplate].translation}</p> -->
   <TermList bind:terms />
+  <!-- <p class="de">{@html translation_hyp_formatted}</p> -->
   <button
     on:click={(e) =>
       updateTemplate(
@@ -32,7 +35,6 @@
         terms
       )}>reload</button
   >
-  <p class="de">{@html templates[selectedTemplate].translation}</p>
   <!-- {#each terms as term}
     <div class="term-wrapper">
       <span>{@html term.type} = </span>
@@ -45,7 +47,6 @@
       {/if}
     </div>
   {/each} -->
-  <p class="de">{translation_hyp}</p>
 </div>
 
 <style lang="scss">

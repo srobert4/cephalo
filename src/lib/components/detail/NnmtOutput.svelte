@@ -1,12 +1,12 @@
 <script>
   import Selector from "./Selector.svelte";
+  import { selectedSource, detailShowingData } from "../stores";
+  import { updateModelStrength } from "../analyzeSentence.svelte";
 
-  export let scores;
-  export let selectedUtilization = "Default";
-  $: console.log(selectedUtilization);
-
-  let utilization = scores[0].score;
-  let relevance = scores[1].score;
+  export let utilization;
+  export let relevance;
+  export let strength = "Default";
+  $: console.log(strength);
 
   let guidance;
   $: {
@@ -50,7 +50,7 @@
 <div class="output-wrapper">
   <p>{@html guidance}</p>
   <Selector
-    bind:value={selectedUtilization}
+    bind:value={strength}
     options={["Not at all", "Less", "Default", "More"]}
   />
   <!-- {#each words as word, i}
@@ -67,6 +67,11 @@
     </button>
   {/each} -->
 </div>
+<button
+  on:click={(e) =>
+    updateModelStrength($selectedSource, $detailShowingData.source, strength)}
+  >reload</button
+>
 
 <style lang="scss">
   @import "../../../variables.scss";
