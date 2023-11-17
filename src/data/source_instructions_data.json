@@ -30,7 +30,7 @@
             "backtranslation": "Emergency Room"
           },
           {
-            "word": "<span style=\"color: #A8A8A8\">wegen</span>",
+            "word": "<span class=\"not-utilized\">wegen</span>",
             "utilized": false,
             "backtranslation": "for"
           },
@@ -41,12 +41,12 @@
             "backtranslation": "Skin infection"
           },
           {
-            "word": "<span style=\"color: #A8A8A8\">gesehen</span>.",
+            "word": "<span class=\"not-utilized\">gesehen</span>.",
             "utilized": false,
             "backtranslation": "Seen."
           }
         ],
-        "tableFilter": "nearest neighbors",
+        "tableFilter": "used for translation",
         "tableResults": [
           {
             "src": "You were evaluated in the Emergency Department today for your back pain.",
@@ -491,7 +491,7 @@
       "template": {
         "translation_type": "template",
         "translation_hyp": "Sie wurden heute in der Notaufnahme wegen Ihrer Hautinfektion gesehen.",
-        "translation_hyp_formatted": "Sie wurden <span style=\"color:red\">heute</span>  in der Notaufnahme <span style=\"color:red\">wegen Ihrer Hautinfektion gesehen.</span>",
+        "translation_hyp_formatted": "<span class=\"template\">Sie wurden</span> <span class=\"added\">heute</span>  <span class=\"template\">in der Notaufnahme</span> <span class=\"added\">wegen Ihrer</span> <span class=\"term\">Hautinfektion</span>   <span class=\"template\">gesehen.</span>",
         "scores": [
           {
             "name": "ChrF",
@@ -1725,12 +1725,12 @@
         "relevance": 1,
         "words": [
           {
-            "word": "<span style=\"color: #A8A8A8\">W\u00e4hrend</span>",
+            "word": "<span class=\"not-utilized\">W\u00e4hrend</span>",
             "utilized": false,
             "backtranslation": "During"
           },
           {
-            "word": "<span style=\"color: #A8A8A8\">es</span>",
+            "word": "<span class=\"not-utilized\">es</span>",
             "utilized": false,
             "backtranslation": "it"
           },
@@ -1749,7 +1749,7 @@
           { "word": "aus,", "utilized": true, "backtranslation": "from," },
           { "word": "dass", "utilized": true, "backtranslation": "that" },
           {
-            "word": "<span style=\"color: #A8A8A8\">es</span>",
+            "word": "<span class=\"not-utilized\">es</span>",
             "utilized": false,
             "backtranslation": "it"
           },
@@ -1762,19 +1762,19 @@
           },
           { "word": "die", "utilized": true, "backtranslation": "the" },
           {
-            "word": "<span style=\"color: #A8A8A8\">betroffen</span>",
+            "word": "<span class=\"not-utilized\">betroffen</span>",
             "utilized": false,
             "backtranslation": "affected"
           },
           { "word": "ist,", "utilized": true, "backtranslation": "is:" },
           {
-            "word": "<span style=\"color: #A8A8A8\">lokal</span>isiert",
+            "word": "<span class=\"not-utilized\">lokal</span>isiert",
             "utilized": false,
             "backtranslation": "localized"
           },
           { "word": "ist.", "utilized": true, "backtranslation": "The" }
         ],
-        "tableFilter": "nearest neighbors",
+        "tableFilter": "used for translation",
         "tableResults": [
           {
             "src": "Spironolactone and its active metabolites (including 7\u03b1 -thiomethyl-spironolactone and canrenone) act as specific antagonists of aldosterone, and exert their effects by binding competitively to the mineralocorticoid receptor located in the kidneys, heart and blood vessels.\n",
@@ -2759,7 +2759,7 @@
       "template": {
         "translation_type": "template",
         "translation_hyp": "Tragen Sie t\u00e4glich eine Antibiotika-Salbe (Neosporin) auf.",
-        "translation_hyp_formatted": "Tragen Sie t\u00e4glich eine Antibiotika-Salbe (Neosporin) auf.",
+        "translation_hyp_formatted": "<span class=\"template\">Tragen Sie t\u00e4glich eine Antibiotika-Salbe (Neosporin) auf.</span>",
         "scores": [
           { "name": "ChrF", "info": "chrf description", "score": 100.0 },
           {
@@ -3986,18 +3986,18 @@
           { "word": "Sie", "utilized": true, "backtranslation": "They" },
           { "word": "die", "utilized": true, "backtranslation": "the" },
           {
-            "word": "<span style=\"color: #A8A8A8\">Antibiotika</span><span style=\"color: #A8A8A8\">,</span>",
+            "word": "<span class=\"not-utilized\">Antibiotika</span><span class=\"not-utilized\">,</span>",
             "utilized": false,
             "backtranslation": "antibiotics,"
           },
           { "word": "die", "utilized": true, "backtranslation": "the" },
           {
-            "word": "<span style=\"color: #A8A8A8\">wir</span>",
+            "word": "<span class=\"not-utilized\">wir</span>",
             "utilized": false,
             "backtranslation": "we"
           },
           {
-            "word": "<span style=\"color: #A8A8A8\">Ihnen</span>",
+            "word": "<span class=\"not-utilized\">Ihnen</span>",
             "utilized": false,
             "backtranslation": "You"
           },
@@ -4017,7 +4017,7 @@
           { "word": "zu", "utilized": true, "backtranslation": "to" },
           { "word": "finden.", "utilized": true, "backtranslation": "The" }
         ],
-        "tableFilter": "nearest neighbors",
+        "tableFilter": "used for translation",
         "tableResults": [
           {
             "src": "Please take the antibiotics prescribed to you in full, as directed.",
@@ -4594,7 +4594,7 @@
       "template": {
         "translation_type": "template",
         "translation_hyp": "Bitte nehmen Sie Ihre Medikamente entsprechend den Anweisungen ein.",
-        "translation_hyp_formatted": "Bitte nehmen Sie Ihre Medikamente entsprechend den Anweisungen ein.",
+        "translation_hyp_formatted": "<span class=\"template\">Bitte nehmen Sie Ihre Medikamente entsprechend den Anweisungen ein.</span>",
         "scores": [
           { "name": "ChrF", "info": "chrf description", "score": 100.0 },
           {
@@ -5856,7 +5856,7 @@
           },
           { "word": "auftreten.", "utilized": true, "backtranslation": "The" }
         ],
-        "tableFilter": "nearest neighbors",
+        "tableFilter": "used for translation",
         "tableResults": [
           {
             "src": "Please return to the emergency department if you experience severe abdominal pain or any new or worsening symptoms that are concerning.",
@@ -6547,7 +6547,7 @@
       "template": {
         "translation_type": "template",
         "translation_hyp": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie Fieber, Sch\u00fcttelfrost, Erbrechen oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend sind, bemerken.",
-        "translation_hyp_formatted": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie <span style=\"color:red\">Fieber, Sch\u00fcttelfrost, Erbrechen</span>  oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend <span style=\"color:red\">sind, bemerken.</span>",
+        "translation_hyp_formatted": "<span class=\"template\">Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie</span>  <span class=\"term\">Fieber, Sch\u00fcttelfrost, Erbrechen</span>   <span class=\"template\">oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend sind,</span> <span class=\"added\">bemerken.</span>",
         "scores": [
           {
             "name": "ChrF",
@@ -7808,14 +7808,14 @@
             "backtranslation": "Emergency Room"
           },
           {
-            "word": "<span style=\"color: #A8A8A8\">gesehen</span>,",
+            "word": "<span class=\"not-utilized\">gesehen</span>,",
             "utilized": false,
             "backtranslation": "see,"
           },
           { "word": "nachdem", "utilized": true, "backtranslation": "after" },
           { "word": "Sie", "utilized": true, "backtranslation": "They" },
           {
-            "word": "<span style=\"color: #A8A8A8\">syn</span>kopisiert",
+            "word": "<span class=\"not-utilized\">syn</span>kopisiert",
             "utilized": false,
             "backtranslation": "Syncoped"
           },
@@ -7825,12 +7825,12 @@
             "backtranslation": "have been"
           },
           {
-            "word": "(<span style=\"color: #A8A8A8\">ge</span><span style=\"color: #A8A8A8\">t\u00e4u</span><span style=\"color: #A8A8A8\">scht</span>).",
+            "word": "(<span class=\"not-utilized\">ge</span><span class=\"not-utilized\">t\u00e4u</span><span class=\"not-utilized\">scht</span>).",
             "utilized": false,
             "backtranslation": "(fake)"
           }
         ],
-        "tableFilter": "nearest neighbors",
+        "tableFilter": "used for translation",
         "tableResults": [
           {
             "src": "You were seen in the emergency department for severe headache.",
@@ -8430,23 +8430,23 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Sie wurden in der Notaufnahme gesehen, synkopiert (gefallen).",
-        "translation_hyp_formatted": "Sie wurden in der Notaufnahme <span style=\"color:red\">gesehen,</span> <span style=\"color:blue\">synkopiert</span> <span style=\"color:red\">(gefallen).</span>",
+        "translation_hyp": "Sie wurden in der Notaufnahme gesehen, nachdem Sie ohnm\u00e4chtig geworden sind.",
+        "translation_hyp_formatted": "<span class=\"template\">Sie wurden in der Notaufnahme gesehen,</span> <span class=\"added\">nachdem Sie ohnm\u00e4chtig geworden sind.</span>",
         "scores": [
           {
             "name": "ChrF",
             "info": "chrf description",
-            "score": 71.72897404200005
+            "score": 68.13300380461135
           },
           {
             "name": "Prop added",
             "info": "prop added description",
-            "score": 0.125
+            "score": 0.4
           },
           {
             "name": "Prop removed",
             "info": "prop removed description",
-            "score": 0.0
+            "score": 0.14285714285714285
           }
         ],
         "similarity_to_template": 0.6852587461471558,
@@ -8499,7 +8499,7 @@
             "type": "SYMPTOM",
             "term": "syncopized",
             "translation": "synkopiert",
-            "translation_in_filled": true
+            "translation_in_filled": false
           }
         ],
         "tableFilter": "templates",
@@ -9691,7 +9691,7 @@
           },
           { "word": "zeigte.", "utilized": true, "backtranslation": "The" }
         ],
-        "tableFilter": "nearest neighbors",
+        "tableFilter": "used for translation",
         "tableResults": [
           {
             "src": "Her evaluation, including an EKG and echocardiogram, suggests that her symptoms are due to a heart condition.",
@@ -10507,23 +10507,23 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Wir haben bei Ihren Blutuntersuchungen und dem EKG keine gef\u00e4hrlichen Ursachen gefunden.",
-        "translation_hyp_formatted": "Wir haben <span style=\"color:red\">bei Ihren Blutuntersuchungen und dem EKG</span>  keine <span style=\"color:red\">gef\u00e4hrlichen Ursachen gefunden.</span>",
+        "translation_hyp": "Wir haben keine gef\u00e4hrliche Ursache f\u00fcr Ihre <SYMPTOM> gefunden.",
+        "translation_hyp_formatted": "<span class=\"template\">Wir haben keine gef\u00e4hrliche Ursache f\u00fcr</span> <span class=\"added\">Ihre &lt;SYMPTOM&gt;</span>  <span class=\"template\">gefunden.</span>",
         "scores": [
           {
             "name": "ChrF",
             "info": "chrf description",
-            "score": 51.774901782902546
+            "score": 82.91777778622212
           },
           {
             "name": "Prop added",
             "info": "prop added description",
-            "score": 0.6666666666666666
+            "score": 0.2222222222222222
           },
           {
             "name": "Prop removed",
             "info": "prop removed description",
-            "score": 0.6363636363636364
+            "score": 0.2222222222222222
           }
         ],
         "similarity_to_template": 0.5830531120300293,
@@ -10571,20 +10571,7 @@
         ],
         "idx_of_filled_template": 0,
         "overall_rank_of_filled_template": 0,
-        "terms": [
-          {
-            "type": "SYMPTOM",
-            "term": "blood work",
-            "translation": "Blut Arbeit",
-            "translation_in_filled": false
-          },
-          {
-            "type": "SYMPTOM",
-            "term": "EKG",
-            "translation": "Ekg",
-            "translation_in_filled": true
-          }
-        ],
+        "terms": [],
         "tableFilter": "templates",
         "tableResults": [
           {
@@ -11749,7 +11736,7 @@
         "words": [
           { "word": "Wir", "utilized": true, "backtranslation": "We" },
           {
-            "word": "<span style=\"color: #A8A8A8\">vermuten</span>,",
+            "word": "<span class=\"not-utilized\">vermuten</span>,",
             "utilized": false,
             "backtranslation": "suspect that:"
           },
@@ -11770,12 +11757,12 @@
             "backtranslation": "Body"
           },
           {
-            "word": "<span style=\"color: #A8A8A8\">nach</span>",
+            "word": "<span class=\"not-utilized\">nach</span>",
             "utilized": false,
             "backtranslation": "after"
           },
           {
-            "word": "<span style=\"color: #A8A8A8\">dem</span>",
+            "word": "<span class=\"not-utilized\">dem</span>",
             "utilized": false,
             "backtranslation": "The"
           },
@@ -11791,7 +11778,7 @@
           },
           { "word": "ist.", "utilized": true, "backtranslation": "The" }
         ],
-        "tableFilter": "nearest neighbors",
+        "tableFilter": "used for translation",
         "tableResults": [
           {
             "src": "We think your frequent urination is due to diabetes.",
@@ -12475,13 +12462,13 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Wir denken, dass Ihre Reaktion nach dem Wasserlassen auf einer Reaktion in Ihrem K\u00f6rper beruht.",
-        "translation_hyp_formatted": "Wir denken, <span style=\"color:red\">dass Ihre Reaktion</span> <span style=\"color:blue\">nach dem</span> <span style=\"color:red\">Wasserlassen</span>  auf <span style=\"color:red\">einer Reaktion in Ihrem K\u00f6rper beruht.</span>",
+        "translation_hyp": "Wir denken, dass Ihre Reaktion nach dem Wasserlassen auf eine Reaktion in Ihrem K\u00f6rper beruht.",
+        "translation_hyp_formatted": "<span class=\"template\">Wir denken,</span> <span class=\"added\">dass Ihre</span> <span class=\"term\">Reaktion</span>  <span class=\"term\">nach dem Wasserlassen</span> <span class=\"added\">auf eine Reaktion in Ihrem K\u00f6rper</span>  <span class=\"template\">beruht.</span>",
         "scores": [
           {
             "name": "ChrF",
             "info": "chrf description",
-            "score": 26.871394865012483
+            "score": 26.980190003582155
           },
           {
             "name": "Prop added",
@@ -13741,7 +13728,7 @@
             "backtranslation": "Aftercare"
           },
           {
-            "word": "<span style=\"color: #A8A8A8\">innerhalb</span>",
+            "word": "<span class=\"not-utilized\">innerhalb</span>",
             "utilized": false,
             "backtranslation": "within"
           },
@@ -13766,12 +13753,12 @@
           },
           { "word": "zu", "utilized": true, "backtranslation": "to" },
           {
-            "word": "<span style=\"color: #A8A8A8\">besuchen</span>.",
+            "word": "<span class=\"not-utilized\">besuchen</span>.",
             "utilized": false,
             "backtranslation": "The"
           }
         ],
-        "tableFilter": "nearest neighbors",
+        "tableFilter": "used for translation",
         "tableResults": [
           {
             "src": "Please schedule an appointment with your primary care physician as soon as possible for follow up.",
@@ -14707,23 +14694,23 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie einen Termin bemerken oder alle neuen oder sich verschlimmernden besorgniserregenden Symptome haben.",
-        "translation_hyp_formatted": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie <span style=\"color:red\">einen Termin</span>  bemerken   oder alle neuen oder sich verschlimmernden <span style=\"color:red\">besorgniserregenden Symptome haben.</span>",
+        "translation_hyp": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie einen Termin beim Hausarzt vereinbart haben oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend sind, bemerken.",
+        "translation_hyp_formatted": "<span class=\"template\">Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie</span> <span class=\"added\">einen</span> <span class=\"term\">Termin beim Hausarzt</span> <span class=\"added\">vereinbart haben</span>  <span class=\"template\">oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend sind,</span> <span class=\"added\">bemerken.</span>",
         "scores": [
           {
             "name": "ChrF",
             "info": "chrf description",
-            "score": 79.33439195332704
+            "score": 83.35004931563577
           },
           {
             "name": "Prop added",
             "info": "prop added description",
-            "score": 0.15789473684210525
+            "score": 0.2608695652173913
           },
           {
             "name": "Prop removed",
             "info": "prop removed description",
-            "score": 0.30434782608695654
+            "score": 0.19047619047619047
           }
         ],
         "similarity_to_template": 0.5899447798728943,
@@ -14774,39 +14761,21 @@
         "terms": [
           {
             "type": "SYMPTOM",
-            "term": "appointment",
-            "translation": "Termin",
+            "term": "appointment with primary care doctor",
+            "translation": "Termin beim Hausarzt",
             "translation_in_filled": true
           },
           {
             "type": "SYMPTOM",
-            "term": "primary care doctor",
-            "translation": "Hausarzt",
+            "term": "follow up in 2-7 days",
+            "translation": "Follow-up in 2-7 Tagen",
             "translation_in_filled": false
           },
           {
             "type": "SYMPTOM",
-            "term": "follow up",
-            "translation": "Nachverfolgen",
+            "term": "visit to emergency room",
+            "translation": "Besuch in der Notaufnahme",
             "translation_in_filled": false
-          },
-          {
-            "type": "SYMPTOM",
-            "term": "2-7 days",
-            "translation": "2-7 Tage",
-            "translation_in_filled": false
-          },
-          {
-            "type": "SYMPTOM",
-            "term": "discuss",
-            "translation": "diskutieren",
-            "translation_in_filled": false
-          },
-          {
-            "type": "SYMPTOM",
-            "term": "emergency room",
-            "translation": "Notaufnahme",
-            "translation_in_filled": true
           }
         ],
         "tableFilter": "templates",
@@ -16016,7 +15985,7 @@
           },
           { "word": "auftreten.", "utilized": true, "backtranslation": "The" }
         ],
-        "tableFilter": "nearest neighbors",
+        "tableFilter": "used for translation",
         "tableResults": [
           {
             "src": "Please return to the emergency department if you experience severe abdominal pain or any new or worsening symptoms that are concerning.",
@@ -16688,23 +16657,23 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie Brustschmerzen, Kurzatmigkeit, Fieber, Erbrechen oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend sind, bemerken.",
-        "translation_hyp_formatted": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie <span style=\"color:red\">Brustschmerzen, Kurzatmigkeit, Fieber, Erbrechen</span>  oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend <span style=\"color:red\">sind, bemerken.</span>",
+        "translation_hyp": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie Brustschmerzen, Kurzatmigkeit, Fieber, Erbrechen oder alle neuen oder sich verschlimmernden, besorgniserregenden Symptome bemerken.",
+        "translation_hyp_formatted": "<span class=\"template\">Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie</span>  <span class=\"term\">Brustschmerzen, Kurzatmigkeit, Fieber, Erbrechen</span>   <span class=\"template\">oder alle neuen oder sich verschlimmernden,</span> <span class=\"added\">besorgniserregenden</span>  <span class=\"template\">Symptome</span> <span class=\"added\">bemerken.</span>",
         "scores": [
           {
             "name": "ChrF",
             "info": "chrf description",
-            "score": 81.81237702635393
+            "score": 76.1579764673718
           },
           {
             "name": "Prop added",
             "info": "prop added description",
-            "score": 0.0
+            "score": 0.05
           },
           {
             "name": "Prop removed",
             "info": "prop removed description",
-            "score": 0.045454545454545456
+            "score": 0.13636363636363635
           }
         ],
         "similarity_to_template": 0.6964960694313049,
@@ -17949,7 +17918,7 @@
             "backtranslation": "have been"
           },
           {
-            "word": "<span style=\"color: #A8A8A8\">in</span>",
+            "word": "<span class=\"not-utilized\">in</span>",
             "utilized": false,
             "backtranslation": "in"
           },
@@ -17960,7 +17929,7 @@
             "backtranslation": "Emergency Room"
           },
           {
-            "word": "<span style=\"color: #A8A8A8\">wegen</span>",
+            "word": "<span class=\"not-utilized\">wegen</span>",
             "utilized": false,
             "backtranslation": "for"
           },
@@ -17971,7 +17940,7 @@
           },
           { "word": "in", "utilized": true, "backtranslation": "in" },
           {
-            "word": "<span style=\"color: #A8A8A8\">der</span>",
+            "word": "<span class=\"not-utilized\">der</span>",
             "utilized": false,
             "backtranslation": "of"
           },
@@ -17981,12 +17950,12 @@
             "backtranslation": "Emergency Room"
           },
           {
-            "word": "<span style=\"color: #A8A8A8\">gesehen</span>.",
+            "word": "<span class=\"not-utilized\">gesehen</span>.",
             "utilized": false,
             "backtranslation": "Seen."
           }
         ],
-        "tableFilter": "nearest neighbors",
+        "tableFilter": "used for translation",
         "tableResults": [
           {
             "src": "You were seen in the emergency department for persistent vomiting and diarrhea.",
@@ -18394,13 +18363,13 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Sie wurden in der Notaufnahme aufgrund von Alkoholkonsum gesehen.",
-        "translation_hyp_formatted": "Sie wurden in der Notaufnahme <span style=\"color:red\">aufgrund von Alkoholkonsum gesehen.</span>",
+        "translation_hyp": "Sie wurden in der Notaufnahme gesehen aufgrund von Alkoholkonsum.",
+        "translation_hyp_formatted": "<span class=\"template\">Sie wurden in der Notaufnahme gesehen</span> <span class=\"added\">aufgrund von</span> <span class=\"term\">Alkoholkonsum.</span>",
         "scores": [
           {
             "name": "ChrF",
             "info": "chrf description",
-            "score": 64.52277393870857
+            "score": 70.69651485623527
           },
           {
             "name": "Prop added",
@@ -19630,13 +19599,13 @@
         "words": [
           { "word": "Nach", "utilized": true, "backtranslation": "Page 3" },
           {
-            "word": "<span style=\"color: #A8A8A8\">einiger</span>",
+            "word": "<span class=\"not-utilized\">einiger</span>",
             "utilized": false,
             "backtranslation": "Some"
           },
           { "word": "Zeit", "utilized": true, "backtranslation": "Time" },
           {
-            "word": "<span style=\"color: #A8A8A8\">haben</span>",
+            "word": "<span class=\"not-utilized\">haben</span>",
             "utilized": false,
             "backtranslation": "have"
           },
@@ -19644,7 +19613,7 @@
           { "word": "Sie", "utilized": true, "backtranslation": "They" },
           { "word": "neu", "utilized": true, "backtranslation": "new" },
           {
-            "word": "<span style=\"color: #A8A8A8\">bewertet</span>",
+            "word": "<span class=\"not-utilized\">bewertet</span>",
             "utilized": false,
             "backtranslation": "evaluated"
           },
@@ -19652,7 +19621,7 @@
           { "word": "Sie", "utilized": true, "backtranslation": "They" },
           { "word": "haben", "utilized": true, "backtranslation": "have" },
           {
-            "word": "<span style=\"color: #A8A8A8\">gesagt</span>,",
+            "word": "<span class=\"not-utilized\">gesagt</span>,",
             "utilized": false,
             "backtranslation": "said,"
           },
@@ -19660,7 +19629,7 @@
           { "word": "Sie", "utilized": true, "backtranslation": "They" },
           { "word": "sich", "utilized": true, "backtranslation": "The" },
           {
-            "word": "<span style=\"color: #A8A8A8\">wieder</span>",
+            "word": "<span class=\"not-utilized\">wieder</span>",
             "utilized": false,
             "backtranslation": "again"
           },
@@ -19675,7 +19644,7 @@
             "backtranslation": "feel."
           }
         ],
-        "tableFilter": "nearest neighbors",
+        "tableFilter": "used for translation",
         "tableResults": [
           {
             "src": "Your physical exam suggests that you are recovering well from your recent surgery.",
@@ -20420,7 +20389,7 @@
       "template": {
         "translation_type": "template",
         "translation_hyp": "Sie sind ohne Behandlung genesen.",
-        "translation_hyp_formatted": "Sie sind ohne Behandlung genesen.",
+        "translation_hyp_formatted": "<span class=\"template\">Sie sind ohne Behandlung genesen.</span>",
         "scores": [
           { "name": "ChrF", "info": "chrf description", "score": 100.0 },
           {
@@ -21644,7 +21613,7 @@
         "words": [
           { "word": "Wir", "utilized": true, "backtranslation": "We" },
           {
-            "word": "<span style=\"color: #A8A8A8\">ent</span>laden",
+            "word": "<span class=\"not-utilized\">ent</span>laden",
             "utilized": false,
             "backtranslation": "Unload"
           },
@@ -21657,7 +21626,7 @@
             "backtranslation": "Emergency room."
           }
         ],
-        "tableFilter": "nearest neighbors",
+        "tableFilter": "used for translation",
         "tableResults": [
           {
             "src": "Your dislocated shoulder has been splinted in the ER.",
@@ -22143,18 +22112,18 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Sie wurden in der Notaufnahme gesehen.",
-        "translation_hyp_formatted": "Sie wurden in der Notaufnahme <span style=\"color:red\">gesehen.</span>",
+        "translation_hyp": "Sie wurden in der Notaufnahme gesehen und werden entlassen.",
+        "translation_hyp_formatted": "<span class=\"template\">Sie wurden in der Notaufnahme gesehen</span> <span class=\"added\">und werden entlassen.</span>",
         "scores": [
           {
             "name": "ChrF",
             "info": "chrf description",
-            "score": 79.90418789329179
+            "score": 72.79217540801474
           },
           {
             "name": "Prop added",
             "info": "prop added description",
-            "score": 0.0
+            "score": 0.3333333333333333
           },
           {
             "name": "Prop removed",
@@ -23372,7 +23341,7 @@
         "words": [
           { "word": "Bitte", "utilized": true, "backtranslation": "Please" },
           {
-            "word": "<span style=\"color: #A8A8A8\">kehren</span>",
+            "word": "<span class=\"not-utilized\">kehren</span>",
             "utilized": false,
             "backtranslation": "re-return"
           },
@@ -23391,7 +23360,7 @@
           { "word": "wenn", "utilized": true, "backtranslation": "if:" },
           { "word": "Sie", "utilized": true, "backtranslation": "They" },
           {
-            "word": "<span style=\"color: #A8A8A8\">Symptome</span>",
+            "word": "<span class=\"not-utilized\">Symptome</span>",
             "utilized": false,
             "backtranslation": "Symptoms"
           },
@@ -23403,12 +23372,12 @@
           { "word": "die", "utilized": true, "backtranslation": "the" },
           { "word": "Sie", "utilized": true, "backtranslation": "They" },
           {
-            "word": "<span style=\"color: #A8A8A8\">betreffen</span>.",
+            "word": "<span class=\"not-utilized\">betreffen</span>.",
             "utilized": false,
             "backtranslation": "The Commission has already taken a number of measures to improve the situation."
           }
         ],
-        "tableFilter": "nearest neighbors",
+        "tableFilter": "used for translation",
         "tableResults": [
           {
             "src": "Please return to the emergency department if you experience new or worsening signs of infection, such as redness, swelling, or pus, at the site of a recent surgery or injury or any new or worsening symptoms that are concerning.",
@@ -23978,18 +23947,18 @@
       },
       "template": {
         "translation_type": "template",
-        "translation_hyp": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie etwas bemerken, wie Brustschmerzen, Atemnot, starke Kopfschmerzen, anhaltendes Erbrechen oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend sind.",
-        "translation_hyp_formatted": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie etwas <span style=\"color:red\">bemerken, wie Brustschmerzen, Atemnot, starke Kopfschmerzen, anhaltendes Erbrechen</span>  oder alle neuen oder sich verschlimmernden Symptome, die besorgniserregend sind.",
+        "translation_hyp": "Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie etwas bemerken, das besorgniserregend ist, oder wenn alle neuen oder sich verschlimmernden Symptome besorgniserregend sind.",
+        "translation_hyp_formatted": "<span class=\"template\">Bitte kehren Sie in die Notaufnahme zur\u00fcck, wenn Sie etwas bemerken,</span> <span class=\"added\">das besorgniserregend ist,</span>  <span class=\"template\">oder</span> <span class=\"added\">wenn</span>  <span class=\"template\">alle neuen oder sich verschlimmernden Symptome</span>   <span class=\"template\">besorgniserregend sind.</span>",
         "scores": [
           {
             "name": "ChrF",
             "info": "chrf description",
-            "score": 84.17332228387957
+            "score": 84.1855894490686
           },
           {
             "name": "Prop added",
             "info": "prop added description",
-            "score": 0.28
+            "score": 0.1
           },
           {
             "name": "Prop removed",

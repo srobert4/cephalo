@@ -97,6 +97,7 @@
   }
 
   export function updateMethod(idx, method) {
+    console.log(method);
     data.update((data) =>
       data.map((d, i) => {
         return i === idx
@@ -107,7 +108,8 @@
           : d;
       })
     );
-    activeFilters.set([get(data)[get(selectedSource)][method].tableFilter]);
+    console.log(get(data)[idx].last_method_selected);
+    activeFilters.set([get(data)[idx][method].tableFilter]);
   }
 
   export function cancelReload() {

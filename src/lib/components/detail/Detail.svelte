@@ -16,8 +16,19 @@
     loading_results,
   } from "../stores.js";
 
-  $: console.log(selectedMethod);
-  let selectedMethod;
+  $: console.log($detailShowingData.last_method_selected);
+
+  // $: console.log(selectedMethod);
+  let selectedMethod = 0;
+  let refreshMethod = function () {
+    selectedMethod =
+      $selectedSource === -1
+        ? 0
+        : $detailShowingData.last_method_selected === "nnmt"
+        ? 0
+        : 1;
+  };
+  $: $selectedSource, refreshMethod();
   let methods = ["nnmt", "template"];
 </script>
 
@@ -35,14 +46,12 @@
         >Translating input with the
         <select
           bind:value={selectedMethod}
-          on:change={(e) =>
-            updateMethod($selectedSource, methods[selectedMethod])}
+          on:change={(e) => {
+            updateMethod($selectedSource, methods[e.target.value]);
+          }}
         >
           {#each methods as method, i}
-            <option
-              value={i}
-              selected={$detailShowingData.last_method_selected === method}
-            >
+            <option value={i}>
               {method === "nnmt" ? "flexible" : method}
             </option>
           {/each}

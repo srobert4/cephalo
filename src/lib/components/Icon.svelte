@@ -83,6 +83,15 @@
         ` stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 `,
     },
+    {
+      name: "edit",
+      boxHeight: 20,
+      boxWidth: 20,
+      svg:
+        `<path stroke=` +
+        color +
+        ` stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.8 12.963L2 18l4.8-.63L18.11 6.58a2.612 2.612 0 00-3.601-3.785L3.8 12.963z"/>`,
+    },
   ];
 
   let displayIcon = icons.find((i) => i.name === name);

@@ -19,7 +19,7 @@
     console.log(idx);
     $data = $data.toSpliced(idx, 0, defaultSentenceData);
     $selectedSource = idx;
-    $activeFilters = $activeFilters.filter((x) => x !== "nearest neighbors");
+    $activeFilters = $activeFilters.filter((x) => x !== "used for translation");
   }
 
   function removeBlock(idx) {
@@ -27,7 +27,7 @@
     $data = $data.toSpliced(idx, 1);
     $lastDeletedIdx = idx;
     if ($selectedSource === idx) $selectedSource = -1;
-    $activeFilters = $activeFilters.filter((x) => x !== "nearest neighbors");
+    $activeFilters = $activeFilters.filter((x) => x !== "used for translation");
   }
 
   function undoDelete() {

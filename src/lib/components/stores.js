@@ -98,10 +98,12 @@ export const tableData = derived(
         }
       }
       if (
-        $activeFilters.includes("nearest neighbors") &&
+        $activeFilters.includes("used for translation") &&
         Object.keys($detailShowingData).length > 0
       ) {
-        data = [...$detailShowingData["nnmt"].tableResults, ...data];
+        if ($detailShowingData.last_method_selected === "nnmt") {
+          data = [...$detailShowingData["nnmt"].tableResults, ...data];
+        }
       }
       if (data.length === 0) {
         data = [...templates, ...tm_sentences, ...terms];

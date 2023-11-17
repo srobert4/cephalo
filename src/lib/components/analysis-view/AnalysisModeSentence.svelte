@@ -87,7 +87,7 @@
               Translation is using sentences that are not very relevant to your input.
             </p>
           {/if}
-        {:else}
+        {:else if model === "template"}
           <!-- <p class="annotation">Translated using:</p> -->
           <p class="template-text">
             {@html sentenceData["template"]["templates"][

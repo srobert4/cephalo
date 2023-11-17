@@ -3,8 +3,12 @@
   import TableList from "./TableList.svelte";
   import Icon from "../Icon.svelte";
 
-  import { activeFilters, selectedSource } from "./../stores.js";
-  let allFilters = ["sentences", "terms", "templates", "nearest neighbors"];
+  import {
+    activeFilters,
+    detailShowingData,
+    selectedSource,
+  } from "./../stores.js";
+  let allFilters = ["sentences", "terms", "templates", "used for translation"];
   let filtersPopupOpen = false;
 </script>
 
@@ -30,8 +34,9 @@
         <div id="filters-popup">
           {#each allFilters as filterName}
             <label
-              class={filterName === "nearest neighbors"
-                ? $selectedSource === -1
+              class={filterName === "used for translation"
+                ? $selectedSource === -1 ||
+                  $detailShowingData.last_method_selected === "template"
                   ? "inactive-label"
                   : ""
                 : ""}

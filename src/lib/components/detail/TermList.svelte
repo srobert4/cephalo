@@ -20,7 +20,8 @@
   {/each}
   <button
     id="plus-button"
-    on:click={(e) => (terms = [...terms, { ...defaultTermData }])}>+</button
+    on:click={(e) => (terms = [...terms, { ...defaultTermData }])}
+    >+ add term</button
   >
 </div>
 
@@ -29,6 +30,7 @@
     display: flex;
     flex-direction: column;
     justify-content: left;
+    row-gap: 0.8rem;
     /* width: 50%; */
   }
 

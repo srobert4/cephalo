@@ -24,7 +24,6 @@
   ].map((s) => s.toUpperCase());
 
   function getTranslation() {
-    data.term = curTermText;
     let termDict = terms.filter((t) => t.src === data.term);
     if (termDict.length === 0) {
       data.translation = "Not in database";
@@ -39,7 +38,7 @@
     dispatch("change", data);
   }
 
-  let curTermText;
+  // let curTermText = data.term;
 </script>
 
 <div class="term-wrapper">
@@ -50,33 +49,28 @@
   </select>
   <span>=</span>
   <div class="term-translation-wrapper">
+    <input on:blur={getTranslation} bind:value={data.term} />
     <span
-      contenteditable="true"
-      on:blur={getTranslation}
-      class={curTermText?.length === 0 ? "empty-term" : "term"}
-      bind:innerText={curTermText}>{data.term}</span
+      class={data.translation === "Not in database" ? "annotation" : "de"}
+      style="margin-top: 0.25rem;">{data.translation}</span
     >
-    <span class="de">{data.translation}</span>
   </div>
   <button
     on:click={(e) => {
       dispatch("remove", e);
-    }}>-</button
+    }}><Icon name="x" /></button
   >
-  {#if data.translation === "Not in database"}
-    <Icon name={"warning"} color={"red"} />
-    <span class="de">term not in database</span>
-  {:else if !data.translation_in_filled}
-    <Icon name={"warning"} color={"orange"} />
-    <span class="de">translation not in output</span>
-  {/if}
 </div>
 
 <style lang="scss">
   @import "../../../variables.scss";
-  select {
+  select,
+  input {
     height: 1.5rem;
     font-size: 1rem;
+  }
+  input {
+    padding-left: 0.5rem;
   }
   .empty-term {
     display: block;
@@ -86,6 +80,10 @@
   .term {
     font-family: $referenceFont;
     font-weight: $referenceFontWeight;
+  }
+  .annotation {
+    font-family: $annotationFont;
+    color: $annotationColor;
   }
   .de {
     color: blue;
@@ -97,7 +95,7 @@
     display: flex;
     flex-direction: row;
     column-gap: 1rem;
-    align-items: center;
+    align-items: flex-start;
     height: 3rem;
   }
   .term-translation-wrapper {

@@ -15,6 +15,11 @@
   $: noChanges =
     selectedTemplate === idx_of_filled_template &&
     terms === $detailShowingData["template"].terms;
+
+  let templateStyle = 'style="font-family: Courier New, Courier, monospace;"';
+  let termStyle =
+    'style="font-family: Courier New, Courier, monospace; color: blue;"';
+  let addedStyle = 'style="color: green;"';
 </script>
 
 <div class="output-wrapper">
@@ -34,7 +39,12 @@
   <div>
     <p class="annotation">Giving final translation:</p>
     {#if noChanges}
-      <p class="de">{@html translation_hyp_formatted}</p>
+      <p class="de">
+        {@html translation_hyp_formatted
+          .replaceAll('class="template"', templateStyle)
+          .replaceAll('class="term"', termStyle)
+          .replaceAll('class="added"', addedStyle)}
+      </p>
     {:else}
       <p class="de">apply changes to see output</p>
     {/if}
