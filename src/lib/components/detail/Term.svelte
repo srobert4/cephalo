@@ -84,7 +84,7 @@
     border: 1px solid black;
   }
   .de {
-    color: $systemGray2;
+    color: blue;
     font-style: italic;
   }
   .term-wrapper {

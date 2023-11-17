@@ -2,7 +2,7 @@
   import {
     ngrok_endpoint,
     ngrok_last_tested,
-    ngrok_connected
+    ngrok_connected,
   } from "./stores.js";
   import Icon from "./Icon.svelte";
 

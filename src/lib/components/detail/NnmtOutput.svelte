@@ -14,65 +14,70 @@
     if (relevance < 3) {
       if (utilization < 3) {
         guidance =
-          "Relevance and utilization are both <span style='color:red'>low</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider rephrasing to be closer to the neighbors above.</span>";
+          "The system is not using the database very much. The translation may not be consistent with the translations in the database. <span style='font-weight: bold'>To use the database more, consider rephrasing your input to be closer to sentences in the table above.</span>";
       } else if (utilization === 3) {
         guidance =
-          "Relevance is <span style='color:red'>low</span> and utilization is <span style='color:orange'>moderate</span>. This sentence has a moderate risk of translation errors. <span style='font-weight: bold'>Consider rephrasing to be closer to the neighbors above.</span>";
+          "The system is using the sentences in the database, but they are not very relevant to your input. <span style='font-weight: bold'>To reduce the risk of translation errors, consider rephrasing your input to be closer to sentences in the table above.</span>";
       } else {
         guidance =
-          "Relevance is <span style='color:red'>low</span> but utilization is <span style='color:green'>high</span>. This sentence has a high risk of translation errors. <span style='font-weight: bold'>Consider rephrasing to be closer to the neighbors above or decreasing utilization.</span>";
+          "The system is using the sentences in the database a lot, but they are not very relevant to your input. This sentence has a <span style='color: red'>high</span> risk of translation errors. <span style='font-weight: bold'>Consider rephrasing your input to be closer to sentences in the table above.</span>";
       }
     } else if (relevance === 3) {
       if (utilization < 3) {
         guidance =
-          "Relevance is <span style='color:orange'>moderate</span> and utilization is <span style='color:red'>low</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider rephrasing to be closer to the neighbors above.</span>";
+          "The closest sentences in the database are somewhat relevant to your input, but the system is not using them very much. The translation may not be consistent with the translations in the database. <span style='font-weight: bold'>To use the database more, consider rephrasing your input to be closer to sentences in the table above.</span>";
       } else if (utilization === 3) {
         guidance =
-          "Relevance and utilization are both <span style='color:orange'>moderate</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider rephrasing to be closer to the neighbors above.</span>";
+          "The system is using the sentences in the database, and they are somewhat relevant to your input. <span style='font-weight: bold'>To reduce the risk of translation errors, consider rephrasing your input to be closer to sentences in the table above.</span>";
       } else {
         guidance =
-          "Relevance is <span style='color:orange'>moderate</span> and utilization is <span style='color:green'>high</span>. This sentence has a moderate risk of translation errors. <span style='font-weight: bold'>Consider rephrasing to be closer to the neighbors above.</span>";
+          "The system is using the sentences in the database a lot, and they are somewhat relevant to your input. <span style='font-weight: bold'>To reduce the risk of translation errors, consider rephrasing your input to be closer to sentences in the table above.</span>";
       }
     } else {
       if (utilization < 3) {
         guidance =
-          "Relevance is <span style='color:green'>high</span> but utilization is <span style='color:red'>low</span>.  Translation may not be consistent with the database. <span style='font-weight: bold'>Consider increasing utilization or looking for a template.</span>";
+          "The closest sentences in the database are very relevant to your input, but the system is not using them very much.  The translation may not be consistent with the translations in the database. <span style='font-weight: bold'>To use the database more, consider rephrasing your input to be closer to sentences in the table above, or use the template approach.</span>";
       } else if (utilization === 3) {
         guidance =
-          "Relevance is <span style='color:green'>high</span> and utilization is <span style='color:orange'>moderate</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider increasing utilization or looking for a template.</span>";
+          "The system is using the sentences in the database, and they are very relevant to your input. The translation is likely to be consistent with the translations in the database.";
       } else {
         guidance =
-          "Relevance and utilization are both <span style='color:green'>high</span>. Translation likely to be consistent with the database.";
+          "The system is using the sentences in the database a lot, and they are very relevant to your input. The translation is likely to be consistent with the translations in the database.";
       }
     }
   }
 </script>
 
 <div class="output-wrapper">
-  <p>{@html guidance}</p>
-  <p>
-    <span>Translation: </span>
-    <span class="de">
+  <div>
+    <p class="annotation">Translation:</p>
+    <p class="de" style="margin-top: 0">
       {@html words
-        .map((w) => w.word.replace("color: #A8A8A8", "font-weight:bold"))
+        .map((w) => w.word.replace("color: #A8A8A8", "font-style: italic"))
         .join(" ")}
-    </span>
-  </p>
-  <p class="legend">
-    <span style="font-weight: bold; font-style: italic">bold italics</span> =
-    translation is <span style="font-weight: bold">not</span> using neighbors.
-  </p>
-  <Selector
+    </p>
+    <p class="legend">
+      <i>italics</i>
+      = translation for that word is <span style="font-weight: bold">not</span> using
+      the database.
+    </p>
+  </div>
+  <div class="guidance-box">
+    <p class="annotation">Guidance:</p>
+    <p class="guidance" style="margin-top: 0">{@html guidance}</p>
+  </div>
+  <!-- <Selector
     bind:value={strength}
     options={["Not at all", "Less", "Default", "More"]}
-  />
+  /> -->
 </div>
-<button
+
+<!-- <button
   disabled={strength === $detailShowingData["nnmt"].strength}
   on:click={(e) =>
     updateModelStrength($selectedSource, $detailShowingData.source, strength)}
   >apply changes</button
->
+> -->
 
 <style lang="scss">
   @import "../../../variables.scss";
@@ -107,11 +112,32 @@
     border-radius: 0.2rem;
   }
   .de {
-    color: $systemGray2;
-    font-style: italic;
+    color: $systemGray;
+    // font-style: italic;
   }
   .legend {
     color: $systemGray2;
     margin-top: 0;
+  }
+
+  .guidance-box {
+    border: solid $systemGray2;
+    border-radius: 0.2rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .annotation {
+    margin-bottom: 0.2rem;
+  }
+
+  .annotation,
+  .legend {
+    font-family: $annotationFont;
+    color: $annotationColor;
+  }
+
+  .guidance {
+    font-family: $annotationFont;
+    color: #213547;
   }
 </style>

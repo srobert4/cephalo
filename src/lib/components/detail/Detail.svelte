@@ -26,9 +26,13 @@
     <div>Loading...</div>
     <button on:click={cancelReload}>Cancel reload</button>
   {:else if Object.keys($detailShowingData).length !== 0}
+    <div>
+      <p class="annotation">Your input:</p>
+      <p style="margin-top: 0">{$detailShowingData.source}</p>
+    </div>
     <div id="method-selector">
-      <label
-        >Using:
+      <label class="annotation"
+        >Translating input with the
         <select
           bind:value={selectedMethod}
           on:change={(e) =>
@@ -39,10 +43,11 @@
               value={i}
               selected={$detailShowingData.last_method_selected === method}
             >
-              {method}
+              {method === "nnmt" ? "flexible" : method}
             </option>
           {/each}
         </select>
+        approach.
       </label>
     </div>
     <!-- <div class="input-area">
@@ -64,19 +69,24 @@
   {/if}
 </div>
 
-<style>
+<style lang="scss">
+  @import "../../../variables.scss";
   #detail-view-wrapper {
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
+    /* row-gap: 1rem; */
     /* flex: 1; */
-    padding: 1rem;
+    padding: 1rem 2rem;
     /* border: 1px solid blue; */
     /* width: 100%; */
     max-height: 60%;
     overflow-y: scroll;
     border-radius: 5px;
     box-shadow: 0 0 2px hsla(0, 0%, 0%, 0.2), 0 0 5px hsla(0, 0%, 0%, 0.1);
+  }
+  p,
+  label {
+    text-align: left;
   }
   #method-selector {
     display: flex;
@@ -89,5 +99,11 @@
     display: flex;
     flex-direction: row;
     column-gap: 2rem;
+  }
+
+  .annotation {
+    margin-bottom: 0;
+    font-family: $annotationFont;
+    color: $annotationColor;
   }
 </style>
