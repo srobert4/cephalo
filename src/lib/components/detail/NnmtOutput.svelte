@@ -63,7 +63,7 @@
     </p>
   </div>
   <div class="guidance-box">
-    <p class="annotation">Guidance:</p>
+    <p class="annotation">Feedback:</p>
     <p class="guidance" style="margin-top: 0">{@html guidance}</p>
   </div>
   <!-- <Selector
@@ -121,9 +121,11 @@
   }
 
   .guidance-box {
-    border: solid $systemGray2;
-    border-radius: 0.2rem;
+    border: solid $systemGray5;
     padding: 0.5rem 1rem;
+    background-color: $systemGray6;
+    border-radius: 5px;
+    // box-shadow: 0 0 2px hsla(0, 0%, 0%, 0.2), 0 0 5px hsla(0, 0%, 0%, 0.1);
   }
 
   .annotation {

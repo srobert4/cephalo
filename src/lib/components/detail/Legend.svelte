@@ -10,7 +10,7 @@
 <div id="legend">
   <div class="col">
     <div class="label">Template</div>
-    <div class="label">NNMT</div>
+    <div class="label">Flexible</div>
   </div>
   <div class="col">
     <div class="row">

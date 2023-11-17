@@ -71,6 +71,30 @@
         >
           {sentenceData.source}
         </p>
+        {#if model === "nnmt"}
+          {#if sentenceData["nnmt"].utilization < 3}
+            <p class="feedback">
+              <Icon
+                name="warning"
+                color="orange"
+                height="0.9rem"
+                width="0.9rem"
+              /> Translation is not using the database very much.
+            </p>
+          {:else if sentenceData["nnmt"].utilization > 3 && sentenceData["nnmt"].relevance < 3}
+            <p class="feedback">
+              <Icon name="warning" color="red" height="0.9rem" width="0.9rem" />
+              Translation is using sentences that are not very relevant to your input.
+            </p>
+          {/if}
+        {:else}
+          <!-- <p class="annotation">Translated using:</p> -->
+          <p class="template-text">
+            {@html sentenceData["template"]["templates"][
+              sentenceData["template"]["idx_of_filled_template"]
+            ].template}
+          </p>
+        {/if}
         {#if showTranslations}
           <p class="de">
             {sentenceData[model].translation_hyp}
@@ -122,6 +146,29 @@
   .empty-p {
     width: 80%;
     min-height: 1rem;
+  }
+
+  .feedback-wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .template-text {
+    font-family: $referenceFont;
+    font-weight: $referenceFontWeight;
+    margin-top: 0;
+  }
+  .annotation {
+    margin-bottom: 0;
+    font-family: $annotationFont;
+    color: $annotationColor;
+  }
+
+  .feedback {
+    margin-top: 0;
+    font-family: $annotationFont;
+    color: $annotationColor;
+    font-size: 0.9rem;
   }
 
   .de {

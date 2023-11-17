@@ -1,5 +1,6 @@
 <script>
   import AnalysisModeSentence from "./AnalysisModeSentence.svelte";
+  import SmallLegend from "./SmallLegend.svelte";
   import {
     activeFilters,
     selectedSource,
@@ -8,6 +9,7 @@
     lastDeleted,
     lastDeletedIdx,
     query,
+    control_mode,
   } from "../stores.js";
   import AddBlock from "./AddBlock.svelte";
   import Switch from "./Switch.svelte";
@@ -57,6 +59,7 @@
     >
     <Switch bind:on={showTranslations} />
   </div>
+  {#if !$control_mode}<SmallLegend />{/if}
   <div id="sentence-list">
     <AddBlock on:click={(e) => addNewBlock(0)} />
     {#each $data as sentence, i}
@@ -99,6 +102,8 @@
     flex-direction: column;
     margin: 0.5rem;
     padding: 0.5rem;
+    margin-top: 0;
+    padding-top: 0;
   }
 
   #top-row {
