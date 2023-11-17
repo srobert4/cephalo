@@ -160,25 +160,27 @@
   }
 
   export async function updateSentence(e, idx) {
-    if (get(data)[idx].source === e.target.innerText) return;
-    if (!get(ngrok_connected) || e.target.innerText === "") {
+    let newValue =
+      e.target.nodeName === "INPUT" ? e.target.value : e.target.innerText;
+    if (get(data)[idx].source === newValue) return;
+    if (!get(ngrok_connected) || newValue === "") {
       data.update((data) =>
         data.map((sentenceData, i) => {
           return i === idx
             ? {
                 ...sentenceData,
-                source: e.target.innerText,
+                source: newValue,
                 baseline: {
                   ...sentenceData.baseline,
-                  translation_hyp: e.target.innerText,
+                  translation_hyp: newValue,
                 },
                 nnmt: {
                   ...sentenceData.nnmt,
-                  translation_hyp: e.target.innerText,
+                  translation_hyp: newValue,
                 },
                 template: {
                   ...sentenceData.template,
-                  translation_hyp: e.target.innerText,
+                  translation_hyp: newValue,
                 },
               }
             : sentenceData;
@@ -186,7 +188,7 @@
       );
     } else {
       loading_results.set(true);
-      analyzeSentence(e.target.innerText).then((result) => {
+      analyzeSentence(newValue).then((result) => {
         data.update((data) =>
           data.map((sentenceData, i) => {
             return i === idx ? result : sentenceData;

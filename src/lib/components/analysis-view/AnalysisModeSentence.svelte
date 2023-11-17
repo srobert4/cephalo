@@ -134,6 +134,7 @@
   #sentence-stack {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
   }
 
   p {
@@ -144,7 +145,7 @@
   }
 
   .empty-p {
-    width: 80%;
+    width: 90%;
     min-height: 1rem;
   }
 
