@@ -18,6 +18,7 @@
 </script>
 
 <div class="output-wrapper">
+  <p class="annotation">Using template:</p>
   <select class="template-selector" bind:value={selectedTemplate}>
     {#each templates as template, i}
       <option value={i}>
@@ -25,16 +26,19 @@
       </option>
     {/each}
   </select>
-  <p class="de">{@html templates[selectedTemplate].translation}</p>
-  <TermList bind:terms />
-  <p>
-    Filled:
-    {#if noChanges}
-      <span class="de">{@html translation_hyp_formatted}</span>
-    {:else}
-      <span class="de">apply changes to see output</span>
-    {/if}
+  <p class="de template">{@html templates[selectedTemplate].translation}</p>
+  <p class="annotation" style="margin-bottom: 0.5rem;">
+    Filling the template with:
   </p>
+  <TermList bind:terms />
+  <div>
+    <p class="annotation">Giving final translation:</p>
+    {#if noChanges}
+      <p class="de">{@html translation_hyp_formatted}</p>
+    {:else}
+      <p class="de">apply changes to see output</p>
+    {/if}
+  </div>
   <div class="button-row">
     <button
       disabled={noChanges}
@@ -80,14 +84,18 @@
     white-space: pre-wrap;
     font-size: 1rem;
     padding: 0.2rem;
+    margin-top: 1rem;
   }
-
+  .template {
+    font-family: $referenceFont;
+    font-weight: $referenceFontWeight;
+  }
   p {
     text-align: left;
   }
   .de {
     color: $systemGray2;
-    font-style: italic;
+    // font-style: italic;
   }
   .term-wrapper {
     display: flex;
@@ -105,5 +113,18 @@
     flex-direction: row;
     column-gap: 1rem;
     justify-content: center;
+  }
+  .annotation {
+    margin-bottom: 0;
+    font-family: $annotationFont;
+    color: $annotationColor;
+  }
+  .added {
+    color: green;
+  }
+  .term {
+    color: blue;
+    font-family: $referenceFont;
+    font-weight: $referenceFontWeight;
   }
 </style>

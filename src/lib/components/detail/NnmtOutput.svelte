@@ -140,4 +140,8 @@
     font-family: $annotationFont;
     color: #213547;
   }
+
+  .not-utilized {
+    font-style: italic;
+  }
 </style>

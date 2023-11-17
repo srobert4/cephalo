@@ -53,7 +53,7 @@
     <span
       contenteditable="true"
       on:blur={getTranslation}
-      class={curTermText?.length === 0 ? "empty-term" : ""}
+      class={curTermText?.length === 0 ? "empty-term" : "term"}
       bind:innerText={curTermText}>{data.term}</span
     >
     <span class="de">{data.translation}</span>
@@ -83,9 +83,15 @@
     min-width: 1rem;
     border: 1px solid black;
   }
+  .term {
+    font-family: $referenceFont;
+    font-weight: $referenceFontWeight;
+  }
   .de {
     color: blue;
-    font-style: italic;
+    // font-style: italic;
+    font-family: $referenceFont;
+    font-weight: $referenceFontWeight;
   }
   .term-wrapper {
     display: flex;
