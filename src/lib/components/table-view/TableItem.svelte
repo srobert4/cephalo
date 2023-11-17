@@ -1,9 +1,9 @@
 <script>
-  import { textToInsert } from "./../stores.js";
-  import iconPlusSquare from "./../../../assets/icon-plus-square.svg?raw";
+  import { selectedSource, detailShowingData } from "../stores";
   import Icon from "./../Icon.svelte";
   export let data;
-
+  import { updateTemplate } from "../analyzeSentence.svelte";
+  // $: console.log(data)
   let showref = false;
   let srcButton;
 </script>
@@ -23,19 +23,31 @@
       </div>
     {/if}
   </div>
-  <button
-    class="add-sentence-button icon-button"
-    on:click={() => {
-      // $textToInsert = " " + data.src;
-      navigator.clipboard.writeText(srcButton.innerText);
-    }}
-  >
-    <div
-      style="display: flex; flex-direction: column; justify-content: center; height: 100%"
+  <div style="display: flex; flex-direction: row;">
+    {#if $selectedSource !== -1 && data?.type === "template"}
+      <button
+        class="use-template-button icon-button"
+        on:click={() => {
+          updateTemplate($selectedSource, $detailShowingData.source, data.src);
+        }}
+      >
+        use
+      </button>
+    {/if}
+    <button
+      class="add-sentence-button icon-button"
+      on:click={() => {
+        // $textToInsert = " " + tableDat.src;
+        navigator.clipboard.writeText(srcButton.innerText);
+      }}
     >
-      <Icon name="copy" />
-    </div>
-  </button>
+      <div
+        style="display: flex; flex-direction: column; justify-content: center; height: 100%"
+      >
+        <Icon name="copy" />
+      </div>
+    </button>
+  </div>
 </div>
 
 <style>

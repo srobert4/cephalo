@@ -2,18 +2,9 @@
   import {
     ngrok_endpoint,
     ngrok_last_tested,
-    ngrok_connected,
-    source,
-    sentences,
-    loading_results,
-    data,
+    ngrok_connected
   } from "./stores.js";
   import Icon from "./Icon.svelte";
-
-  import {
-    analyzeSentence,
-    getBaselineTranslation,
-  } from "./analyzeSentence.svelte";
 
   let cur_tunnel = ""; // user input
 

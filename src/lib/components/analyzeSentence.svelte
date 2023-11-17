@@ -1,17 +1,11 @@
 <script context="module">
   import {
-    source,
     selectedSource,
-    detailShowingData,
     ngrok_connected,
     ngrok_endpoint,
-    sentences,
     activeFilters,
     loading_results,
-    defaultSentenceData,
-    defaultTranslationData,
     data,
-    selected,
     instruction_set,
   } from "./stores.js";
   import instructions from "../../data/source_instructions_data.json";
