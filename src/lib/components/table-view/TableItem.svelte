@@ -50,7 +50,8 @@
   </div>
 </div>
 
-<style>
+<style lang="scss">
+  @import "../../../variables.scss";
   .list-row {
     display: flex;
     flex-direction: row;
@@ -76,6 +77,8 @@
 
   .sentence-wrapper {
     text-align: left;
+    font-family: $referenceFont;
+    font-weight: $referenceFontWeight;
   }
 
   button.sentence-wrapper {

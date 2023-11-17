@@ -94,7 +94,7 @@
     text-align: left;
   }
   .de {
-    color: $systemGray2;
+    color: $systemGray;
     // font-style: italic;
   }
   .term-wrapper {
