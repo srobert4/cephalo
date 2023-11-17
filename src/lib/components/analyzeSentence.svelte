@@ -81,6 +81,34 @@
     });
   }
 
+  export function useTemplate(idx, template_to_add) {
+    let oldTemplates = get(data)[idx].template.templates;
+    let alreadyInList = oldTemplates.filter((t) => t === template_to_add);
+
+    let newTemplates, newSelectedIdx;
+    if (alreadyInList.length > 0) {
+      newTemplates = oldTemplates;
+      newSelectedIdx = oldTemplates.indexOf(alreadyInList[0]);
+    } else {
+      newTemplates = [...oldTemplates, template_to_add];
+      newSelectedIdx = oldTemplates.length;
+    }
+    data.update((data) =>
+      data.map((sentence, i) => {
+        if (i !== idx) return sentence;
+        return {
+          ...sentence,
+          last_method_selected: "template",
+          template: {
+            ...sentence["template"],
+            templates: newTemplates,
+            idx_selected: newSelectedIdx,
+          },
+        };
+      })
+    );
+  }
+
   export async function updateModelStrength(idx, source, selectedStrength) {
     if (!get(ngrok_connected)) return;
     loading_results.set(true);

@@ -2,7 +2,7 @@
   import { selectedSource, detailShowingData } from "../stores";
   import Icon from "./../Icon.svelte";
   export let data;
-  import { updateTemplate } from "../analyzeSentence.svelte";
+  import { useTemplate } from "../analyzeSentence.svelte";
   // $: console.log(data)
   let showref = false;
   let srcButton;
@@ -28,7 +28,10 @@
       <button
         class="use-template-button icon-button"
         on:click={() => {
-          updateTemplate($selectedSource, $detailShowingData.source, data.src);
+          useTemplate($selectedSource, {
+            template: data.src,
+            translation: data.ref,
+          });
         }}
       >
         use

@@ -32,7 +32,7 @@
 
   $: model = $control_mode ? "baseline" : sentenceData.last_method_selected;
 
-  $: console.log(sentenceData);
+  // $: console.log(sentenceData);
 </script>
 
 <div

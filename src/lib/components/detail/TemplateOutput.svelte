@@ -5,12 +5,15 @@
   import TermList from "./TermList.svelte";
 
   export let templates = [];
+  $: console.log(templates);
   export let terms = [];
   export let translation_hyp = "";
   export let translation_hyp_formatted = "";
   export let idx_of_filled_template = 0;
+  export let idx_selected = -1;
 
-  $: selectedTemplate = idx_of_filled_template;
+  $: selectedTemplate =
+    idx_selected >= 0 ? idx_selected : idx_of_filled_template;
 
   $: noChanges =
     selectedTemplate === idx_of_filled_template &&
