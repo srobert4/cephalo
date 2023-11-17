@@ -48,6 +48,7 @@ export const defaultSentenceData = {
 export const data = writable(instructions["infection"]);
 export const lastDeletedIdx = writable(-1);
 export const lastDeleted = writable({});
+export const pendingChanges = writable(false);
 
 export const sentences = writable(
   [

@@ -6,6 +6,7 @@
   export let utilization;
   export let relevance;
   export let strength = "Default";
+  export let words;
   $: console.log(strength);
 
   let guidance;
@@ -13,24 +14,24 @@
     if (relevance < 3) {
       if (utilization < 3) {
         guidance =
-          "Relevance and utilization are both <span style='color:red'>low</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider rephrasing.</span>";
+          "Relevance and utilization are both <span style='color:red'>low</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider rephrasing to be closer to the neighbors above.</span>";
       } else if (utilization === 3) {
         guidance =
-          "Relevance is <span style='color:red'>low</span> and utilization is <span style='color:orange'>moderate</span>. This sentence has a moderate risk of translation errors. <span style='font-weight: bold'>Consider rephrasing.</span>";
+          "Relevance is <span style='color:red'>low</span> and utilization is <span style='color:orange'>moderate</span>. This sentence has a moderate risk of translation errors. <span style='font-weight: bold'>Consider rephrasing to be closer to the neighbors above.</span>";
       } else {
         guidance =
-          "Relevance is <span style='color:red'>low</span> but utilization is <span style='color:green'>high</span>. This sentence has a high risk of translation errors. <span style='font-weight: bold'>Consider rephrasing or decreasing utilization.</span>";
+          "Relevance is <span style='color:red'>low</span> but utilization is <span style='color:green'>high</span>. This sentence has a high risk of translation errors. <span style='font-weight: bold'>Consider rephrasing to be closer to the neighbors above or decreasing utilization.</span>";
       }
     } else if (relevance === 3) {
       if (utilization < 3) {
         guidance =
-          "Relevance is <span style='color:orange'>moderate</span> and utilization is <span style='color:red'>low</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider rephrasing.</span>";
+          "Relevance is <span style='color:orange'>moderate</span> and utilization is <span style='color:red'>low</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider rephrasing to be closer to the neighbors above.</span>";
       } else if (utilization === 3) {
         guidance =
-          "Relevance and utilization are both <span style='color:orange'>moderate</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider rephrasing.</span>";
+          "Relevance and utilization are both <span style='color:orange'>moderate</span>. Translation may not be consistent with the database. <span style='font-weight: bold'>Consider rephrasing to be closer to the neighbors above.</span>";
       } else {
         guidance =
-          "Relevance is <span style='color:orange'>moderate</span> and utilization is <span style='color:green'>high</span>. This sentence has a moderate risk of translation errors. <span style='font-weight: bold'>Consider rephrasing.</span>";
+          "Relevance is <span style='color:orange'>moderate</span> and utilization is <span style='color:green'>high</span>. This sentence has a moderate risk of translation errors. <span style='font-weight: bold'>Consider rephrasing to be closer to the neighbors above.</span>";
       }
     } else {
       if (utilization < 3) {
@@ -49,23 +50,22 @@
 
 <div class="output-wrapper">
   <p>{@html guidance}</p>
+  <p>
+    <span>Translation: </span>
+    <span class="de">
+      {@html words
+        .map((w) => w.word.replace("color: #A8A8A8", "font-weight:bold"))
+        .join(" ")}
+    </span>
+  </p>
+  <p class="legend">
+    <span style="font-weight: bold; font-style: italic">bold italics</span> =
+    translation is <span style="font-weight: bold">not</span> using neighbors.
+  </p>
   <Selector
     bind:value={strength}
     options={["Not at all", "Less", "Default", "More"]}
   />
-  <!-- {#each words as word, i}
-    <button
-      class={"word-button" + (clicked == i ? " selected" : "")}
-      on:click={(e) => {
-        clicked == i ? (clicked = -1) : (clicked = i);
-      }}
-    >
-      <span class="translated-word">{@html word.word}</span>
-      {#if clicked == i}
-        <span class="backtranslation">{word.backtranslation}</span>
-      {/if}
-    </button>
-  {/each} -->
 </div>
 <button
   disabled={strength === $detailShowingData["nnmt"].strength}
@@ -106,10 +106,12 @@
     border: 1px solid $systemGray;
     border-radius: 0.2rem;
   }
-  .translated-word {
-    color: black;
-  }
-  .backtranslation {
+  .de {
+    color: $systemGray2;
     font-style: italic;
+  }
+  .legend {
+    color: $systemGray2;
+    margin-top: 0;
   }
 </style>

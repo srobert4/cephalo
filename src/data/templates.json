@@ -84,9 +84,9 @@
     "show_ref": false
   },
   {
-    "src": "Keep the gauze dressing on for &lt;TIME PERIOD&gt;",
-    "display_src": "Keep the gauze dressing on for &lt;TIME PERIOD&gt;",
-    "ref": "Lassen Sie den Mullverband noch eine Weile an &lt;TIME PERIOD&gt;",
+    "src": "Keep the gauze dressing on for &lt;TIME&gt;",
+    "display_src": "Keep the gauze dressing on for &lt;TIME&gt;",
+    "ref": "Lassen Sie den Mullverband noch eine Weile an &lt;TIME&gt;",
     "show_ref": false
   },
   {
@@ -378,9 +378,9 @@
     "show_ref": false
   },
   {
-    "src": "Please follow up with &lt;CLINIC&gt; to monitor your &lt;SYMPTOM/CONDITION&gt;.",
-    "display_src": "Please follow up with &lt;CLINIC&gt; to monitor your &lt;SYMPTOM/CONDITION&gt;.",
-    "ref": "Bitte folgen Sie mit &lt;CLINIC&gt; um Ihre zu \u00fcberwachen &lt;SYMPTOM/CONDITION&gt; .",
+    "src": "Please follow up with &lt;CLINIC&gt; to monitor your &lt;CONDITION&gt;.",
+    "display_src": "Please follow up with &lt;CLINIC&gt; to monitor your &lt;CONDITION&gt;.",
+    "ref": "Bitte folgen Sie mit &lt;CLINIC&gt; um Ihre zu \u00fcberwachen &lt;CONDITION&gt; .",
     "show_ref": false
   },
   {
@@ -552,9 +552,9 @@
     "show_ref": false
   },
   {
-    "src": "You declined &lt;MEDICATION/TREATMENT&gt;.",
-    "display_src": "You declined &lt;MEDICATION/TREATMENT&gt;.",
-    "ref": "Sie haben abgelehnt &lt;MEDICATION/TREATMENT&gt; .",
+    "src": "You declined &lt;TREATMENT&gt;.",
+    "display_src": "You declined &lt;TREATMENT&gt;.",
+    "ref": "Sie haben abgelehnt &lt;TREATMENT&gt; .",
     "show_ref": false
   },
   {
@@ -582,15 +582,15 @@
     "show_ref": false
   },
   {
-    "src": "Please increase your &lt;MEDICATION&gt; to &lt;N&gt; &lt;MEASUREMENT&gt;&lt;UNITS&gt; &lt;FREQUENCY&gt; &lt;TIME&gt; for &lt;TIME PERIOD&gt; starting &lt;DATE&gt;.",
-    "display_src": "Please increase your &lt;MEDICATION&gt; to &lt;N&gt; &lt;MEASUREMENT&gt;&lt;UNITS&gt; &lt;FREQUENCY&gt; &lt;TIME&gt; for &lt;TIME PERIOD&gt; starting &lt;DATE&gt;.",
-    "ref": "Bitte erh\u00f6hen Sie Ihre &lt;MEDICATION&gt; Zu &lt;N&gt; &lt;MEASUREMENT&gt; &lt;UNITS&gt; &lt;FREQUENCY&gt; &lt;TIME&gt; f\u00fcr &lt;TIME PERIOD&gt; beginnend &lt;DATE&gt; .",
+    "src": "Please increase your &lt;MEDICATION&gt; to &lt;N&gt; &lt;MEASUREMENT&gt;&lt;UNITS&gt; &lt;FREQUENCY&gt; &lt;TIME&gt; for &lt;TIME&gt; starting &lt;TIME&gt;.",
+    "display_src": "Please increase your &lt;MEDICATION&gt; to &lt;N&gt; &lt;MEASUREMENT&gt;&lt;UNITS&gt; &lt;FREQUENCY&gt; &lt;TIME&gt; for &lt;TIME&gt; starting &lt;TIME&gt;.",
+    "ref": "Bitte erh\u00f6hen Sie Ihre &lt;MEDICATION&gt; Zu &lt;N&gt; &lt;MEASUREMENT&gt; &lt;UNITS&gt; &lt;FREQUENCY&gt; &lt;TIME&gt; f\u00fcr &lt;TIME&gt; beginnend &lt;TIME&gt; .",
     "show_ref": false
   },
   {
-    "src": "Please decrease your &lt;MEDICATION&gt; to &lt;N&gt; &lt;MEASUREMENT&gt;&lt;UNITS&gt; &lt;FREQUENCY&gt; &lt;TIME&gt; for &lt;TIME PERIOD&gt; starting &lt;DATE&gt;.",
-    "display_src": "Please decrease your &lt;MEDICATION&gt; to &lt;N&gt; &lt;MEASUREMENT&gt;&lt;UNITS&gt; &lt;FREQUENCY&gt; &lt;TIME&gt; for &lt;TIME PERIOD&gt; starting &lt;DATE&gt;.",
-    "ref": "Bitte verringern Sie Ihre &lt;MEDICATION&gt; Zu &lt;N&gt; &lt;MEASUREMENT&gt; &lt;UNITS&gt; &lt;FREQUENCY&gt; &lt;TIME&gt; f\u00fcr &lt;TIME PERIOD&gt; beginnend &lt;DATE&gt; .",
+    "src": "Please decrease your &lt;MEDICATION&gt; to &lt;N&gt; &lt;MEASUREMENT&gt;&lt;UNITS&gt; &lt;FREQUENCY&gt; &lt;TIME&gt; for &lt;TIME&gt; starting &lt;TIME&gt;.",
+    "display_src": "Please decrease your &lt;MEDICATION&gt; to &lt;N&gt; &lt;MEASUREMENT&gt;&lt;UNITS&gt; &lt;FREQUENCY&gt; &lt;TIME&gt; for &lt;TIME&gt; starting &lt;TIME&gt;.",
+    "ref": "Bitte verringern Sie Ihre &lt;MEDICATION&gt; Zu &lt;N&gt; &lt;MEASUREMENT&gt; &lt;UNITS&gt; &lt;FREQUENCY&gt; &lt;TIME&gt; f\u00fcr &lt;TIME&gt; beginnend &lt;TIME&gt; .",
     "show_ref": false
   },
   {

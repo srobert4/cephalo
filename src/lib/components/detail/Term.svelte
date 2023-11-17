@@ -53,6 +53,7 @@
     <span
       contenteditable="true"
       on:blur={getTranslation}
+      class={curTermText?.length === 0 ? "empty-term" : ""}
       bind:innerText={curTermText}>{data.term}</span
     >
     <span class="de">{data.translation}</span>
@@ -77,7 +78,11 @@
     height: 1.5rem;
     font-size: 1rem;
   }
-
+  .empty-term {
+    display: block;
+    min-width: 1rem;
+    border: 1px solid black;
+  }
   .de {
     color: $systemGray2;
     font-style: italic;
