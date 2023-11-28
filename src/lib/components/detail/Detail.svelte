@@ -73,7 +73,8 @@
       <TemplateOutput {...$detailShowingData["template"]} />
     {/if}
   {:else}
-    <p>Select a sentence to view translation analysis.</p>
+
+    <p1> Select a sentence to view translation analysis.</p1>
     <Legend />
   {/if}
 </div>
@@ -96,6 +97,9 @@
   p,
   label {
     text-align: left;
+  }
+  p1 {
+    text-align: center;
   }
   #method-selector {
     display: flex;
